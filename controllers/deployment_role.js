@@ -11,7 +11,7 @@ function deployments_for_user (userId) {
   })
 }
 exports.deployment_role_list = function (req, res, next) {
-  Deployment.find({}, function (err, list_deployment_roles) {
+  DeploymentRole.find({}, function (err, list_deployment_roles) {
     if (err) {
       return next(err)
     }
