@@ -1,12 +1,5 @@
 var device= require('./device')
 
-module.exports = {
-    getDeviceConfig: _getDeviceConfig,
-    testDeviceConfig: _testDeviceConfig,
-    resetDeviceConfig: _resetDeviceConfig,
-    updateDeviceConfig: _updateDeviceConfig
-}
-
 function _getDeviceConfig(req,res,next){
     //build the structure of the config
 
@@ -35,4 +28,10 @@ function _updateDeviceConfig(req,res,next){
         function:"_updateDeviceConfig",
         status: "not implemented"
     })
+}
+module.exports = {
+    getDeviceConfig: _getDeviceConfig,
+    testDeviceConfig: _testDeviceConfig,
+    resetDeviceConfig: _resetDeviceConfig,
+    updateDeviceConfig: _updateDeviceConfig
 }

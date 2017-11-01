@@ -40,7 +40,6 @@ exports.aggregator_create = function (req, res, next) {
     channel:req.body.channel,
     topics: req.body.topics,
     description:req.body.description,
-    handler:req.body.handler,
     poll:req.body.poll,
     deployment:req.body.deployment,
     active:req.body.active
