@@ -22,7 +22,7 @@ exports.deployment_role_list = function (req, res, next) {
 exports.deployment_role_detail_by_deployment = function (req, res, next) {
   DeploymentRole.find({
     deployment: req.params.deployment
-  }).populate('role').populate('deployment').exec(function (err, deployment_role) {
+  }).populate('role').populate('profile').exec(function (err, deployment_role) {
     if (err) {
       return next(err)
     }
