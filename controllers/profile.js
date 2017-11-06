@@ -132,8 +132,7 @@ exports.profile_update = function (req, res) {
   }, {
     'username': req.body.username,
     'firstname': req.body.firstname,
-    'lastname': req.body.lastname,
-    'password': req.body.username
+    'lastname': req.body.lastname
   }, {
     upsert: false
   },
