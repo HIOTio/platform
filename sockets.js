@@ -33,29 +33,34 @@ exports.init = function(_app) {
     });
 }
 exports.registerChannel = function(channel) {
-    app.ws('/' + channel, function(ws, req) {
-        console.log("registering ws channel " + channel);
-        channels[channel] = ws;
+    if(!channels[channel]){
+        app.ws('/' + channel, function(ws, req) {
+            console.log("registering ws channel " + channel);
+            channels[channel] = ws;
 
-        ws.on('connect', function() {
-            console.log("Ws Connection established");
-        })
-        ws.on('open', function() {
-            console.log("Ws Connection established");
-        })
-        ws.on('message', function(message) {
-            console.log("received message " + message)
-                // shouldn't need to do this, but anyway
+            ws.on('connect', function() {
+                console.log("Ws Connection established");
+            })
+            ws.on('open', function() {
+                console.log("Ws Connection established");
+            })
+            ws.on('message', function(message) {
+                console.log("received message " + message)
+                    // shouldn't need to do this, but anyway
 
-            console.log("channels" + channels);
+                console.log("channels" + channels);
 
-            ws.send("You are connected to channel: " + req.params.socket);
-        })
-        ws.on('close', function() {
-            console.log("Ws Connection closed");
-        })
+                ws.send("You are connected to channel: " + req.params.socket);
+            })
+            ws.on('close', function() {
+                console.log("Ws Connection closed");
+            })
 
-    });
+        });
+    }
+}
+exports.deregisterChannel=function(channel){
+    delete channels[channel];
 }
 exports.send = function(channel, message) {
     if (channels[channel]) {

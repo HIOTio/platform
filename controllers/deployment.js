@@ -3,9 +3,6 @@ var DeploymentRole = require('../models/deployment_role')
 var Role = require('../models/role')
 var sockets = require('../sockets');
 
-//just testing here
-sockets.registerChannel('deployment-597f3056ef66be0648ef5bd3')
-
 exports.deployment_list = function(req, res, next) {
     Deployment.find({}, function(err, list_deployments) {
         //   console.log(req)
@@ -80,7 +77,7 @@ exports.deployment_delete = function(req, res, next) {
             return res.send('Deployment Deleted')
         })
         // need to remove all the associated deployment roles and then broadcast on relevant channels
-    sockets.send('deployment-' + req.body.id, JSON.stringify({ 'deleted': 'this deployment has been deleted' }))
+    sockets.send('deployment-' + req.body.id, JSON.stringify({ 'deployment':req.body.id,'deleted': 'this deployment has been deleted' }))
 }
 exports.deployment_update = function(req, res) {
     //  console.log(req.body)
