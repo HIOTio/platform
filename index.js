@@ -3,44 +3,44 @@ var bodyParser = require('body-parser')
 var expressValidator = require('express-validator')
 require('./api/db')
 var passport = require('passport')
+var sockets = require('./sockets');
 var passportJWT = require('passport-jwt')
 var ExtractJwt = passportJWT.ExtractJwt
 var JwtStrategy = passportJWT.Strategy
 var config = require('./config')
 var app = express()
 app.use(bodyParser.json())
- // Set up websockets
-var socketSend = {}
-require('express-ws')(app);
+    // Set up websockets
 
+sockets.start();
 
 var cors = require('cors')
 app.use(expressValidator())
-// var expressJwt = require('express-jwt')
-// var db = require('./api/db')
+    // var expressJwt = require('express-jwt')
+    // var db = require('./api/db')
 var Profile = require('./controllers/profile')
 
 var jwtOptions = {}
 jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeader()
 jwtOptions.secretOrKey = config.secret
 
-var strategy = new JwtStrategy(jwtOptions, function (jwt_payload, next) {
-  Profile.find_by_id(jwt_payload.id, function (err, user) {
-    if (this) {
-      next(null, this)
-    } else {
-      next(null, false)
-    }
-  })
+var strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
+    Profile.find_by_id(jwt_payload.id, function(err, user) {
+        if (this) {
+            next(null, this)
+        } else {
+            next(null, false)
+        }
+    })
 })
 passport.use(strategy)
 app.use(cors({
-  origin: ['http://localhost:4200','http://localhost:3000']
+    origin: ['http://localhost:4200', 'http://localhost:3000']
 }))
 app.use(passport.initialize())
 
 app.use('/api', passport.authenticate('jwt', {
-  session: false
+    session: false
 }))
 
 // use it before all route definitions
@@ -49,7 +49,7 @@ app.use('/api', passport.authenticate('jwt', {
 // no auth
 app.options('*', cors());
 var r_no_auth = require('./routes/no_auth')
-// with auth
+    // with auth
 var r_aggregator = require('./routes/aggregator')
 var r_broker = require('./routes/broker')
 var r_config = require('./routes/config')
@@ -85,7 +85,7 @@ var r_navigation = require('./routes/navigation')
 app.use('/', r_no_auth)
 app.use('/api/aggregator', r_aggregator)
 app.use('/api/broker', r_broker)
-app.use('/api/config',r_config)
+app.use('/api/config', r_config)
 app.use('/api/controller', r_controller)
 app.use('/api/controller_command', r_controller_command)
 app.use('/api/coordinator', r_coordinator)
@@ -117,38 +117,26 @@ app.use('/api/navigation', r_navigation)
 
 
 // enable comms from m2m - for now, just create a websocket message to send to connected clients
-app.use('/m2p',function(req,res,next){
-  if(req.body.msg){
-    console.log(socketSend)
-    socketSend.send(req.body.msg);
-    res.send(200)
-  }else{
-    console.log(req)
-    res.send(500);
-  }
-})
-app.ws('/socket', function(ws, req) {
-  socketSend=ws;
-  ws.on('connect', function(){
-    console.log("Ws Connection established");
-})
-  ws.on('message',function(message){
-    console.log("received message "  + message)
-  })
-  ws.on('close', function(){
-    console.log("Ws Connection closed");
-})
-
-});
-
-app.get('/', function (req, res) {
-  res.send('HIOT Platform!')
-  console.log("sending ws")
-  socketSend.send("someone requested root")
+app.use('/m2p', function(req, res, next) {
+    if (req.body.msg) {
+        console.log(socketSend)
+        socketSend.send(req.body.msg);
+        res.send(200)
+    } else {
+        console.log(req)
+        res.send(500);
+    }
 })
 
 
-app.listen(3000, function () {
- // console.log('Platform running on port 3000!')
+app.get('/', function(req, res) {
+    res.send('HIOT Platform!')
+    console.log("sending ws")
+    socketSend.send("someone requested root")
+})
+
+
+app.listen(3000, function() {
+    // console.log('Platform running on port 3000!')
 
 })
