@@ -1,5 +1,5 @@
-var app = {}
-var socketSend = {}
+var app = {};
+var socketSend = {};
 var channels = {};
 exports.init = function(_app) {
     app = _app
@@ -21,6 +21,7 @@ exports.init = function(_app) {
         })
         ws.on('message', function(message) {
             channels[req.params.socket] = ws;
+
             console.log(channels)
 
             ws.send("You are connected to channel: " + req.params.socket);
