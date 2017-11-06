@@ -25,7 +25,8 @@ exports.deploymentTypeCreate = function (req, res, next) {
     useLocation: req.body.useLocation,
     locationLabel: req.body.locationString,
     objectString: req.body.objectString,
-    owner: req.body.owner
+    owner: req.body.owner,
+    parentType:req.body.parentType
   })
   deploymentType.save(function (err) {
     if (err) {
@@ -61,7 +62,8 @@ exports.deploymentTypeUpdate = function (req, res) {
     active: req.body.active,
     useLocation: req.body.useLocation,
     locationLabel: req.body.locationString,
-    objectString: req.body.objectString
+    objectString: req.body.objectString,
+    parentType:req.body.parentType
   }, {
     upsert: false
   },
