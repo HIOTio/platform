@@ -1,14 +1,18 @@
 var DeploymentRole = require('../models/deployment_role')
 
 function deployments_for_user (userId) {
-  DeploymentRole.find({
-    profile: userId
-  }).populate('deployment').exec(function (err, deployment_role) {
-    if (err) {
-      return err
-    }
-    return deployment_role
-  })
+  if(req.params.profile==0){
+    res.send([]);
+  }else{
+    DeploymentRole.find({
+      profile: userId
+    }).populate('deployment').exec(function (err, deployment_role) {
+      if (err) {
+        return err
+      }
+      return deployment_role
+    })
+}
 }
 exports.deployment_role_list = function (req, res, next) {
   DeploymentRole.find({}, function (err, list_deployment_roles) {
@@ -57,30 +61,39 @@ exports.deployment_role_create = function (req, res, next) {
   })
 }
 exports.deployments_for_user = function (userId) {
-//  console.log('in exports')
-  DeploymentRole.find({
-    profile: userId
-  }).populate('deployment').exec(function (err, deployment_role) {
-    if (err) {
-      return err
-    }
+  //  console.log('in exports')
+  if(req.params.profile==0){
+    res.send([]);
+  }else{
+    DeploymentRole.find({
+      profile: userId
+    }).populate('deployment').exec(function (err, deployment_role) {
+      if (err) {
+        return err
+      }
 
-//    console.log(deployment_role)
-//    console.log('finished in deployment_role')
-    return deployment_role
-  })
+  //    console.log(deployment_role)
+  //    console.log('finished in deployment_role')
+      return deployment_role
+    })
+  }
 }
 
 exports.deployment_role_detail_by_profile = function (req, res, next) {
-  DeploymentRole.find({
-    profile: req.params.profile
-  }).populate('role').populate('deployment').exec(function (err, deployment_role) {
-    if (err) {
-      return next(err)
-    }
-    res.send(deployment_role)
-  })
+  if(req.params.profile==0){
+    res.send([]);
+  }else{
+    DeploymentRole.find({
+      profile: req.params.profile
+    }).populate('role').populate('deployment').exec(function (err, deployment_role) {
+      if (err) {
+        return next(err)
+      }
+      res.send(deployment_role)
+    })
+  }
 }
+
 exports.deployment_role_update = function (req, res) {
 //  console.log(req.body)
   DeploymentRole.findOneAndUpdate({

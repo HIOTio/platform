@@ -59,8 +59,6 @@ exports.deployment_create = function(req, res, next) {
 
     })
 }
-
-
 exports.deployment_delete = function(req, res, next) {
     Deployment.findOneAndUpdate({
             _id: req.body.id
@@ -77,7 +75,7 @@ exports.deployment_delete = function(req, res, next) {
             return res.send('Deployment Deleted')
         })
         // need to remove all the associated deployment roles and then broadcast on relevant channels
-    sockets.send('deployment-' + req.body.id, JSON.stringify({ 'deployment':req.body.id,'deleted': 'this deployment has been deleted' }))
+    sockets.send('deployment-' + req.body.id, JSON.stringify({ 'deployment':req.body.id,'action':'deleted','message': 'this deployment has been deleted' }));
 }
 exports.deployment_update = function(req, res) {
     //  console.log(req.body)
@@ -98,6 +96,8 @@ exports.deployment_update = function(req, res) {
                     error: err
                 })
             }
-            res.redirect(303, doc.url)
+            sockets.send('deployment_' + req.body.id, JSON.stringify({ 'deployment':req.body.id,'action':'updated','message': 'this deployment has been updated' }));
+            res.redirect(303, doc.url);
+            
         })
 }
