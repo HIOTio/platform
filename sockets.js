@@ -13,29 +13,35 @@ exports.init = function(_app) {
             console.log(req)
             res.send(500);
         }
+    });
+    this.app.ws('/:channel', function(ws,req){
+        ws.on('message',function(message){
+            cmd=JSON.parse(message);
+            if(cmd.action==='connect'){
+                if(!channels[req.params.channel]){
+                    channels[req.params.channel]=[];
+                }
+                console.log("new subscription on channel" + req.params.channel);
+                channels[req.params.channel].push(ws);
+            }
+        });
+        ws.on('close', function(){
+            console.log("connection closed " );
+        })
     })
-
 }
 
 exports.deregisterChannel=function(channel){
     delete channels[channel];
 }
 exports.send = function(channel, message) {
-        this.app.ws('/' + channel, function(ws, req) {
-            console.log(channel);
-            ws.send(message);
-            console.log(message);
-            channels[channel] = ws;
-            ws.on('connect', function() {
-                ws.send(message);
-                console.log("sending message");
-            });
-            ws.on('error', function(err){
-                console.log(err);
+    if(channels[channel]){
+        channels[channel].forEach(chan => {
+            chan.send(message,function ack(error) {
+                // If error is not defined, the send has been completed, otherwise the error
+                // object will indicate what failed.
+              console.log("sending message on channel " + channel);
             });
         });
-    
+    }
 }
-
-
-// enable comms from m2m - for now, just create a websocket message to send to connected clients
