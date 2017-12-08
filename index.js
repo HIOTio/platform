@@ -35,7 +35,7 @@ var strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
 })
 passport.use(strategy)
 app.use(cors({
-    origin: ['http://localhost:4200', 'http://localhost:3000']
+    origin: ['http://localhost:4200', 'http://54.37.228.181/be','http://54.37.228.181']
 }))
 app.use(passport.initialize())
 

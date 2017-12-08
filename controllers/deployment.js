@@ -80,13 +80,14 @@ exports.deployment_delete = function(req, res, next) {
 exports.deployment_update = function(req, res) {
     //  console.log(req.body)
     Deployment.findOneAndUpdate({
-            _id: req.body.id
+            _id: req.body._id
         }, {
             description: req.body.description,
             name: req.body.name,
             owner: req.body.owner,
             added: req.body.added,
-            active: req.body.active
+            active: req.body.active,
+            deploymentType: req.body.deploymentType
         }, {
             upsert: false
         },
@@ -96,7 +97,7 @@ exports.deployment_update = function(req, res) {
                     error: err
                 })
             }
-            sockets.send('deployment_' + req.body.id, JSON.stringify({ 'deployment':req.body.id,'action':'updated','message': 'Deployment "' + req.body.name+ '" has been updated' }));
+            sockets.send('deployment_' + req.body._id, JSON.stringify({ 'deployment':req.body._id,'action':'updated','message': 'Deployment "' + req.body.name+ '" has been updated' }));
             res.redirect(303, doc.url);
             
         })
