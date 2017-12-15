@@ -24,7 +24,7 @@ exports.deployment_detail = function(req, res, next) {
 }
 
 exports.deployment_create = function(req, res, next) {
-    //NOTE: think about giving the user the option of changing the owner of a new deployment - for now, just hard-code  it
+    //NOTE: think about giving the user the option of changing the owner of a new deployment - for now, just hard-code  it [Issue #4]
     //  console.log(JSON.stringify(req.body))
     var deployment = new Deployment({
         description: req.body.description,
@@ -36,14 +36,14 @@ exports.deployment_create = function(req, res, next) {
         if (err) {
             return next(err)
         }
-        //TODO: [x]get the _id for role type "owner"
+        //TODO: [x]get the _id for role type "owner" [Issue #1]
         Role.findOne({
             name: "Owner"
         }, function(err, resp) {
             if (err) {
-                //TODO: need to handle this properly
+                //TODO: need to handle this properly [Issue #6]
             }
-            //TODO: [x]add the owner to the deployment_roles
+            //TODO: [x]add the owner to the deployment_roles [Issue #5]
             var deploymentRole = new DeploymentRole({
                 deployment: deployment._id,
                 profile: deployment.owner,
@@ -51,7 +51,7 @@ exports.deployment_create = function(req, res, next) {
             })
             deploymentRole.save(function(err) {
                 if (err) {
-                    //TODO: have to handle this error as well
+                    //TODO: have to handle this error as well [Issue #3]
                 }
                 res.redirect(deployment.url)
             })

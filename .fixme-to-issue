@@ -1,0 +1,52 @@
+{
+  "max_line_length": 1000,
+  "ignore_hidden": true,
+  "use_git_ignore": true, 
+  "ignored_directories": ["bin","node_modules"],
+  "encoding": "utf8", 
+  "github": {
+    "username": "hiot-io", 
+    "password": "see8Koxe2013" 
+  },
+  "prefix": "[from todo]", 
+  "annotations": [{
+    "name": "NOTE",
+    "label": "notes",
+    "color": "green"
+  },
+  {
+    "name": "FIXME",
+    "label": "fixme",
+    "color": "red"
+  },
+  {
+    "name": "TODO",
+    "label": "todos",
+    "color": "magenta"
+  },
+  {
+    "name": "BUG",
+    "label": "bug",
+    "color": "white.bgRed"
+  },
+  {
+    "name": "OPTIMIZE",
+    "label": "enhancements",
+    "color": "blue"
+  },
+  {
+    "name": "HACK",
+    "label": "need help",
+    "color": "yellow"
+  },
+  {
+    "name": "XXX",
+    "label": "need help",
+    "color": "black.bgYellow"
+  },
+  {
+    "name": "CUSTOM",
+    "label": ["my custom github label", "amazing", "hard"],
+    "color": "grey"
+  }]
+}

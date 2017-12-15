@@ -10,7 +10,7 @@ exports.aggregator_list = function (req, res) {
   })
 }
 
-// TODO: get this to work by assiging devices to deployments, and querying the "device" element
+// TODO: get this to work by assiging devices to deployments, and querying the "device" element [Issue #8]
 exports.aggergator_list_for_deployment = function (req, res) {
   Aggregator.find({
     deployment: req.params.deployment
@@ -85,7 +85,7 @@ exports.aggregator_delete = function (req, res) {
 }
 exports.aggregator_update = function (req, res) {
  // console.log(req.body)
-  //TODO: what to do if the _id isn't found
+  //TODO: what to do if the _id isn't found [Issue #7]
   Aggregator.findOneAndUpdate({
     _id: req.body._id
   }, {

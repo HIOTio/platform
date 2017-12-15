@@ -58,11 +58,11 @@ exports.device_list_for_deployment = function (req, res, next) {
         query.deployment=req.params.deployment;
       }
       if(req.params.location){
-        //TODO: need to include any child locations, including nested ones
+        //TODO: need to include any child locations, including nested ones [Issue #9]
         query.location=req.params.location
       }
       if(req.query.handler){
-        //TODO: need to include make/model/
+        //TODO: need to include make/model/ [Issue #2]
         query.handler=req.params.handler
       }
   Device.find(query)
