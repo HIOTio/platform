@@ -8,7 +8,7 @@ exports.device_makeList = function (req, res, next) {
 		// Successful, so render
     res.send(listDeviceMakes);
   });
-}
+};
 
 exports.device_makeDetail = function (req, res, next) {
   DeviceMake.find({
@@ -20,7 +20,7 @@ exports.device_makeDetail = function (req, res, next) {
 		// Successful, so render
     res.send(deviceMake);
   });
-}
+};
 exports.device_makeCreate = function (req, res, next) {
   var deviceMake = new DeviceMake({
     description: req.body.description,
@@ -28,11 +28,11 @@ exports.device_makeCreate = function (req, res, next) {
   })
   deviceMake.save(function (err) {
     if (err) {
-      return next(err)
+      return next(err);
     }
-    res.redirect(deviceMake.url)
-})
-}
+    res.redirect(deviceMake.url);
+});
+};
 exports.device_makeDelete = function (req, res) {
   DeviceMake.findOneAndUpdate({
     _id: req.body.id
@@ -48,7 +48,7 @@ exports.device_makeDelete = function (req, res) {
     }
     return res.send("Device Make Deleted");
   });
-}
+};
 exports.device_makeUpdate = function (req, res) {
   DeviceMake.findOneAndUpdate({
     _id: req.body.id
@@ -69,5 +69,5 @@ exports.device_makeUpdate = function (req, res) {
   } else {
     res.send(500, "Device Make not found");
   }
-})
-}
+});
+};

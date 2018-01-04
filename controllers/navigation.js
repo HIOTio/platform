@@ -77,4 +77,4 @@ exports.navigationList = function (req, res, next) {
 //  console.log(myMEnu)
   res.send(myMEnu);
 });
-}
+};

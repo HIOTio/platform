@@ -1,36 +1,36 @@
-var Handler = require('../models/handler')
+var Handler = require("../models/handler");
 
 exports.handlerList = function (req, res, next) {
   Handler.find({}, function (err, list_handlers) {
     if (err) {
-      return next(err)
+      return next(err);
     }
         // Successful, so render
-    res.send(list_handlers)
-  })
-}
+    res.send(list_handlers);
+  });
+};
 exports.handlerList_deployment = function (req, res, next) {
     Handler.find({
         deployment:req.params.deployment
     }, function (err, list_handlers) {
       if (err) {
-        return next(err)
+        return next(err);
       }
           // Successful, so render
-      res.send(list_handlers)
-    })
-  }
+      res.send(list_handlers);
+    });
+  };
 exports.handlerDetail = function (req, res, next) {
   Handler.find({
     _id: req.params.id
   }, function (err, handler) {
     if (err) {
-      return next(err)
+      return next(err);
     }
         // Successful, so render
-    res.send(handler)
-  })
-}
+    res.send(handler);
+  });
+};
 exports.handlerCreate = function (req, res, next) {
   var handler = new Handler({
     name:req.body.name,
@@ -43,14 +43,14 @@ exports.handlerCreate = function (req, res, next) {
     description: req.body.description,
     commands: req.body.commands
 
-  })
+  });
   handler.save(function (err) {
     if (err) {
-      return next(err)
+      return next(err);
     }
-    res.redirect(handler.url)
-  })
-}
+    res.redirect(handler.url);
+  });
+};
 exports.handlerDelete = function (req, res, next) {
   Handler.findOneAndUpdate({
     _id: req.body.id
@@ -60,11 +60,11 @@ exports.handlerDelete = function (req, res, next) {
     upsert: false
   }, function (err, doc) {
     if (err) {
-      next(err)
+      next(err);
     }
-    return res.send('handler Deleted')
-  })
-}
+    return res.send("handler Deleted");
+  });
+};
 exports.handlerUpdate = function (req, res, next) {
   Handler.findOneAndUpdate({
     _id: req.body._id
@@ -87,6 +87,6 @@ exports.handlerUpdate = function (req, res, next) {
               error: err
             })
           }
-          res.redirect(303, doc.url)
-        })
-}
+          res.redirect(303, doc.url);
+        });
+};

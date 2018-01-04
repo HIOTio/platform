@@ -13,14 +13,14 @@ function deploymentsForUser (userId) {
       return deploymentRole;
     });
 }
-};
+}
 exports.deploymentRoleList = function (req, res, next) {
-  DeploymentRole.find({}, function (err, list_deploymentRoles) {
+  DeploymentRole.find({}, function (err, listDeploymentRoles) {
     if (err) {
       return next(err);
     }
 		// Successful, so render
-    res.send(list_deploymentRoles);
+    res.send(listDeploymentRoles);
   });
 };
 exports.deploymentRoleDetailByDeployment = function (req, res, next) {

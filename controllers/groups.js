@@ -3,24 +3,24 @@ var Group = require("../models/groups")
 exports.groupList = function (req, res, next) {
   Group.find({}, function (err, list_groups) {
     if (err) {
-      return next(err)
+      return next(err);
     }
 		// Successful, so render
-    res.send(list_groups)
+    res.send(list_groups);
   });
-}
+};
 
 exports.groupDetail = function (req, res, next) {
   Group.find({
     _id: req.params.id
   }, function (err, group) {
     if (err) {
-      return next(err)
+      return next(err);
     }
 		// Successful, so render
-    res.send(group)
-  })
-}
+    res.send(group);
+  });
+};
 exports.groupCreate = function (req, res, next) {
   var group = new Group({
     description: req.body.description,
@@ -31,9 +31,9 @@ exports.groupCreate = function (req, res, next) {
     is_billing: req.body.is_billing,
     is_reader: req.body.is_reader,
     is_cg_admin: req.body.is_cg_admin
-  })
-  res.redirect(303, group.url)
-}
+  });
+  res.redirect(303, group.url);
+};
 exports.groupDelete = function (req, res, next) {
   Group.findOneAndUpdate({
     _id: req.body.id
@@ -45,11 +45,11 @@ exports.groupDelete = function (req, res, next) {
     if (err) {
       return res.send(500, {
         error: err
-      })
+      });
     }
-    return res.send("Group Deleted")
-  })
-}
+    return res.send("Group Deleted");
+  });
+};
 exports.groupUpdate = function (req, res, next) {
   Group.findOneAndUpdate({
     _id: req.body.id
@@ -69,12 +69,12 @@ exports.groupUpdate = function (req, res, next) {
   if (err) {
     return res.send(500, {
       error: err
-    })
+    });
   }
   if (doc != null) {
-    res.redirect(303, doc.url)
+    res.redirect(303, doc.url);
   } else {
-    res.send(500, "Group not found")
+    res.send(500, "Group not found");
   }
-})
-}
+});
+};

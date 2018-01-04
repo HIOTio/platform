@@ -1,33 +1,33 @@
-var Platform = require("../models/platform")
+var Platform = require("../models/platform");
 
 exports.platformList = function (req, res, next) {
   Platform.find({}, function (err, list_platforms) {
     if (err) {
-      return next(err)
+      return next(err);
     }
 		// Successful, so render
-    res.send(list_platforms)
-  })
-}
+    res.send(list_platforms);
+  });
+};
 
 exports.platformDetail = function (req, res, next) {
   Platform.find({
     _id: req.Platforms.id
   }, function (err, Platform) {
     if (err) {
-      return next(err)
+      return next(err);
     }
 		// Successful, so render
-    res.send(Platform)
-  })
-}
+    res.send(Platform);
+  });
+};
 exports.platformCreate = function (req, res, next) {
   var platform = new Platform({
     description: req.body.description,
     added: req.body.added
-  })
-  res.redirect(303, platform.url)
-}
+  });
+  res.redirect(303, platform.url);
+};
 exports.platformDelete = function (req, res, next) {
   Platform.findOneAndUpdate({
     _id: req.body.id
@@ -39,11 +39,11 @@ exports.platformDelete = function (req, res, next) {
     if (err) {
       return res.send(500, {
         error: err
-      })
+      });
     }
-    return res.send("Platform Deleted")
-  })
-}
+    return res.send("Platform Deleted");
+  });
+};
 exports.platformUpdate = function (req, res, next) {
   Platform.findOneAndUpdate({
     _id: req.body.id
@@ -60,9 +60,9 @@ exports.platformUpdate = function (req, res, next) {
     })
   }
   if (doc != null) {
-    res.redirect(303, doc.url)
+    res.redirect(303, doc.url);
   } else {
-    res.send(500, "Platform not found")
+    res.send(500, "Platform not found");
   }
-})
-}
+});
+};

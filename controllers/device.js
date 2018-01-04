@@ -32,7 +32,7 @@ exports.config= function(req,res,next){
     };
     res.send(devFile);
   });
-}
+};
 exports.deviceList = function (req, res, next) {
   Device.find({}, function (err, listDevices) {
     if (err) {
@@ -41,7 +41,7 @@ exports.deviceList = function (req, res, next) {
 		// Successful, so render
     res.send(listDevices);
   });
-}
+};
 exports.deviceCount = function (req, res, next) {
   Device.count({
     deployment: req.params.deployment
@@ -75,7 +75,7 @@ exports.deviceListForDeployment = function (req, res, next) {
     }
     res.send(listDevices);
   });
-}
+};
 exports.deviceDetail = function (req, res, next) {
   Device.find({
     _id: req.params.id
@@ -85,8 +85,8 @@ exports.deviceDetail = function (req, res, next) {
     }
 		// Successful, so render
     res.send(device);
-  })
-}
+  });
+};
 exports.deviceCreate = function (req, res, next) {
   var device = new Device({
     deviceId: req.body.deviceId,
@@ -107,14 +107,14 @@ exports.deviceCreate = function (req, res, next) {
     brokers: req.body.brokers,
     moscaEnabled: req.body.moscaEnabled,
     moscaPort: req.body.moscaPort
-  })
+  });
   device.save(function (err) {
     if (err) {
       return next(err);
     }
     res.redirect(device.url);
-  })
-}
+  });
+};
 exports.deviceDelete = function (req, res, next) {
   Device.findOneAndUpdate({
     _id: req.body.id
@@ -124,11 +124,11 @@ exports.deviceDelete = function (req, res, next) {
     upsert: false
   }, function (err, doc) {
     if (err) {
-      next(err)
+      next(err);
     }
-    return res.send("Device Deleted")
-  })
-}
+    return res.send("Device Deleted");
+  });
+};
 exports.deviceUpdate = function (req, res, next) {
   Device.findOneAndUpdate({
     _id: req.body._id
@@ -158,8 +158,8 @@ exports.deviceUpdate = function (req, res, next) {
   if (err) {
     return res.send(500, {
       error: err
-    })
+    });
   }
-  res.redirect(303, doc.url)
-})
-}
+  res.redirect(303, doc.url);
+});
+};
