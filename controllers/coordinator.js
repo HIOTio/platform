@@ -9,7 +9,7 @@ exports.Coordinator_list = function (req, res, next) {
     res.send(list_coordinators);
   })
 }
-exports.Coordinator_list_for_deployment = function (req, res, next) {
+exports.Coordinator_listForDeployment = function (req, res, next) {
   Coordinator.find({
     deployment: req.params.deployment
   }, function (err, list_coordinators) {
@@ -31,7 +31,7 @@ exports.coordinator_detail = function (req, res) {
     res.send(coordinator);
   });
 }
-exports.coordinator_create = function (req, res, next) {
+exports.coordinatorCreate = function (req, res, next) {
   req.checkBody("description", "Each coordinator needs a description").notEmpty();
   req.checkBody("deployment", "A coordinator needs to belong to a deployment").notEmpty();
   req.sanitize("description").escape();
@@ -53,7 +53,7 @@ exports.coordinator_create = function (req, res, next) {
     res.redirect(coordinator.url);
   });
 }
-exports.coordinator_delete = function (req, res) {
+exports.coordinatorDelete = function (req, res) {
   Coordinator.findOneAndUpdate({
     _id: req.body.id
   }, {

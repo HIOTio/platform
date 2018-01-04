@@ -21,7 +21,7 @@ exports.device_make_detail = function (req, res, next) {
     res.send(deviceMake);
   });
 }
-exports.device_make_create = function (req, res, next) {
+exports.device_makeCreate = function (req, res, next) {
   var deviceMake = new DeviceMake({
     description: req.body.description,
     added: req.body.added
@@ -33,7 +33,7 @@ exports.device_make_create = function (req, res, next) {
     res.redirect(deviceMake.url)
 })
 }
-exports.device_make_delete = function (req, res) {
+exports.device_makeDelete = function (req, res) {
   DeviceMake.findOneAndUpdate({
     _id: req.body.id
   }, {

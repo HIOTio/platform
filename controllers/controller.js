@@ -31,7 +31,7 @@ exports.controller_detail = function (req, res, next) {
     res.send(controller)
   });
 }
-exports.controller_create = function (req, res, next) {
+exports.controllerCreate = function (req, res, next) {
   req.checkBody("thing", "Each controller needs to belong to a valid Thing").notEmpty()
   req.sanitize("thing").escape()
   req.sanitize("thing").trim()
@@ -54,7 +54,7 @@ exports.controller_create = function (req, res, next) {
     res.redirect(controller.url);
   });
 }
-exports.controller_delete = function (req, res, next) {
+exports.controllerDelete = function (req, res, next) {
   Controller.findOneAndUpdate({
     _id: req.body.id,
   }, {

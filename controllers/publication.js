@@ -21,7 +21,7 @@ exports.publication_detail = function (req, res, next) {
     res.send(Publication)
   })
 }
-exports.publication_create = function (req, res, next) {
+exports.publicationCreate = function (req, res, next) {
   var publication = new Publication({
     description: req.body.description,
     added: req.body.added,
@@ -29,7 +29,7 @@ exports.publication_create = function (req, res, next) {
   })
   res.redirect(303, publication.url)
 }
-exports.publication_delete = function (req, res, next) {
+exports.publicationDelete = function (req, res, next) {
   Publication.findOneAndUpdate({
     _id: req.body.id
   }, {

@@ -10,7 +10,7 @@ exports.broker_list = function(req, res, next) {
         res.send(list_brokers);
     });
 };
-exports.broker_list_for_deployment = function(req, res, next) {
+exports.broker_listForDeployment = function(req, res, next) {
     Broker.find({
         deployment: req.params.deployment
     }, function(err, list_broker) {
@@ -32,7 +32,7 @@ exports.broker_detail = function(req, res, next) {
         res.send(broker);
     });
 };
-exports.broker_create = function(req, res, next) {
+exports.brokerCreate = function(req, res, next) {
     var broker = new Broker({
         deployment: req.body.deployment,
         description: req.body.description,
@@ -48,7 +48,7 @@ exports.broker_create = function(req, res, next) {
         res.redirect(broker.url);
     });
 };
-exports.broker_delete = function(req, res, next) {
+exports.brokerDelete = function(req, res, next) {
     Broker.findOneAndUpdate({
         _id: req.body.id
     }, {

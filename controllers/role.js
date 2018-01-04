@@ -18,7 +18,7 @@ exports.role_detail = function (req, res, next) {
     res.send(role)
   })
 }
-exports.role_create = function (req, res, next) {
+exports.roleCreate = function (req, res, next) {
   var errors = req.validationErrors()
   var role = new Role({
     description: req.body.description,
@@ -34,7 +34,7 @@ exports.role_create = function (req, res, next) {
     res.redirect(role.url)
   })
 }
-exports.role_delete = function (req, res, next) {
+exports.roleDelete = function (req, res, next) {
   Role.findOneAndUpdate({
     _id: req.body.id
   }, {

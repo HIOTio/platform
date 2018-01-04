@@ -27,7 +27,7 @@ exports.sensor_detail = function (req, res, next) {
     res.send(sensor)
   })
 }
-exports.sensor_create = function (req, res, next) {
+exports.sensorCreate = function (req, res, next) {
   var sensor = new Sensor({
     id: req.body.id,
     name: req.body.name,
@@ -47,7 +47,7 @@ exports.sensor_create = function (req, res, next) {
     res.redirect(sensor.url)
   })
 }
-exports.sensor_delete = function (req, res, next) {
+exports.sensorDelete = function (req, res, next) {
   Sensor.findOneAndUpdate({
     _id: req.body.id
   }, {

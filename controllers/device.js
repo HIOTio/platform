@@ -1,4 +1,4 @@
-var Device = require("../models/device")
+var Device = require("../models/device");
 exports.config= function(req,res,next){
   Device.findById(
     {_id:req.params.device}
@@ -9,10 +9,10 @@ exports.config= function(req,res,next){
   .populate("controllers")
   .exec(function(err,_device){
     if (err) {
-      return next(err)
+      return next(err);
     }
     //create config.json format from device
-    var dev_file={
+    var devFile={
       device:{
         hiotId:_device.deviceId,
         name:_device.name,
@@ -29,65 +29,65 @@ exports.config= function(req,res,next){
       moscaEnabled: _device.moscaEnabled,
       moscaPort: _device.moscaPort,
       mqttServers: _device.mqttBrokers
-    }
-    res.send(dev_file)
-  })
+    };
+    res.send(devFile);
+  });
 }
-exports.device_list = function (req, res, next) {
-  Device.find({}, function (err, list_devices) {
+exports.deviceList = function (req, res, next) {
+  Device.find({}, function (err, listDevices) {
     if (err) {
-      return next(err)
+      return next(err);
     }
 		// Successful, so render
-    res.send(list_devices)
-  })
+    res.send(listDevices);
+  });
 }
-exports.device_count = function (req, res, next) {
+exports.deviceCount = function (req, res, next) {
   Device.count({
     deployment: req.params.deployment
   }, function (err, devCount) {
     res.send({
       "device_count": devCount
-    })
-  })
-}
-exports.device_list_for_deployment = function (req, res, next) {
+    });
+  });
+};
+exports.deviceListForDeployment = function (req, res, next) {
       //use query params to filter
-      var query={}
+      var query={};
       if(req.params.deployment){
         query.deployment=req.params.deployment;
       }
       if(req.params.location){
         //TODO: need to include any child locations, including nested ones [Issue #9]
-        query.location=req.params.location
+        query.location=req.params.location;
       }
       if(req.query.handler){
         //TODO: need to include make/model/ [Issue #2]
-        query.handler=req.params.handler
+        query.handler=req.params.handler;
       }
   Device.find(query)
   .populate("make")
   .populate("model")
-  .exec( function (err, list_devices) {
+  .exec( function (err, listDevices) {
     if (err) {
       
-      return next(err)
+      return next(err);
     }
-    res.send(list_devices)
-  })
+    res.send(listDevices);
+  });
 }
-exports.device_detail = function (req, res, next) {
+exports.deviceDetail = function (req, res, next) {
   Device.find({
     _id: req.params.id
   }, function (err, device) {
     if (err) {
-      return next(err)
+      return next(err);
     }
 		// Successful, so render
-    res.send(device)
+    res.send(device);
   })
 }
-exports.device_create = function (req, res, next) {
+exports.deviceCreate = function (req, res, next) {
   var device = new Device({
     deviceId: req.body.deviceId,
     deployment: req.body.deployment,
@@ -110,12 +110,12 @@ exports.device_create = function (req, res, next) {
   })
   device.save(function (err) {
     if (err) {
-      return next(err)
+      return next(err);
     }
-    res.redirect(device.url)
+    res.redirect(device.url);
   })
 }
-exports.device_delete = function (req, res, next) {
+exports.deviceDelete = function (req, res, next) {
   Device.findOneAndUpdate({
     _id: req.body.id
   }, {

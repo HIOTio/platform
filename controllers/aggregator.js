@@ -11,7 +11,7 @@ exports.aggregator_list = function (req, res, next) {
 }
 
 // TODO: get this to work by assiging devices to deployments, and querying the "device" element [Issue #8]
-exports.aggergator_list_for_deployment = function (req, res) {
+exports.aggergator_listForDeployment = function (req, res) {
   Aggregator.find({
     deployment: req.params.deployment
   }, function (err, list_aggregators) {
@@ -67,7 +67,7 @@ exports.aggregator_fromList = function(req,res,next){
     res.send(listAggregators);
   });
 }
-exports.aggregator_delete = function (req, res) {
+exports.aggregatorDelete = function (req, res) {
   Aggregator.findOneAndUpdate({
     _id: req.body.id
   }, {

@@ -21,7 +21,7 @@ exports.device_configuration_detail = function (req, res, next) {
     res.send(deviceConfiguration);
   });
 }
-exports.device_configuration_create = function (req, res, next) {
+exports.device_configurationCreate = function (req, res, next) {
   var deviceConfiguration = new DeviceConfiguration({
     description: req.body.description,
     added: req.body.added,
@@ -34,7 +34,7 @@ exports.device_configuration_create = function (req, res, next) {
     res.redirect(conf.url);
   });
 }
-exports.device_configuration_delete = function (req, res) {
+exports.device_configurationDelete = function (req, res) {
   DeviceConfiguration.findOneAndUpdate({
     _id: req.body.id
   }, {

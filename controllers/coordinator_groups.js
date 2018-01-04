@@ -9,7 +9,7 @@ exports.coordinator_group_list = function (req, res, next) {
     res.send(listCoordinatorGroups);
   });
 }
-exports.coordinator_group_list_for_deployment = function (req, res, next) {
+exports.coordinator_group_listForDeployment = function (req, res, next) {
   CoordinatorGroup.find({
     deployment: req.params.deployment
   }, function (err, listCoordinatorGroups) {
@@ -31,7 +31,7 @@ exports.coordinator_group_detail = function (req, res, next) {
     res.send(coordinator_group);
   });
 }
-exports.coordinator_group_create = function (req, res, next) {
+exports.coordinator_groupCreate = function (req, res, next) {
   var coordinatorGroup = new CoordinatorGroup({
     description: req.body.description,
     name: req.body.name,
@@ -43,7 +43,7 @@ exports.coordinator_group_create = function (req, res, next) {
   })
   res.redirect(303, coordinatorGroup.url);
 }
-exports.coordinator_group_delete = function (req, res) {
+exports.coordinator_groupDelete = function (req, res) {
   CoordinatorGroup.findOneAndUpdate({
     _id: req.body.id
   }, {

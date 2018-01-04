@@ -31,7 +31,7 @@ exports.controller_command_detail = function (req, res, next) {
     res.send(controller_command);
   });
 }
-exports.controller_command_create = function (req, res, next) {
+exports.controller_commandCreate = function (req, res, next) {
   var controllerCommand = new ControllerCommand({
     controller: req.body.thing,
     description: req.body.description,

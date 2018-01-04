@@ -34,7 +34,7 @@ exports.location_detail = function (req, res, next) {
     res.send(location)
   })
 }
-exports.location_create = function (req, res, next) {
+exports.locationCreate = function (req, res, next) {
   var location = new Location({
     description: req.body.description,
     deployment:req.body.deployment,

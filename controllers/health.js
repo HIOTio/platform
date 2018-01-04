@@ -21,7 +21,7 @@ exports.health_detail = function (req, res, next) {
     res.send(health)
   })
 }
-exports.health_create = function (req, res, next) {
+exports.healthCreate = function (req, res, next) {
   var health = new Health({
     description: req.body.description,
     added: req.body.added,
@@ -34,7 +34,7 @@ exports.health_create = function (req, res, next) {
   })
   res.redirect(303, health.url)
 }
-exports.health_delete = function (req, res, next) {
+exports.healthDelete = function (req, res, next) {
   Health.findOneAndUpdate({
     _id: req.body.id
   }, {

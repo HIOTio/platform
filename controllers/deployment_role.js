@@ -46,7 +46,7 @@ exports.deployment_role_detail = function (req, res, next) {
   })
 }
 
-exports.deployment_role_create = function (req, res, next) {
+exports.deployment_roleCreate = function (req, res, next) {
   var deploymentRole = new DeploymentRole({
     deployment: req.body.deployment,
     profile: req.body.profile,

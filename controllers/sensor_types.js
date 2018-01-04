@@ -21,7 +21,7 @@ exports.sensor_types_detail = function (req, res, next) {
     res.send(Sensor)
   })
 }
-exports.sensor_types_create = function (req, res, next) {
+exports.sensor_typesCreate = function (req, res, next) {
   var sensor_types = new Sensor({
     description: req.body.description,
     name: req.body.name,
@@ -36,7 +36,7 @@ exports.sensor_types_create = function (req, res, next) {
     res.redirect(sensor_types.url)
   })
 }
-exports.sensor_types_delete = function (req, res, next) {
+exports.sensor_typesDelete = function (req, res, next) {
   Sensor.findOneAndUpdate({
     _id: req.body.id
   }, {

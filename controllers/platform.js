@@ -21,14 +21,14 @@ exports.platform_detail = function (req, res, next) {
     res.send(Platform)
   })
 }
-exports.platform_create = function (req, res, next) {
+exports.platformCreate = function (req, res, next) {
   var platform = new Platform({
     description: req.body.description,
     added: req.body.added
   })
   res.redirect(303, platform.url)
 }
-exports.platform_delete = function (req, res, next) {
+exports.platformDelete = function (req, res, next) {
   Platform.findOneAndUpdate({
     _id: req.body.id
   }, {

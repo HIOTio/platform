@@ -34,7 +34,7 @@ exports.deviceModelCreate = function (req, res, next) {
     res.redirect(deviceModel.url);
 })
 }
-exports.device_model_delete = function (req, res, next) {
+exports.device_modelDelete = function (req, res, next) {
   DeviceModel.findOneAndUpdate({
     _id: req.body.id
   }, {

@@ -29,7 +29,7 @@ exports.subscriptioCreate = function (req, res, next) {
   })
   res.redirect(303, subscription.url)
 }
-exports.subscription_delete = function (req, res, next) {
+exports.subscriptionDelete = function (req, res, next) {
   Subscription.findOneAndUpdate({
     _id: req.body.id
   }, {

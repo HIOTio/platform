@@ -9,7 +9,7 @@ exports.thing_list = function (req, res, next) {
     res.send(list_things);
   })
 }
-exports.thing_list_for_deployment = function (req, res, next) {
+exports.thing_listForDeployment = function (req, res, next) {
     // need to map devices back up to deployments, eventually
   Thing.find({}, function (err, list_things) {
     if (err) {
@@ -30,7 +30,7 @@ exports.thing_detail = function (req, res, next) {
     res.send(thing);
   })
 }
-exports.thing_create = function (req, res, next) {
+exports.thingCreate = function (req, res, next) {
   req.checkBody("deviceid", "Each thing needs a device id").notEmpty();
   req.sanitize("deviceid").escape();
   req.sanitize("deviceid").trim();
@@ -52,7 +52,7 @@ exports.thing_create = function (req, res, next) {
     res.redirect(thing.url);
   })
 }
-exports.thing_delete = function (req, res, next) {
+exports.thingDelete = function (req, res, next) {
   Thing.findOneAndUpdate({
     _id: req.body.id
   }, {

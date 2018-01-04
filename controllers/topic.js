@@ -21,7 +21,7 @@ exports.topicDetail = function (req, res, next) {
     res.send(topic)
   })
 }
-exports.topic_create = function (req, res, next) {
+exports.topicCreate = function (req, res, next) {
  // console.log(req.body.fields)
   var topic = new Topic({
     description: req.body.description,
@@ -36,7 +36,7 @@ exports.topic_create = function (req, res, next) {
     res.redirect(303, topic.url)
   })
 }
-exports.topic_delete = function (req, res, next) {
+exports.topicDelete = function (req, res, next) {
   Topic.findOneAndUpdate({
     _id: req.body.id
   }, {

@@ -21,7 +21,7 @@ exports.group_detail = function (req, res, next) {
     res.send(group)
   })
 }
-exports.group_create = function (req, res, next) {
+exports.groupCreate = function (req, res, next) {
   var group = new Group({
     description: req.body.description,
     added: req.body.added,
@@ -34,7 +34,7 @@ exports.group_create = function (req, res, next) {
   })
   res.redirect(303, group.url)
 }
-exports.group_delete = function (req, res, next) {
+exports.groupDelete = function (req, res, next) {
   Group.findOneAndUpdate({
     _id: req.body.id
   }, {

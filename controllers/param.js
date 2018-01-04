@@ -21,7 +21,7 @@ exports.paramDetail = function (req, res, next) {
     res.send(Param)
   })
 }
-exports.param_create = function (req, res, next) {
+exports.paramCreate = function (req, res, next) {
   var param = new Param({
     name: req.body.name,
     value: req.body.value,
@@ -37,7 +37,7 @@ exports.param_create = function (req, res, next) {
     }
   })
 }
-exports.param_delete = function (req, res, next) {
+exports.paramDelete = function (req, res, next) {
   Param.findOneAndUpdate({
     _id: req.body.id
   }, {

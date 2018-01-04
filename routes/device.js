@@ -3,13 +3,13 @@ var router = new express.Router();
 
 var deviceController = require("../controllers/device");
 
-router.get("/", deviceController.device_list);
+router.get("/", deviceController.deviceList);
 router.get("/config/:device",deviceController.config);
-router.get("/count/deployment/:deployment", deviceController.device_count);
-router.get("/deployment/:deployment/:location*?/:handler*?", deviceController.device_list_for_deployment);
-router.get("/:id", deviceController.device_detail);
-router.post("/", deviceController.device_create);
-router.delete("/", deviceController.device_delete);
+router.get("/count/deployment/:deployment", deviceController.deviceCount);
+router.get("/deployment/:deployment/:location*?/:handler*?", deviceController.deviceListForDeployment);
+router.get("/:id", deviceController.deviceDetail);
+router.post("/", deviceController.deviceCreate);
+router.delete("/", deviceController.deviceDelete);
 router.put("/", deviceController.device_update);
 
 module.exports = router;

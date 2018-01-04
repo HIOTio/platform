@@ -31,7 +31,7 @@ exports.handler_detail = function (req, res, next) {
     res.send(handler)
   })
 }
-exports.handler_create = function (req, res, next) {
+exports.handlerCreate = function (req, res, next) {
   var handler = new Handler({
     name:req.body.name,
     aggregator:req.body.aggregator,
@@ -51,7 +51,7 @@ exports.handler_create = function (req, res, next) {
     res.redirect(handler.url)
   })
 }
-exports.handler_delete = function (req, res, next) {
+exports.handlerDelete = function (req, res, next) {
   Handler.findOneAndUpdate({
     _id: req.body.id
   }, {
