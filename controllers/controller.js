@@ -9,7 +9,7 @@ exports.controllerList = function (req, res, next) {
     res.send(list_controllers);
   });
 }
-exports.controllerListFor_thing = function (req, res, next) {
+exports.controllerListForThing = function (req, res, next) {
   Controller.find({
     thing: req.params.thing,
   }, function (err, list_controllers) {

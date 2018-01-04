@@ -1,6 +1,6 @@
 var DeviceConfiguration = require("../models/device_configuration");
 
-exports.device_configurationList = function (req, res, next) {
+exports.deviceConfigurationList = function (req, res, next) {
   DeviceConfiguration.find({}, function (err, listDeviceConfigurations) {
     if (err) {
       return next(err);
@@ -10,7 +10,7 @@ exports.device_configurationList = function (req, res, next) {
   });
 };
 
-exports.device_configurationDetail = function (req, res, next) {
+exports.deviceConfigurationDetail = function (req, res, next) {
   DeviceConfiguration.find({
     _id: req.params.id
   }, function (err, deviceConfiguration) {
@@ -21,7 +21,7 @@ exports.device_configurationDetail = function (req, res, next) {
     res.send(deviceConfiguration);
   });
 };
-exports.device_configurationCreate = function (req, res, next) {
+exports.deviceConfigurationCreate = function (req, res, next) {
   var deviceConfiguration = new DeviceConfiguration({
     description: req.body.description,
     added: req.body.added,
@@ -34,7 +34,7 @@ exports.device_configurationCreate = function (req, res, next) {
     res.redirect(conf.url);
   });
 };
-exports.device_configurationDelete = function (req, res) {
+exports.deviceConfigurationDelete = function (req, res) {
   DeviceConfiguration.findOneAndUpdate({
     _id: req.body.id
   }, {
@@ -50,7 +50,7 @@ exports.device_configurationDelete = function (req, res) {
     return res.send("Device Configuration Deleted");
   });
 };
-exports.device_configurationUpdate = function (req, res) {
+exports.deviceConfigurationUpdate = function (req, res) {
   DeviceConfiguration.findOneAndUpdate({
     _id: req.body.id
   }, {

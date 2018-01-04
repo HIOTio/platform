@@ -1,6 +1,6 @@
 var ControllerCommand = require("../models/controller_command");
 
-exports.controller_commandList = function (req, res, next) {
+exports.controllerCommandList = function (req, res, next) {
   ControllerCommand.find({}, function (err, list_controller_commands) {
     if (err) {
       return next(err);
@@ -9,7 +9,7 @@ exports.controller_commandList = function (req, res, next) {
     res.send(list_controller_commands);
   });
 }
-exports.controller_commandListFor_controller = function (req, res, next) {
+exports.controllerCommandListForController = function (req, res, next) {
   ControllerCommand.find({
     controller: req.params.controller
   }, function (err, list_controller_commands) {
@@ -20,7 +20,7 @@ exports.controller_commandListFor_controller = function (req, res, next) {
     res.send(list_controller_commands);
   });
 }
-exports.controller_commandDetail = function (req, res, next) {
+exports.controllerCommandDetail = function (req, res, next) {
   ControllerCommand.find({
     _id: req.params.id
   }, function (err, controller_command) {
@@ -62,7 +62,7 @@ exports.controllerCommandDelete = function (req, res, next) {
     return res.sendStatus(200);
   });
 }
-exports.controller_commandUpdate = function (req, res, next) {
+exports.controllerCommandUpdate = function (req, res, next) {
   ControllerCommand.findOneAndUpdate({
     _id: req.body.id
   }, {

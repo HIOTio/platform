@@ -4,7 +4,7 @@ var router = new express.Router();
 var handlerController = require("../controllers/handler");
 
 router.get("/", handlerController.handlerList);
-router.get("/deployment/:deployment", handlerController.handlerList_deployment);
+router.get("/deployment/:deployment", handlerController.handlerListDeployment);
 router.get("/:id", handlerController.handlerDetail);
 router.post("/", handlerController.handlerCreate);
 router.delete("/", handlerController.handlerDelete);

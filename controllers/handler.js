@@ -9,7 +9,7 @@ exports.handlerList = function (req, res, next) {
     res.send(list_handlers);
   });
 };
-exports.handlerList_deployment = function (req, res, next) {
+exports.handlerListDeployment = function (req, res, next) {
     Handler.find({
         deployment:req.params.deployment
     }, function (err, list_handlers) {
