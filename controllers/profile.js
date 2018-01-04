@@ -65,10 +65,10 @@ exports.find_by_id = function (id, callback) {
   Profile.findOne({
     _id: id
   }, function (err, profile) {
-    if (err) {
-    }
+    if (!err) {
 		// Successful, so render
     callback.call(profile);
+    }
   })
 }
 exports.profile_create = function (req, res, next) {

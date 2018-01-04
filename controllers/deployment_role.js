@@ -62,7 +62,7 @@ exports.deployment_role_create = function (req, res, next) {
 }
 exports.deployments_for_user = function (userId) {
   //  console.log("in exports")
-  if(req.params.profile==0){
+  if(req.params.profile===0){
     res.send([]);
   }else{
     DeploymentRole.find({

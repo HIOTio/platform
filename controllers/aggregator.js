@@ -59,12 +59,12 @@ exports.aggregator_fromList = function(req,res,next){
     _id: {$in : JSON.parse(req.params.list)}
   })
  // .populate('handler') 
-  .exec( function (err, list_aggregators) {
+  .exec( function (err, listAggregators) {
     if (err) {
       return next(err);
     }
 		// Successful, so render
-    res.send(list_aggregators);
+    res.send(listAggregators);
   });
 }
 exports.aggregator_delete = function (req, res) {

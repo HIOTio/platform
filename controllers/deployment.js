@@ -1,25 +1,25 @@
-var Deployment = require("../models/deployment")
-var DeploymentRole = require("../models/deployment_role")
-var Role = require("../models/role")
+var Deployment = require("../models/deployment");
+var DeploymentRole = require("../models/deployment_role");
+var Role = require("../models/role");
 var sockets = require("../sockets");
 
 exports.deployment_list = function(req, res, next) {
-    Deployment.find({}, function(err, list_deployments) {
+    Deployment.find({}, function(err, listDeployments) {
         //   console.log(req)
         if (err) {
-            return next(err)
+            return next(err);
         }
-        res.send(list_deployments)
-    })
+        res.send(listDeployments);
+    });
 }
 exports.deployment_detail = function(req, res, next) {
     Deployment.findOne({
         _id: req.params.id
-    }).populate('deploymentType').exec(function(err, deployment) {
+    }).populate("deploymentType").exec(function(err, deployment) {
         if (err) {
-            return next(err)
+            return next(err);
         }
-        res.send(deployment)
+        res.send(deployment);
     })
 }
 
@@ -31,10 +31,10 @@ exports.deployment_create = function(req, res, next) {
         name: req.body.name,
         deploymentType: req.body.deploymentType,
         owner: req.body.owner
-    })
+    });
     deployment.save(function(err) {
         if (err) {
-            return next(err)
+            return next(err);
         }
         //TODO: [x]get the _id for role type "owner" [Issue #1]
         Role.findOne({
@@ -48,16 +48,16 @@ exports.deployment_create = function(req, res, next) {
                 deployment: deployment._id,
                 profile: deployment.owner,
                 role: resp._id
-            })
+            });
             deploymentRole.save(function(err) {
                 if (err) {
                     //TODO: have to handle this error as well [Issue #3]
                 }
-                res.redirect(deployment.url)
-            })
+                res.redirect(deployment.url);
+            });
         })
 
-    })
+    });
 }
 exports.deployment_delete = function(req, res, next) {
     Deployment.findOneAndUpdate({
@@ -70,12 +70,12 @@ exports.deployment_delete = function(req, res, next) {
             if (err) {
                 return res.send(500, {
                     error: err
-                })
+                });
             }
-            return res.send('Deployment Deleted')
+            return res.send("Deployment Deleted");
         })
         // need to remove all the associated deployment roles and then broadcast on relevant channels
-    sockets.send('deployment-' + req.body.id, JSON.stringify({ 'deployment':req.body.id,'action':'deleted','message': 'Deployment "' + req.body.name+ '" has been deleted' }));
+    sockets.send("deployment-" + req.body.id, JSON.stringify({ "deployment":req.body.id,"action":"deleted","message": "Deployment \"" + req.body.name+ "\" has been deleted" }));
 }
 exports.deployment_update = function(req, res) {
     //  console.log(req.body)
@@ -97,7 +97,7 @@ exports.deployment_update = function(req, res) {
                     error: err
                 })
             }
-            sockets.send('deployment_' + req.body._id, JSON.stringify({ 'deployment':req.body._id,'action':'updated','message': 'Deployment "' + req.body.name+ '" has been updated' }));
+            sockets.send("deployment_" + req.body._id, JSON.stringify({ "deployment":req.body._id,"action":"updated","message": "Deployment \"" + req.body.name+ "\" has been updated" }));
             res.redirect(303, doc.url);
             
         })
