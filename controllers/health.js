@@ -1,26 +1,26 @@
-var Health = require("../models/health")
+var Health = require("../models/health");
 
 exports.healthList = function (req, res, next) {
-  Health.find({}, function (err, list_healths) {
+  Health.find({}, function (err, listHealths) {
     if (err) {
-      return next(err)
+      return next(err);
     }
 		// Successful, so render
-    res.send(list_healths)
-  })
-}
+    res.send(listHealths);
+  });
+};
 
 exports.healthDetail = function (req, res, next) {
   Health.find({
     _id: req.params.id
   }, function (err, health) {
     if (err) {
-      return next(err)
+      return next(err);
     }
 		// Successful, so render
-    res.send(health)
-  })
-}
+    res.send(health);
+  });
+};
 exports.healthCreate = function (req, res, next) {
   var health = new Health({
     description: req.body.description,
@@ -31,8 +31,8 @@ exports.healthCreate = function (req, res, next) {
     is_billing: req.body.is_billing,
     is_reader: req.body.is_reader,
     is_cg_admin: req.body.is_cg_admin
-  })
-  res.redirect(303, health.url)
+  });
+  res.redirect(303, health.url);
 }
 exports.healthDelete = function (req, res, next) {
   Health.findOneAndUpdate({
@@ -45,11 +45,11 @@ exports.healthDelete = function (req, res, next) {
     if (err) {
       return res.send(500, {
         error: err
-      })
+      });
     }
-    return res.send("Health Deleted")
-  })
-}
+    return res.send("Health Deleted");
+  });
+};
 exports.healthUpdate = function (req, res, next) {
   Health.findOneAndUpdate({
     _id: req.body.id
@@ -69,12 +69,12 @@ exports.healthUpdate = function (req, res, next) {
   if (err) {
     return res.send(500, {
       error: err
-    })
-  }
+    });
+  };
   if (doc != null) {
-    res.redirect(303, doc.url)
+    res.redirect(303, doc.url);
   } else {
-    res.send(500, "Health not found")
+    res.send(500, "Health not found");
   }
-})
-}
+});
+};

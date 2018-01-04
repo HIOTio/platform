@@ -1,42 +1,42 @@
-var Sensor = require("../models/sensor_types")
+var Sensor = require("../models/sensor_types");
 
-exports.sensor_typesList = function (req, res, next) {
-  Sensor.find({}, function (err, list_sensor_types) {
+exports.sensorTypesList = function (req, res, next) {
+  Sensor.find({}, function (err, list_sensorTypes) {
     if (err) {
-      return next(err)
+      return next(err);
     }
 		// Successful, so render
-    res.send(list_sensor_types)
-  })
-}
+    res.send(list_sensorTypes);
+  });
+};
 
-exports.sensor_typesDetail = function (req, res, next) {
+exports.sensorTypesDetail = function (req, res, next) {
   Sensor.find({
     _id: req.body.id
   }, function (err, Sensor) {
     if (err) {
-      return next(err)
+      return next(err);
     }
 		// Successful, so render
-    res.send(Sensor)
-  })
-}
-exports.sensor_typesCreate = function (req, res, next) {
-  var sensor_types = new Sensor({
+    res.send(Sensor);
+  });
+};
+exports.sensorTypesCreate = function (req, res, next) {
+  var sensorTypes = new Sensor({
     description: req.body.description,
     name: req.body.name,
     active: req.body.active,
     added: req.body.added,
     defaultPushInterval: req.body.defaultPushInterval
   })
-  sensor_types.save(function (err) {
+  sensorTypes.save(function (err) {
     if (err) {
-      return next(err)
+      return next(err);
     }
-    res.redirect(sensor_types.url)
-  })
-}
-exports.sensor_typesDelete = function (req, res, next) {
+    res.redirect(sensorTypes.url);
+  });
+};
+exports.sensorTypesDelete = function (req, res, next) {
   Sensor.findOneAndUpdate({
     _id: req.body.id
   }, {
@@ -47,12 +47,12 @@ exports.sensor_typesDelete = function (req, res, next) {
     if (err) {
       return res.send(500, {
         error: err
-      })
+      });
     }
-    return res.send("Sensor Deleted")
-  })
-}
-exports.sensor_typesUpdate = function (req, res, next) {
+    return res.send("Sensor Deleted");
+  });
+};
+exports.sensorTypesUpdate = function (req, res, next) {
   Sensor.findOneAndUpdate({
     _id: req.body.id
   }, {
@@ -68,12 +68,12 @@ exports.sensor_typesUpdate = function (req, res, next) {
   if (err) {
     return res.send(500, {
       error: err
-    })
+    });
   }
   if (doc != null) {
-    res.redirect(303, doc.url)
+    res.redirect(303, doc.url);
   } else {
-    res.send(500, "Sensor not found")
+    res.send(500, "Sensor not found");
   }
-})
-}
+});
+};

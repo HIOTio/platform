@@ -1,9 +1,9 @@
 var express = require("express");
 var router = new express.Router();
-var sensorTypesController = require("../controllers/sensor_types");
-router.get("/", sensorTypesController.sensor_typesList);
-router.get("/:id", sensorTypesController.sensor_typesDetail);
-router.post("/", sensorTypesController.sensor_typesCreate);
-router.delete("/", sensorTypesController.sensor_typesDelete);
-router.put("/", sensorTypesController.sensor_typesUpdate);
+var sensorTypesController = require("../controllers/sensorTypes");
+router.get("/", sensorTypesController.sensorTypesList);
+router.get("/:id", sensorTypesController.sensorTypesDetail);
+router.post("/", sensorTypesController.sensorTypesCreate);
+router.delete("/", sensorTypesController.sensorTypesDelete);
+router.put("/", sensorTypesController.sensorTypesUpdate);
 module.exports = router;
