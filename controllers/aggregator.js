@@ -33,7 +33,7 @@ exports.aggregator_detail = function (req, res) {
     res.send(aggregator);
   });
 }
-exports.aggregator_create = function (req, res, next) {
+exports.aggregatorCreate = function (req, res, next) {
   var aggregator = new Aggregator({
     handler: req.body.handler,
     name: req.body.name,
@@ -83,7 +83,7 @@ exports.aggregator_delete = function (req, res) {
     return res.send("Aggregator Deleted");
   })
 }
-exports.aggregator_update = function (req, res) {
+exports.aggregatorUpdate = function (req, res) {
  // console.log(req.body)
   //TODO: what to do if the _id isn't found [Issue #7]
   Aggregator.findOneAndUpdate({

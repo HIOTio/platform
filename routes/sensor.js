@@ -3,7 +3,7 @@ var router = new express.Router();
 
 var sensorController = require("../controllers/sensor");
 router.get("/", sensorController.sensor_list);
-router.get("/list/:deployment", sensorController.sensor_list_for_deployment);
+router.get("/list/:deployment", sensorController.sensorListForDeployment);
 router.get("/:id", sensorController.sensor_detail);
 router.post("/", sensorController.sensor_create);
 router.delete("/", sensorController.sensor_delete);

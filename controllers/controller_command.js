@@ -48,7 +48,7 @@ exports.controller_command_create = function (req, res, next) {
     res.redirect(controllerCommand.url);
   });
 }
-exports.controller_command_delete = function (req, res, next) {
+exports.controllerCommandDelete = function (req, res, next) {
   ControllerCommand.findOneAndUpdate({
     _id: req.body.id
   }, {

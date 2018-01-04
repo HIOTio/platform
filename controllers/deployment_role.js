@@ -80,7 +80,7 @@ exports.deployments_for_user = function (userId) {
 }
 
 exports.deployment_role_detail_by_profile = function (req, res, next) {
-  if(req.params.profile==0){
+  if(req.params.profile===0){
     res.send([]);
   }else{
     DeploymentRole.find({

@@ -10,7 +10,7 @@ exports.topic_list = function (req, res, next) {
   })
 }
 
-exports.topic_detail = function (req, res, next) {
+exports.topicDetail = function (req, res, next) {
   Topic.find({
     _id: req.body.id
   }, function (err, topic) {

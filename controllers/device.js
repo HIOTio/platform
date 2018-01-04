@@ -45,9 +45,9 @@ exports.device_list = function (req, res, next) {
 exports.device_count = function (req, res, next) {
   Device.count({
     deployment: req.params.deployment
-  }, function (err, dev_count) {
+  }, function (err, devCount) {
     res.send({
-      'device_count': dev_count
+      'device_count': devCount
     })
   })
 }

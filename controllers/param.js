@@ -10,7 +10,7 @@ exports.param_list = function (req, res, next) {
   })
 }
 
-exports.param_detail = function (req, res, next) {
+exports.paramDetail = function (req, res, next) {
   Param.find({
     _id: req.params.id
   }, function (err, Param) {

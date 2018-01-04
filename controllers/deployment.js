@@ -12,7 +12,7 @@ exports.deployment_list = function(req, res, next) {
         res.send(listDeployments);
     });
 }
-exports.deployment_detail = function(req, res, next) {
+exports.deploymentDetail = function(req, res, next) {
     Deployment.findOne({
         _id: req.params.id
     }).populate("deploymentType").exec(function(err, deployment) {

@@ -21,7 +21,7 @@ exports.subscription_detail = function (req, res, next) {
     res.send(Subscription)
   })
 }
-exports.subscription_create = function (req, res, next) {
+exports.subscriptioCreate = function (req, res, next) {
   var subscription = new Subscription({
     description: req.body.description,
     topic: req.body.topic,

@@ -8,8 +8,8 @@ router.get("/", aggregatorController.aggregator_list);
 router.get("/fromList/:list", aggregatorController.aggregator_fromList);
 router.get("/deployment/:deployment", aggregatorController.aggergator_list_for_deployment);
 router.get("/:id", aggregatorController.aggregator_detail);
-router.post("/", aggregatorController.aggregator_create);
+router.post("/", aggregatorController.aggregatorCreate);
 router.delete("/", aggregatorController.aggregator_delete);
-router.put("/", aggregatorController.aggregator_update);
+router.put("/", aggregatorController.aggregatorUpdate);
 
 module.exports = router;

@@ -21,7 +21,7 @@ exports.device_model_detail = function (req, res, next) {
     res.send(deviceModel);
   })
 }
-exports.device_model_create = function (req, res, next) {
+exports.deviceModelCreate = function (req, res, next) {
   var deviceModel = new DeviceModel({
     description: req.body.description,
     make:req.body.make,

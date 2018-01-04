@@ -8,7 +8,7 @@ exports.sensor_list = function (req, res, next) {
     res.send(list_sensors)
   })
 }
-exports.sensor_list_for_deployment = function (req, res, next) {
+exports.sensorListForDeployment = function (req, res, next) {
 	// need to map devices back up to deployments, eventually
   Sensor.find({}, function (err, list_sensors) {
     if (err) {
