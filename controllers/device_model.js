@@ -1,24 +1,24 @@
-var DeviceModel = require('../models/device_model')
+var DeviceModel = require("../models/device_model");
 
 exports.device_model_list = function (req, res, next) {
   DeviceModel.find({}, function (err, list_device_models) {
     if (err) {
-      return next(err)
+      return next(err);
     }
 		// Successful, so render
-    res.send(list_device_models)
+    res.send(list_device_models);
   })
 }
 
 exports.device_model_detail = function (req, res, next) {
   DeviceModel.find({
     _id: req.params.id
-  }, function (err, device_model) {
+  }, function (err, deviceModel) {
     if (err) {
-      return next(err)
+      return next(err);
     }
 		// Successful, so render
-    res.send(device_model)
+    res.send(deviceModel);
   })
 }
 exports.device_model_create = function (req, res, next) {
@@ -29,9 +29,9 @@ exports.device_model_create = function (req, res, next) {
   })
   deviceModel.save(function (err) {
     if (err) {
-      return next(err)
+      return next(err);
     }
-    res.redirect(deviceModel.url)
+    res.redirect(deviceModel.url);
 })
 }
 exports.device_model_delete = function (req, res, next) {
@@ -45,10 +45,10 @@ exports.device_model_delete = function (req, res, next) {
     if (err) {
       return res.send(500, {
         error: err
-      })
+      });
     }
-    return res.send('Device Model Deleted')
-  })
+    return res.send("Device Model Deleted");
+  });
 }
 exports.device_model_update = function (req, res, next) {
   DeviceModel.findOneAndUpdate({
@@ -63,12 +63,12 @@ exports.device_model_update = function (req, res, next) {
   if (err) {
     return res.send(500, {
       error: err
-    })
+    });
   }
   if (doc != null) {
-    res.redirect(303, doc.url)
+    res.redirect(303, doc.url);
   } else {
-    res.send(500, 'Device Model not found')
+    res.send(500, "Device Model not found");
   }
-})
+});
 }

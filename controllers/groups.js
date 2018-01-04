@@ -7,7 +7,7 @@ exports.group_list = function (req, res, next) {
     }
 		// Successful, so render
     res.send(list_groups)
-  })
+  });
 }
 
 exports.group_detail = function (req, res, next) {

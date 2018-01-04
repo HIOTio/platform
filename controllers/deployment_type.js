@@ -1,11 +1,11 @@
-var DeploymentType = require('../models/deployment_type')
+var DeploymentType = require("../models/deployment_type");
 
 exports.deploymentTypeList = function (req, res, next) {
   DeploymentType.find({}, function (err, listDeploymentTypes) {
     if (err) {
-      return next(err)
+      return next(err);
     }
-    res.send(listDeploymentTypes)
+    res.send(listDeploymentTypes);
   })
 }
 exports.deploymentTypeDetail = function (req, res, next) {
@@ -13,9 +13,9 @@ exports.deploymentTypeDetail = function (req, res, next) {
     _id: req.params.id
   }, function (err, deploymentType) {
     if (err) {
-      return next(err)
+      return next(err);
     }
-    res.send(deploymentType)
+    res.send(deploymentType);
   })
 }
 exports.deploymentTypeCreate = function (req, res, next) {
@@ -27,13 +27,13 @@ exports.deploymentTypeCreate = function (req, res, next) {
     objectString: req.body.objectString,
     owner: req.body.owner,
     parentType:req.body.parentType
-  })
+  });
   deploymentType.save(function (err) {
     if (err) {
-      return next(err)
+      return next(err);
     }
-    res.redirect(deploymentType.url)
-  })
+    res.redirect(deploymentType.url);
+  });
 }
 exports.deploymentTypeDelete = function (req, res, next) {
   DeploymentType.findOneAndUpdate({
@@ -46,10 +46,10 @@ exports.deploymentTypeDelete = function (req, res, next) {
     if (err) {
       return res.send(500, {
         error: err
-      })
+      });
     }
-    return res.send('Deployment Type Deleted')
-  })
+    return res.send("Deployment Type Deleted");
+  });
 }
 exports.deploymentTypeUpdate = function (req, res) {
   DeploymentType.findOneAndUpdate({
@@ -71,8 +71,8 @@ exports.deploymentTypeUpdate = function (req, res) {
   if (err) {
     return res.send(500, {
       error: err
-    })
+    });
   }
-  res.redirect(303, doc.url)
-})
+  res.redirect(303, doc.url);
+});
 }
