@@ -23,9 +23,9 @@ function _resetDeviceConfig(req,res,next){
     });
 }
 
-function _updateDeviceConfig(req,res,next){
+function UpdateDeviceConfig(req,res,next){
     res.send({
-        function:"_updateDeviceConfig",
+        function:"UpdateDeviceConfig",
         status: "not implemented"
     });
 }
@@ -33,5 +33,5 @@ module.exports = {
     getDeviceConfig: _getDeviceConfig,
     testDeviceConfig: _testDeviceConfig,
     resetDeviceConfig: _resetDeviceConfig,
-    updateDeviceConfig: _updateDeviceConfig
+    updateDeviceConfig: UpdateDeviceConfig
 }

@@ -9,7 +9,7 @@ exports.sensorReadingList = function (req, res, next) {
     res.send(listSensorReadings);
   });
 };
-exports.sensorReadingList_for_sensor = function (req, res, next) {
+exports.sensorReadingListFor_sensor = function (req, res, next) {
   SensorReading.find({
     sensor_id: req.params.sensor_id
   }, function (err, listSensorReadings) {
@@ -20,7 +20,7 @@ exports.sensorReadingList_for_sensor = function (req, res, next) {
     res.send(listSensorReadings);
   });
 };
-exports.sensor_reading_detail = function (req, res, next) {
+exports.sensor_readingDetail = function (req, res, next) {
   SensorReading.findById(req.params.id, function (err, sensorReading) {
     if (err) {
       return next(err);

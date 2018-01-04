@@ -1,6 +1,6 @@
 var Location = require("../models/location")
 
-exports.location_list = function (req, res, next) {
+exports.locationList = function (req, res, next) {
   Location.find({}, function (err, listLocations) {
     if (err) {
       return next(err)
@@ -9,7 +9,7 @@ exports.location_list = function (req, res, next) {
     res.send(listLocations)
   })
 }
-exports.location_list_by_deployment = function (req, res, next) {
+exports.locationListByDeployment = function (req, res, next) {
  // console.log(req.params.deployment)
   Location.find({
     deployment:req.params.deployment
@@ -21,7 +21,7 @@ exports.location_list_by_deployment = function (req, res, next) {
     res.send(listLocations)
   })
 }
-exports.location_detail = function (req, res, next) {
+exports.locationDetail = function (req, res, next) {
   Location.find({
     _id: req.params.id
   })
@@ -64,7 +64,7 @@ exports.locationDelete = function (req, res, next) {
     return res.send("Location Deleted")
   })
 }
-exports.location_update = function (req, res, next) {
+exports.locationUpdate = function (req, res, next) {
   Location.findOneAndUpdate({
     _id: req.body.id
   }, {

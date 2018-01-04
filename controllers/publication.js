@@ -1,6 +1,6 @@
 var Publication = require("../models/publication")
 
-exports.publication_list = function (req, res, next) {
+exports.publicationList = function (req, res, next) {
   Publication.find({}, function (err, list_publications) {
     if (err) {
       return next(err)
@@ -10,7 +10,7 @@ exports.publication_list = function (req, res, next) {
   })
 }
 
-exports.publication_detail = function (req, res, next) {
+exports.publicationDetail = function (req, res, next) {
   Publication.find({
     _id: req.Publications.id
   }, function (err, Publication) {
@@ -45,7 +45,7 @@ exports.publicationDelete = function (req, res, next) {
     return res.send("Publication Deleted")
   })
 }
-exports.publication_update = function (req, res, next) {
+exports.publicationUpdate = function (req, res, next) {
   Publication.findOneAndUpdate({
     _id: req.body.id
   }, {

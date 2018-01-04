@@ -1,6 +1,6 @@
 var DeviceMake = require("../models/device_make");
 
-exports.device_make_list = function (req, res, next) {
+exports.device_makeList = function (req, res, next) {
   DeviceMake.find({}, function (err, listDeviceMakes) {
     if (err) {
       return next(err);
@@ -10,7 +10,7 @@ exports.device_make_list = function (req, res, next) {
   });
 }
 
-exports.device_make_detail = function (req, res, next) {
+exports.device_makeDetail = function (req, res, next) {
   DeviceMake.find({
     _id: req.params.id
   }, function (err, deviceMake) {
@@ -49,7 +49,7 @@ exports.device_makeDelete = function (req, res) {
     return res.send("Device Make Deleted");
   });
 }
-exports.device_make_update = function (req, res) {
+exports.device_makeUpdate = function (req, res) {
   DeviceMake.findOneAndUpdate({
     _id: req.body.id
   }, {

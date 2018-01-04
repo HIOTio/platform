@@ -1,6 +1,6 @@
 var DeviceModel = require("../models/device_model");
 
-exports.device_model_list = function (req, res, next) {
+exports.device_modelList = function (req, res, next) {
   DeviceModel.find({}, function (err, list_device_models) {
     if (err) {
       return next(err);
@@ -10,7 +10,7 @@ exports.device_model_list = function (req, res, next) {
   })
 }
 
-exports.device_model_detail = function (req, res, next) {
+exports.device_modelDetail = function (req, res, next) {
   DeviceModel.find({
     _id: req.params.id
   }, function (err, deviceModel) {
@@ -50,7 +50,7 @@ exports.device_modelDelete = function (req, res, next) {
     return res.send("Device Model Deleted");
   });
 }
-exports.device_model_update = function (req, res, next) {
+exports.device_modelUpdate = function (req, res, next) {
   DeviceModel.findOneAndUpdate({
     _id: req.body.id
   }, {

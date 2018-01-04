@@ -1,6 +1,6 @@
 var Handler = require('../models/handler')
 
-exports.handler_list = function (req, res, next) {
+exports.handlerList = function (req, res, next) {
   Handler.find({}, function (err, list_handlers) {
     if (err) {
       return next(err)
@@ -9,7 +9,7 @@ exports.handler_list = function (req, res, next) {
     res.send(list_handlers)
   })
 }
-exports.handler_list_deployment = function (req, res, next) {
+exports.handlerList_deployment = function (req, res, next) {
     Handler.find({
         deployment:req.params.deployment
     }, function (err, list_handlers) {
@@ -20,7 +20,7 @@ exports.handler_list_deployment = function (req, res, next) {
       res.send(list_handlers)
     })
   }
-exports.handler_detail = function (req, res, next) {
+exports.handlerDetail = function (req, res, next) {
   Handler.find({
     _id: req.params.id
   }, function (err, handler) {
@@ -65,7 +65,7 @@ exports.handlerDelete = function (req, res, next) {
     return res.send('handler Deleted')
   })
 }
-exports.handler_update = function (req, res, next) {
+exports.handlerUpdate = function (req, res, next) {
   Handler.findOneAndUpdate({
     _id: req.body._id
   }, {

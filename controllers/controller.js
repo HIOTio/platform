@@ -1,6 +1,6 @@
 var Controller = require("../models/controller");
 
-exports.controller_list = function (req, res, next) {
+exports.controllerList = function (req, res, next) {
   Controller.find({}, function (err, list_controllers) {
     if (err) {
       return next(err);
@@ -9,7 +9,7 @@ exports.controller_list = function (req, res, next) {
     res.send(list_controllers);
   });
 }
-exports.controller_list_for_thing = function (req, res, next) {
+exports.controllerListFor_thing = function (req, res, next) {
   Controller.find({
     thing: req.params.thing,
   }, function (err, list_controllers) {
@@ -20,7 +20,7 @@ exports.controller_list_for_thing = function (req, res, next) {
     res.send(list_controllers);
   });
 }
-exports.controller_detail = function (req, res, next) {
+exports.controllerDetail = function (req, res, next) {
   Controller.find({
     _id: req.params.id,
   }, function (err, controller) {
@@ -68,7 +68,7 @@ exports.controllerDelete = function (req, res, next) {
     return res.send("Controller Deleted");
   });
 }
-exports.controller_update = function (req, res, next) {
+exports.controllerUpdate = function (req, res, next) {
   Controller.findOneAndUpdate({
     _id: req.body._id,
   }, {

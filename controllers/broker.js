@@ -1,7 +1,7 @@
 "use strict";
 var Broker = require("../models/broker");
 
-exports.broker_list = function(req, res, next) {
+exports.brokerList = function(req, res, next) {
     Broker.find({}, function(err, list_brokers) {
         if (err) {
             return next(err);
@@ -10,7 +10,7 @@ exports.broker_list = function(req, res, next) {
         res.send(list_brokers);
     });
 };
-exports.broker_listForDeployment = function(req, res, next) {
+exports.brokerListForDeployment = function(req, res, next) {
     Broker.find({
         deployment: req.params.deployment
     }, function(err, list_broker) {
@@ -21,7 +21,7 @@ exports.broker_listForDeployment = function(req, res, next) {
         res.send(list_broker);
     });
 };
-exports.broker_detail = function(req, res, next) {
+exports.brokerDetail = function(req, res, next) {
     Broker.find({
         _id: req.params._id
     }).populate("myPaths").exec(function(err, broker) {
@@ -62,7 +62,7 @@ exports.brokerDelete = function(req, res, next) {
         return res.send("Broker Deleted");
     });
 };
-exports.broker_update = function(req, res, next) {
+exports.brokerUpdate = function(req, res, next) {
     Broker.findOneAndUpdate({
             _id: req.body._id
         }, {

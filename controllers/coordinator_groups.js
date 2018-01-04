@@ -1,6 +1,6 @@
 var CoordinatorGroup = require("../models/coordinator_groups");
 
-exports.coordinator_group_list = function (req, res, next) {
+exports.coordinator_groupList = function (req, res, next) {
   CoordinatorGroup.find({}, function (err, listCoordinatorGroups) {
     if (err) {
       return next(err);
@@ -9,7 +9,7 @@ exports.coordinator_group_list = function (req, res, next) {
     res.send(listCoordinatorGroups);
   });
 }
-exports.coordinator_group_listForDeployment = function (req, res, next) {
+exports.coordinator_groupListForDeployment = function (req, res, next) {
   CoordinatorGroup.find({
     deployment: req.params.deployment
   }, function (err, listCoordinatorGroups) {
@@ -20,7 +20,7 @@ exports.coordinator_group_listForDeployment = function (req, res, next) {
     res.send(listCoordinatorGroups);
   });
 }
-exports.coordinator_group_detail = function (req, res, next) {
+exports.coordinator_groupDetail = function (req, res, next) {
   CoordinatorGroup.find({
     _id: req.params.id
   }, function (err, coordinator_group) {
@@ -59,7 +59,7 @@ exports.coordinator_groupDelete = function (req, res) {
     return res.send("Coordinator Group Deleted");
   })
 }
-exports.coordinator_group_update = function (req, res) {
+exports.coordinator_groupUpdate = function (req, res) {
   CoordinatorGroup.findOneAndUpdate({
     _id: req.body.id
   }, {

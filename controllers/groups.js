@@ -1,6 +1,6 @@
 var Group = require("../models/groups")
 
-exports.group_list = function (req, res, next) {
+exports.groupList = function (req, res, next) {
   Group.find({}, function (err, list_groups) {
     if (err) {
       return next(err)
@@ -10,7 +10,7 @@ exports.group_list = function (req, res, next) {
   });
 }
 
-exports.group_detail = function (req, res, next) {
+exports.groupDetail = function (req, res, next) {
   Group.find({
     _id: req.params.id
   }, function (err, group) {
@@ -50,7 +50,7 @@ exports.groupDelete = function (req, res, next) {
     return res.send("Group Deleted")
   })
 }
-exports.group_update = function (req, res, next) {
+exports.groupUpdate = function (req, res, next) {
   Group.findOneAndUpdate({
     _id: req.body.id
   }, {

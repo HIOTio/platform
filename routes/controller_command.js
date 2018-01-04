@@ -3,11 +3,11 @@ var router = new express.Router();
 
 var controllerCommandController = require("../controllers/controller_command");
 
-router.get("/", controllerCommandController.controller_command_list);
-router.get("/controller/:controller", controllerCommandController.controller_command_list_for_controller);
-router.get("/:id", controllerCommandController.controller_command_detail);
+router.get("/", controllerCommandController.controller_commandList);
+router.get("/controller/:controller", controllerCommandController.controller_commandListFor_controller);
+router.get("/:id", controllerCommandController.controller_commandDetail);
 router.post("/", controllerCommandController.controller_commandCreate);
 router.delete("/", controllerCommandController.controllerCommandDelete);
-router.put("/", controllerCommandController.controller_command_update);
+router.put("/", controllerCommandController.controller_commandUpdate);
 
 module.exports = router;

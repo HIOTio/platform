@@ -1,6 +1,6 @@
 var Thing = require("../models/thing");
 
-exports.thing_list = function (req, res, next) {
+exports.thingList = function (req, res, next) {
   Thing.find({}, function (err, list_things, next) {
     if (err) {
       return next(err);
@@ -9,7 +9,7 @@ exports.thing_list = function (req, res, next) {
     res.send(list_things);
   })
 }
-exports.thing_listForDeployment = function (req, res, next) {
+exports.thingListForDeployment = function (req, res, next) {
     // need to map devices back up to deployments, eventually
   Thing.find({}, function (err, list_things) {
     if (err) {
@@ -19,7 +19,7 @@ exports.thing_listForDeployment = function (req, res, next) {
     res.send(list_things);
   })
 }
-exports.thing_detail = function (req, res, next) {
+exports.thingDetail = function (req, res, next) {
   Thing.find({
     _id: req.params.id
   }, function (err, thing) {
@@ -66,7 +66,7 @@ exports.thingDelete = function (req, res, next) {
     return res.send("Thing Deleted");
   });
 }
-exports.thing_update = function (req, res, next) {
+exports.thingUpdate = function (req, res, next) {
   Thing.findOneAndUpdate({
     _id: req.body.id
   }, {

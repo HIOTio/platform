@@ -1,9 +1,9 @@
 var express = require("express");
 var router = new express.Router();
 var platformController = require("../controllers/platform");
-router.get("/", platformController.platform_list);
-router.get("/:id", platformController.platform_detail);
+router.get("/", platformController.platformList);
+router.get("/:id", platformController.platformDetail);
 router.post("/", platformController.platformCreate);
 router.delete("/", platformController.platformDelete);
-router.put("/", platformController.platform_update);
+router.put("/", platformController.platformUpdate);
 module.exports = router;

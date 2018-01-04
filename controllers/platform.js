@@ -1,6 +1,6 @@
 var Platform = require("../models/platform")
 
-exports.platform_list = function (req, res, next) {
+exports.platformList = function (req, res, next) {
   Platform.find({}, function (err, list_platforms) {
     if (err) {
       return next(err)
@@ -10,7 +10,7 @@ exports.platform_list = function (req, res, next) {
   })
 }
 
-exports.platform_detail = function (req, res, next) {
+exports.platformDetail = function (req, res, next) {
   Platform.find({
     _id: req.Platforms.id
   }, function (err, Platform) {
@@ -44,7 +44,7 @@ exports.platformDelete = function (req, res, next) {
     return res.send("Platform Deleted")
   })
 }
-exports.platform_update = function (req, res, next) {
+exports.platformUpdate = function (req, res, next) {
   Platform.findOneAndUpdate({
     _id: req.body.id
   }, {

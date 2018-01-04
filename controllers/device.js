@@ -129,7 +129,7 @@ exports.deviceDelete = function (req, res, next) {
     return res.send("Device Deleted")
   })
 }
-exports.device_update = function (req, res, next) {
+exports.deviceUpdate = function (req, res, next) {
   Device.findOneAndUpdate({
     _id: req.body._id
   }, {

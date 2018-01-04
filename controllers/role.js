@@ -1,15 +1,15 @@
 var Role = require("../models/role")
-exports.role_list = function (req, res, next) {
-  Role.find({}, function (err, list_roles, next) {
+exports.roleList = function (req, res, next) {
+  Role.find({}, function (err, listRoles, next) {
     if (err) {
       return next(err)
     }
         // Successful, so render
-    res.send(list_roles)
+    res.send(listRoles)
   })
 }
 
-exports.role_detail = function (req, res, next) {
+exports.roleDetail = function (req, res, next) {
   Role.findById(req.params.id, function (err, role) {
     if (err) {
       return next(err)
@@ -24,7 +24,7 @@ exports.roleCreate = function (req, res, next) {
     description: req.body.description,
     name: req.body.name,
     add_deployment: req.body.add_deployment,
-    add_user: req.body.add_user,
+    addUser: req.body.addUser,
     control_devices: req.body.control_devices
   })
   role.save(function (err) {
@@ -48,14 +48,14 @@ exports.roleDelete = function (req, res, next) {
     return res.send("Role Deleted")
   })
 }
-exports.role_update = function (req, res, next) {
+exports.roleUpdate = function (req, res, next) {
   Role.findOneAndUpdate({
     _id: req.body.id
   }, {
     description: req.body.description,
     name: req.body.name,
     add_deployment: req.body.add_deployment,
-    add_user: req.body.add_user,
+    addUser: req.body.addUser,
     control_devices: req.body.control_devices
   }, {
     upsert: false

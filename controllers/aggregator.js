@@ -1,6 +1,6 @@
 var Aggregator = require("../models/aggregator");
 
-exports.aggregator_list = function (req, res, next) {
+exports.aggregatorList = function (req, res, next) {
   Aggregator.find({}, function (err, list_aggregators) {
     if (err) {
       return next(err);
@@ -11,7 +11,7 @@ exports.aggregator_list = function (req, res, next) {
 }
 
 // TODO: get this to work by assiging devices to deployments, and querying the "device" element [Issue #8]
-exports.aggergator_listForDeployment = function (req, res) {
+exports.aggergatorListForDeployment = function (req, res) {
   Aggregator.find({
     deployment: req.params.deployment
   }, function (err, list_aggregators) {
@@ -22,7 +22,7 @@ exports.aggergator_listForDeployment = function (req, res) {
     res.send(list_aggregators);
   });
 }
-exports.aggregator_detail = function (req, res) {
+exports.aggregatorDetail = function (req, res) {
   Aggregator.find({
     _id: req.params.id
   }, function (err, aggregator) {

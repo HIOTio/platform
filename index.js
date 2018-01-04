@@ -89,7 +89,7 @@ app.use("/api/coordinator", rCoordinator);
 app.use("/api/coordinatorGroups", rCoordinatorGroups);
 app.use("/api/dashboard", rDashboard);
 app.use("/api/deployment", rDeployment);
-app.use("/api/deployment_role", rDeploymentRole);
+app.use("/api/deploymentRole", rDeploymentRole);
 app.use("/api/deployment_type", rDeploymentType);
 app.use("/api/device", rDevice);
 app.use("/api/device_configuration", rDeviceConfiguration);

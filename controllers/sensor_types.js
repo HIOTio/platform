@@ -1,6 +1,6 @@
 var Sensor = require("../models/sensor_types")
 
-exports.sensor_types_list = function (req, res, next) {
+exports.sensor_typesList = function (req, res, next) {
   Sensor.find({}, function (err, list_sensor_types) {
     if (err) {
       return next(err)
@@ -10,7 +10,7 @@ exports.sensor_types_list = function (req, res, next) {
   })
 }
 
-exports.sensor_types_detail = function (req, res, next) {
+exports.sensor_typesDetail = function (req, res, next) {
   Sensor.find({
     _id: req.body.id
   }, function (err, Sensor) {
@@ -52,7 +52,7 @@ exports.sensor_typesDelete = function (req, res, next) {
     return res.send("Sensor Deleted")
   })
 }
-exports.sensor_types_update = function (req, res, next) {
+exports.sensor_typesUpdate = function (req, res, next) {
   Sensor.findOneAndUpdate({
     _id: req.body.id
   }, {

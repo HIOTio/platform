@@ -3,11 +3,11 @@ var router = new express.Router();
 
 var controllerController = require("../controllers/controller");
 
-router.get("/", controllerController.controller_list);
-router.get("/deployment/:deployment", controllerController.controller_list_for_thing);
-router.get("/:id", controllerController.controller_detail);
+router.get("/", controllerController.controllerList);
+router.get("/deployment/:deployment", controllerController.controllerListFor_thing);
+router.get("/:id", controllerController.controllerDetail);
 router.post("/", controllerController.controllerCreate);
 router.delete("/", controllerController.controllerDelete);
-router.put("/", controllerController.controller_update);
+router.put("/", controllerController.controllerUpdate);
 
 module.exports = router;

@@ -1,6 +1,6 @@
 var Coordinator = require("../models/coordinator");
 
-exports.Coordinator_list = function (req, res, next) {
+exports.CoordinatorList = function (req, res, next) {
   Coordinator.find({}, function (err, list_coordinators) {
     if (err) {
       return next(err);
@@ -9,7 +9,7 @@ exports.Coordinator_list = function (req, res, next) {
     res.send(list_coordinators);
   })
 }
-exports.Coordinator_listForDeployment = function (req, res, next) {
+exports.CoordinatorListForDeployment = function (req, res, next) {
   Coordinator.find({
     deployment: req.params.deployment
   }, function (err, list_coordinators) {
@@ -20,7 +20,7 @@ exports.Coordinator_listForDeployment = function (req, res, next) {
     res.send(list_coordinators);
   });
 }
-exports.coordinator_detail = function (req, res) {
+exports.coordinatorDetail = function (req, res) {
   Coordinator.find({
     _id: req.params.id
   }, function (err, coordinator) {
@@ -69,7 +69,7 @@ exports.coordinatorDelete = function (req, res) {
     return res.send("Coordinator Deleted");
   })
 }
-exports.coordinator_update = function (req, res) {
+exports.coordinatorUpdate = function (req, res) {
   Coordinator.findOneAndUpdate({
     _id: req.body.id
   }, {

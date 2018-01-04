@@ -1,9 +1,9 @@
 var express = require("express");
 var router = new express.Router();
 var publicationController = require("../controllers/publication");
-router.get("/", publicationController.publication_list);
-router.get("/:id", publicationController.publication_detail);
+router.get("/", publicationController.publicationList);
+router.get("/:id", publicationController.publicationDetail);
 router.post("/", publicationController.publicationCreate);
 router.delete("/", publicationController.publicationDelete);
-router.put("/", publicationController.publication_update);
+router.put("/", publicationController.publicationUpdate);
 module.exports = router;

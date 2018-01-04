@@ -1,24 +1,24 @@
-var user_deployments = require("../models/deployment_role")
+var userDeployments = require("../models/deployment_role");
 
-exports.navigation_list = function (req, res, next) {
-  var my_menu = []
-  var children = []
-  var item_collapse = "nav-item"
-  var prom_depl = new Promise(function (resolve, reject) {
-    user_deployments.find({
+exports.navigationList = function (req, res, next) {
+  var myMEnu = [];
+  var children = [];
+  var itemCollapse = "nav-item";
+  var promDepl = new Promise(function (resolve, reject) {
+    userDeployments.find({
       profile: req.params.profile
-    }).populate("deployment").exec(function (err, deployment_role) {
+    }).populate("deployment").exec(function (err, deploymentRole) {
       if (err) {
-        return err
+        return err;
       }
-      resolve(deployment_role)
-    })
-  })
+      resolve(deploymentRole);
+    });
+  });
 
-  Promise.all([prom_depl])
+  Promise.all([promDepl])
 		.then((data) => {
 			// build the menu
-  my_menu.push({
+  myMEnu.push({
     "title": "Dashboard",
     "type": "nav-item",
     "url": "/dashboard",
@@ -51,30 +51,30 @@ exports.navigation_list = function (req, res, next) {
       "url": "/deployment/new",
       "type": "nav-item",
       "icon": "add_circle"
-    })
-    my_menu.push({
+    });
+    myMEnu.push({
       "title": "Deployments",
       "url": "/deployments",
       "type": "nav-collapse",
       "icon": "business",
       children
-    })
-    item_collapse = "nav_collapse"
+    });
+    itemCollapse = "nav_collapse"
   } else {
-    my_menu.push({
+    myMEnu.push({
       "title": "Add Deployment",
       "url": "/deployment/new",
       "type": "nav-item"
-    })
+    });
   }
-  my_menu.push({
+  myMEnu.push({
     "title": "Reports",
     "url": "/reports",
     "type": "nav-item",
     "icon": "insert_chart"
-  })
+  });
 
-//  console.log(my_menu)
-  res.send(my_menu)
-})
+//  console.log(myMEnu)
+  res.send(myMEnu);
+});
 }

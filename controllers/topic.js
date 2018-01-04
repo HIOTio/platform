@@ -1,6 +1,6 @@
 var Topic = require("../models/topic")
 
-exports.topic_list = function (req, res, next) {
+exports.topicList = function (req, res, next) {
   Topic.find({}, function (err, list_topics) {
     if (err) {
       return next(err)
@@ -52,7 +52,7 @@ exports.topicDelete = function (req, res, next) {
     return res.send("Topic Deleted")
   })
 }
-exports.topic_update = function (req, res, next) {
+exports.topicUpdate = function (req, res, next) {
   Topic.findOneAndUpdate({
     _id: req.body.id
   }, {

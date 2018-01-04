@@ -1,5 +1,5 @@
 var Sensor = require("../models/sensor")
-exports.sensor_list = function (req, res, next) {
+exports.sensorList = function (req, res, next) {
   Sensor.find({}, function (err, list_sensors, next) {
     if (err) {
       return next(err)
@@ -18,7 +18,7 @@ exports.sensorListForDeployment = function (req, res, next) {
     res.send(list_sensors)
   })
 }
-exports.sensor_detail = function (req, res, next) {
+exports.sensorDetail = function (req, res, next) {
   Sensor.findById(req.params.id, function (err, sensor) {
     if (err) {
       return next(err)
@@ -61,7 +61,7 @@ exports.sensorDelete = function (req, res, next) {
     return res.send("Sensor Deleted")
   })
 }
-exports.sensor_update = function (req, res, next) {
+exports.sensorUpdate = function (req, res, next) {
   Sensor.findOneAndUpdate({
     _id: req.body.id
   }, {

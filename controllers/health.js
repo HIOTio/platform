@@ -1,6 +1,6 @@
 var Health = require("../models/health")
 
-exports.health_list = function (req, res, next) {
+exports.healthList = function (req, res, next) {
   Health.find({}, function (err, list_healths) {
     if (err) {
       return next(err)
@@ -10,7 +10,7 @@ exports.health_list = function (req, res, next) {
   })
 }
 
-exports.health_detail = function (req, res, next) {
+exports.healthDetail = function (req, res, next) {
   Health.find({
     _id: req.params.id
   }, function (err, health) {
@@ -50,7 +50,7 @@ exports.healthDelete = function (req, res, next) {
     return res.send("Health Deleted")
   })
 }
-exports.health_update = function (req, res, next) {
+exports.healthUpdate = function (req, res, next) {
   Health.findOneAndUpdate({
     _id: req.body.id
   }, {

@@ -43,7 +43,7 @@ exports.deploymentCreate = function(req, res, next) {
             if (err) {
                 //TODO: need to handle this properly [Issue #6]
             }
-            //TODO: [x]add the owner to the deployment_roles [Issue #5]
+            //TODO: [x]add the owner to the deploymentRoles [Issue #5]
             var deploymentRole = new DeploymentRole({
                 deployment: deployment._id,
                 profile: deployment.owner,

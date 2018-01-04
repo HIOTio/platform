@@ -10,6 +10,6 @@ router.get("/deployment/:deployment/:location*?/:handler*?", deviceController.de
 router.get("/:id", deviceController.deviceDetail);
 router.post("/", deviceController.deviceCreate);
 router.delete("/", deviceController.deviceDelete);
-router.put("/", deviceController.device_update);
+router.put("/", deviceController.deviceUpdate);
 
 module.exports = router;

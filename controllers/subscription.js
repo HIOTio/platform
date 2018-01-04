@@ -1,6 +1,6 @@
 var Subscription = require("../models/subscription")
 
-exports.subscription_list = function (req, res, next) {
+exports.subscriptionList = function (req, res, next) {
   Subscription.find({}, function (err, list_subscription) {
     if (err) {
       return next(err)
@@ -10,7 +10,7 @@ exports.subscription_list = function (req, res, next) {
   })
 }
 
-exports.subscription_detail = function (req, res, next) {
+exports.subscriptionDetail = function (req, res, next) {
   Subscription.find({
     _id: req.body.id
   }, function (err, Subscription) {
@@ -45,7 +45,7 @@ exports.subscriptionDelete = function (req, res, next) {
     return res.send("Subscription Deleted")
   })
 }
-exports.subscription_update = function (req, res, next) {
+exports.subscriptionUpdate = function (req, res, next) {
   Subscription.findOneAndUpdate({
     _id: req.body.id
   }, {

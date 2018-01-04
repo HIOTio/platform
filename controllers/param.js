@@ -1,6 +1,6 @@
 var Param = require("../models/param")
 
-exports.param_list = function (req, res, next) {
+exports.paramList = function (req, res, next) {
   Param.find({}, function (err, list_params) {
     if (err) {
       return next(err)
@@ -53,7 +53,7 @@ exports.paramDelete = function (req, res, next) {
     return res.send("Param Deleted")
   })
 }
-exports.param_update = function (req, res, next) {
+exports.paramUpdate = function (req, res, next) {
   Param.findOneAndUpdate({
     _id: req.body.id
   }, {
