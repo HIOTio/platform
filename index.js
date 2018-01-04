@@ -22,7 +22,7 @@ jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeader();
 jwtOptions.secretOrKey = config.secret;
 
 var strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
-    Profile.find_by_id(jwt_payload.id, function(err, user) {
+    Profile.findById(jwt_payload.id, function(err, user) {
         if (this) {
             next(null, this);
         } else {

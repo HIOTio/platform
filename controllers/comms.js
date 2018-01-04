@@ -2,7 +2,7 @@ var Comms = require("../models/comms");
 
 exports.commsList=function(){
 
-}
+};
 
 exports.newComms=function(req,res,next){
      var comms = new Comms({
@@ -11,7 +11,7 @@ exports.newComms=function(req,res,next){
     comment: req.body.contact.comment,
     responded: false,
     added: new Date()
-  })
+  });
   comms.save(function (err) {
     if (err) {
       return next(err);
@@ -19,4 +19,4 @@ exports.newComms=function(req,res,next){
     res.sendStatus(200);
   });
 
-}
+};

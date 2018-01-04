@@ -3,7 +3,7 @@ var DeploymentRole = require("../models/deployment_role");
 var Role = require("../models/role");
 var sockets = require("../sockets");
 
-exports.deployment_list = function(req, res, next) {
+exports.deploymentList = function(req, res, next) {
     Deployment.find({}, function(err, listDeployments) {
         //   console.log(req)
         if (err) {
@@ -11,7 +11,7 @@ exports.deployment_list = function(req, res, next) {
         }
         res.send(listDeployments);
     });
-}
+};
 exports.deploymentDetail = function(req, res, next) {
     Deployment.findOne({
         _id: req.params.id
@@ -20,10 +20,10 @@ exports.deploymentDetail = function(req, res, next) {
             return next(err);
         }
         res.send(deployment);
-    })
-}
+    });
+};
 
-exports.deployment_create = function(req, res, next) {
+exports.deploymentCreate = function(req, res, next) {
     //NOTE: think about giving the user the option of changing the owner of a new deployment - for now, just hard-code  it [Issue #4]
     //  console.log(JSON.stringify(req.body))
     var deployment = new Deployment({
@@ -59,7 +59,7 @@ exports.deployment_create = function(req, res, next) {
 
     });
 }
-exports.deployment_delete = function(req, res, next) {
+exports.deploymentDelete = function(req, res, next) {
     Deployment.findOneAndUpdate({
             _id: req.body.id
         }, {
@@ -77,7 +77,7 @@ exports.deployment_delete = function(req, res, next) {
         // need to remove all the associated deployment roles and then broadcast on relevant channels
     sockets.send("deployment-" + req.body.id, JSON.stringify({ "deployment":req.body.id,"action":"deleted","message": "Deployment \"" + req.body.name+ "\" has been deleted" }));
 }
-exports.deployment_update = function(req, res) {
+exports.deploymentUpdate = function(req, res) {
     //  console.log(req.body)
     Deployment.findOneAndUpdate({
             _id: req.body._id

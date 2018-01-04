@@ -1,31 +1,31 @@
-var SensorReading = require("../models/sensor_reading")
+var SensorReading = require("../models/sensor_reading");
 
-exports.sensor_reading_list = function (req, res, next) {
-  SensorReading.find({}, function (err, list_sensor_readings, next) {
+exports.sensorReadingList = function (req, res, next) {
+  SensorReading.find({}, function (err, listSensorReadings, next) {
     if (err) {
-      return next(err)
+      return next(err);
     }
 		// Successful, so render
-    res.send(list_sensor_readings)
-  })
-}
-exports.sensor_reading_list_for_sensor = function (req, res, next) {
+    res.send(listSensorReadings);
+  });
+};
+exports.sensorReadingList_for_sensor = function (req, res, next) {
   SensorReading.find({
     sensor_id: req.params.sensor_id
-  }, function (err, list_sensor_readings) {
+  }, function (err, listSensorReadings) {
     if (err) {
-      return next(err)
+      return next(err);
     }
 		// Successful, so render
-    res.send(list_sensor_readings)
-  })
-}
+    res.send(listSensorReadings);
+  });
+};
 exports.sensor_reading_detail = function (req, res, next) {
-  SensorReading.findById(req.params.id, function (err, sensor_reading) {
+  SensorReading.findById(req.params.id, function (err, sensorReading) {
     if (err) {
-      return next(err)
+      return next(err);
     }
 		// Successful, so render
-    res.send(sensor_reading)
-  })
-}
+    res.send(sensorReading);
+  });
+};

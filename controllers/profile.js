@@ -1,7 +1,7 @@
 var Profile = require("../models/profile");
 var config = require("../config");
 var jwt = require("jsonwebtoken");
-exports.profile_auth = function (req, res, next) {
+exports.profileAuth = function (req, res, next) {
   Profile.findOne({
     username: req.body.username
   }, function (err, profile) {
@@ -50,7 +50,7 @@ exports.profile_auth = function (req, res, next) {
     }
   });
 }
-exports.profile_detail = function (req, res, next) {
+exports.profileDetail = function (req, res, next) {
   Profile.findOne({
     _id: req.params.profile
   }, function (err, profile) {
@@ -58,10 +58,10 @@ exports.profile_detail = function (req, res, next) {
       return next(err);
     }
     res.send(profile);
-  })
+  });
 }
 
-exports.find_by_id = function (id, callback) {
+exports.findById = function (id, callback) {
   Profile.findOne({
     _id: id
   }, function (err, profile) {
@@ -71,7 +71,7 @@ exports.find_by_id = function (id, callback) {
     }
   })
 }
-exports.profile_create = function (req, res, next) {
+exports.profileCreate = function (req, res, next) {
   req.checkBody("username", "Each profile needs a username").notEmpty();
   req.sanitize("username").escape();
   req.sanitize("username").trim();
@@ -109,7 +109,7 @@ exports.profile_create = function (req, res, next) {
   });
 }
 
-exports.profile_delete = function (req, res) {
+exports.profileDelete = function (req, res) {
   Profile.findOneAndUpdate({
     _id: req.body.id
   }, {
@@ -125,7 +125,7 @@ exports.profile_delete = function (req, res) {
     return res.send("Profile Deleted");
   });
 }
-exports.profile_update = function (req, res) {
+exports.profileUpdate = function (req, res) {
   Profile.findOneAndUpdate({
     _id: req.body.id
   }, {

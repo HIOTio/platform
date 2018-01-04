@@ -10,4 +10,4 @@ router.post("/", controllerCommandController.controller_command_create);
 router.delete("/", controllerCommandController.controllerCommandDelete);
 router.put("/", controllerCommandController.controller_command_update);
 
-module.exports = router
+module.exports = router;

@@ -11,7 +11,7 @@ jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeader();
 jwtOptions.secretOrKey = config.secret;
 
 var strategy = new JwtStrategy(jwtOptions, function (jwtPayload, next) {
-  Profile.find_by_id(jwtPayload.id, function (err, user) {
+  Profile.findById(jwtPayload.id, function (err, user) {
     if (this) {
       next(null, this);
     } else {
