@@ -1,6 +1,6 @@
 var Aggregator = require("../models/aggregator");
 
-exports.aggregator_list = function (req, res) {
+exports.aggregator_list = function (req, res, next) {
   Aggregator.find({}, function (err, list_aggregators) {
     if (err) {
       return next(err);

@@ -1,4 +1,4 @@
-var Sensor = require('../models/sensor')
+var Sensor = require("../models/sensor")
 exports.sensor_list = function (req, res, next) {
   Sensor.find({}, function (err, list_sensors, next) {
     if (err) {
@@ -58,7 +58,7 @@ exports.sensor_delete = function (req, res, next) {
     if (err) {
       next(err)
     }
-    return res.send('Sensor Deleted')
+    return res.send("Sensor Deleted")
   })
 }
 exports.sensor_update = function (req, res, next) {

@@ -1,4 +1,4 @@
-var Param = require('../models/param')
+var Param = require("../models/param")
 
 exports.param_list = function (req, res, next) {
   Param.find({}, function (err, list_params) {
@@ -50,7 +50,7 @@ exports.param_delete = function (req, res, next) {
         error: err
       })
     }
-    return res.send('Param Deleted')
+    return res.send("Param Deleted")
   })
 }
 exports.param_update = function (req, res, next) {
@@ -76,7 +76,7 @@ exports.param_update = function (req, res, next) {
   if (doc != null) {
     res.redirect(303, doc.url)
   } else {
-    res.send(500, 'Param not found')
+    res.send(500, "Param not found")
   }
 })
 }

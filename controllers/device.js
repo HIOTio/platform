@@ -1,4 +1,4 @@
-var Device = require('../models/device')
+var Device = require("../models/device")
 exports.config= function(req,res,next){
   Device.findById(
     {_id:req.params.device}
@@ -47,7 +47,7 @@ exports.device_count = function (req, res, next) {
     deployment: req.params.deployment
   }, function (err, devCount) {
     res.send({
-      'device_count': devCount
+      "device_count": devCount
     })
   })
 }
@@ -126,7 +126,7 @@ exports.device_delete = function (req, res, next) {
     if (err) {
       next(err)
     }
-    return res.send('Device Deleted')
+    return res.send("Device Deleted")
   })
 }
 exports.device_update = function (req, res, next) {

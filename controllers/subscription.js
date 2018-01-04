@@ -1,4 +1,4 @@
-var Subscription = require('../models/subscription')
+var Subscription = require("../models/subscription")
 
 exports.subscription_list = function (req, res, next) {
   Subscription.find({}, function (err, list_subscription) {
@@ -42,7 +42,7 @@ exports.subscription_delete = function (req, res, next) {
         error: err
       })
     }
-    return res.send('Subscription Deleted')
+    return res.send("Subscription Deleted")
   })
 }
 exports.subscription_update = function (req, res, next) {
@@ -64,7 +64,7 @@ exports.subscription_update = function (req, res, next) {
   if (doc != null) {
     res.redirect(303, doc.url)
   } else {
-    res.send(500, 'Subscription not found')
+    res.send(500, "Subscription not found")
   }
 })
 }

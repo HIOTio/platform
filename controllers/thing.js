@@ -11,7 +11,7 @@ exports.thing_list = function (req, res, next) {
 }
 exports.thing_list_for_deployment = function (req, res, next) {
     // need to map devices back up to deployments, eventually
-  Device.find({}, function (err, list_things) {
+  Thing.find({}, function (err, list_things) {
     if (err) {
       return next(err)
     }

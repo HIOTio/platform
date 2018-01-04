@@ -1,4 +1,4 @@
-var Sensor = require('../models/sensor_types')
+var Sensor = require("../models/sensor_types")
 
 exports.sensor_types_list = function (req, res, next) {
   Sensor.find({}, function (err, list_sensor_types) {
@@ -49,7 +49,7 @@ exports.sensor_types_delete = function (req, res, next) {
         error: err
       })
     }
-    return res.send('Sensor Deleted')
+    return res.send("Sensor Deleted")
   })
 }
 exports.sensor_types_update = function (req, res, next) {
@@ -73,7 +73,7 @@ exports.sensor_types_update = function (req, res, next) {
   if (doc != null) {
     res.redirect(303, doc.url)
   } else {
-    res.send(500, 'Sensor not found')
+    res.send(500, "Sensor not found")
   }
 })
 }

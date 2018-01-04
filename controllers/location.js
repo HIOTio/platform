@@ -1,4 +1,4 @@
-var Location = require('../models/location')
+var Location = require("../models/location")
 
 exports.location_list = function (req, res, next) {
   Location.find({}, function (err, listLocations) {
@@ -61,7 +61,7 @@ exports.locationDelete = function (req, res, next) {
         error: err
       })
     }
-    return res.send('Location Deleted')
+    return res.send("Location Deleted")
   })
 }
 exports.location_update = function (req, res, next) {
@@ -83,7 +83,7 @@ exports.location_update = function (req, res, next) {
   if (doc != null) {
     res.redirect(303, doc.url)
   } else {
-    res.send(500, 'Location not found')
+    res.send(500, "Location not found")
   }
 })
 }

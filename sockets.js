@@ -7,11 +7,11 @@ exports.init = function(_app) {
     require("express-ws")(this.app);
     this.app.use("/m2p", function(req, res, next) {
         if (req.body.msg) {
-            console.log(socketSend);
+       //     console.log(socketSend);
             socketSend.send(req.body.msg);
             res.send(200);
         } else {
-            console.log(req);
+       //     console.log(req);
             res.send(500);
         }
     });
@@ -22,12 +22,12 @@ exports.init = function(_app) {
                 if(!channels[req.params.channel]){
                     channels[req.params.channel]=[];
                 }
-                console.log("new subscription on channel" + req.params.channel);
+          //      console.log("new subscription on channel" + req.params.channel);
                 channels[req.params.channel].push(ws);
             }
         });
         ws.on("close", function(){
-            console.log("connection closed " );
+     //       console.log("connection closed " );
         })
     })
 }
@@ -37,11 +37,11 @@ exports.deregisterChannel=function(channel){
 }
 exports.send = function(channel, message) {
     if(channels[channel]){
-        channels[channel].forEach(chan => {
+        channels[channel].forEach((chan) => {
             chan.send(message,function ack(error) {
                 // If error is not defined, the send has been completed, otherwise the error
                 // object will indicate what failed.
-              console.log("sending message on channel " + channel);
+            //  console.log("sending message on channel " + channel);
             });
         });
     }

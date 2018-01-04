@@ -1,4 +1,4 @@
-var Publication = require('../models/publication')
+var Publication = require("../models/publication")
 
 exports.publication_list = function (req, res, next) {
   Publication.find({}, function (err, list_publications) {
@@ -42,7 +42,7 @@ exports.publication_delete = function (req, res, next) {
         error: err
       })
     }
-    return res.send('Publication Deleted')
+    return res.send("Publication Deleted")
   })
 }
 exports.publication_update = function (req, res, next) {
@@ -64,7 +64,7 @@ exports.publication_update = function (req, res, next) {
   if (doc != null) {
     res.redirect(303, doc.url)
   } else {
-    res.send(500, 'Publication not found')
+    res.send(500, "Publication not found")
   }
 })
 }

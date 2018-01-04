@@ -1,4 +1,4 @@
-var Role = require('../models/role')
+var Role = require("../models/role")
 exports.role_list = function (req, res, next) {
   Role.find({}, function (err, list_roles, next) {
     if (err) {
@@ -45,7 +45,7 @@ exports.role_delete = function (req, res, next) {
     if (err) {
       next(err)
     }
-    return res.send('Role Deleted')
+    return res.send("Role Deleted")
   })
 }
 exports.role_update = function (req, res, next) {

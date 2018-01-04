@@ -1,4 +1,4 @@
-var SensorReading = require('../models/sensor_reading')
+var SensorReading = require("../models/sensor_reading")
 
 exports.sensor_reading_list = function (req, res, next) {
   SensorReading.find({}, function (err, list_sensor_readings, next) {

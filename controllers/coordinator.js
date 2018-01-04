@@ -9,7 +9,7 @@ exports.Coordinator_list = function (req, res, next) {
     res.send(list_coordinators);
   })
 }
-exports.Coordinator_list_for_deployment = function (req, res) {
+exports.Coordinator_list_for_deployment = function (req, res, next) {
   Coordinator.find({
     deployment: req.params.deployment
   }, function (err, list_coordinators) {

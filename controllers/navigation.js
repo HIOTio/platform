@@ -16,7 +16,7 @@ exports.navigation_list = function (req, res, next) {
   })
 
   Promise.all([prom_depl])
-		.then(data => {
+		.then((data) => {
 			// build the menu
   my_menu.push({
     "title": "Dashboard",
@@ -57,7 +57,7 @@ exports.navigation_list = function (req, res, next) {
       "url": "/deployments",
       "type": "nav-collapse",
       "icon": "business",
-      "children": children
+      children
     })
     item_collapse = "nav_collapse"
   } else {

@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 var Broker = require("../models/broker");
 
 exports.broker_list = function(req, res, next) {

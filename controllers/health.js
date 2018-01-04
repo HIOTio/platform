@@ -1,4 +1,4 @@
-var Health = require('../models/health')
+var Health = require("../models/health")
 
 exports.health_list = function (req, res, next) {
   Health.find({}, function (err, list_healths) {
@@ -47,7 +47,7 @@ exports.health_delete = function (req, res, next) {
         error: err
       })
     }
-    return res.send('Health Deleted')
+    return res.send("Health Deleted")
   })
 }
 exports.health_update = function (req, res, next) {
@@ -74,7 +74,7 @@ exports.health_update = function (req, res, next) {
   if (doc != null) {
     res.redirect(303, doc.url)
   } else {
-    res.send(500, 'Health not found')
+    res.send(500, "Health not found")
   }
 })
 }

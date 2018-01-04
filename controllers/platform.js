@@ -1,4 +1,4 @@
-var Platform = require('../models/platform')
+var Platform = require("../models/platform")
 
 exports.platform_list = function (req, res, next) {
   Platform.find({}, function (err, list_platforms) {
@@ -41,7 +41,7 @@ exports.platform_delete = function (req, res, next) {
         error: err
       })
     }
-    return res.send('Platform Deleted')
+    return res.send("Platform Deleted")
   })
 }
 exports.platform_update = function (req, res, next) {
@@ -62,7 +62,7 @@ exports.platform_update = function (req, res, next) {
   if (doc != null) {
     res.redirect(303, doc.url)
   } else {
-    res.send(500, 'Platform not found')
+    res.send(500, "Platform not found")
   }
 })
 }

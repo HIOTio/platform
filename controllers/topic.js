@@ -1,4 +1,4 @@
-var Topic = require('../models/topic')
+var Topic = require("../models/topic")
 
 exports.topic_list = function (req, res, next) {
   Topic.find({}, function (err, list_topics) {
@@ -49,7 +49,7 @@ exports.topic_delete = function (req, res, next) {
         error: err
       })
     }
-    return res.send('Topic Deleted')
+    return res.send("Topic Deleted")
   })
 }
 exports.topic_update = function (req, res, next) {
@@ -72,7 +72,7 @@ exports.topic_update = function (req, res, next) {
   if (doc != null) {
     res.redirect(303, doc.url)
   } else {
-    res.send(500, 'Topic not found')
+    res.send(500, "Topic not found")
   }
 })
 }

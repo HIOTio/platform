@@ -10,7 +10,7 @@ exports.handler_list = function (req, res, next) {
   })
 }
 exports.handler_list_deployment = function (req, res, next) {
-    handler.find({
+    Handler.find({
         deployment:req.params.deployment
     }, function (err, list_handlers) {
       if (err) {

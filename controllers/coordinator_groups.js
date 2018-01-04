@@ -1,4 +1,4 @@
-var CoordinatorGroup = require('../models/coordinator_groups');
+var CoordinatorGroup = require("../models/coordinator_groups");
 
 exports.coordinator_group_list = function (req, res, next) {
   CoordinatorGroup.find({}, function (err, listCoordinatorGroups) {
@@ -39,7 +39,7 @@ exports.coordinator_group_create = function (req, res, next) {
     added: req.body.added,
     calculation: req.body.calculation,
     sensortype: req.body.sensor_type,
-    sensors: ref.body.sensors
+    sensors: req.body.sensors
   })
   res.redirect(303, coordinatorGroup.url);
 }
@@ -68,8 +68,8 @@ exports.coordinator_group_update = function (req, res) {
     active: req.body.active,
     added: req.body.added,
     calculation: req.body.calculation,
-    sensortype: ref.body.sensor_type,
-    sensors: ref.body.sensors
+    sensortype: req.body.sensor_type,
+    sensors: req.body.sensors
   }, {
     upsert: false
   },

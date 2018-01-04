@@ -1,4 +1,4 @@
-var Group = require('../models/groups')
+var Group = require("../models/groups")
 
 exports.group_list = function (req, res, next) {
   Group.find({}, function (err, list_groups) {
@@ -47,7 +47,7 @@ exports.group_delete = function (req, res, next) {
         error: err
       })
     }
-    return res.send('Group Deleted')
+    return res.send("Group Deleted")
   })
 }
 exports.group_update = function (req, res, next) {
@@ -74,7 +74,7 @@ exports.group_update = function (req, res, next) {
   if (doc != null) {
     res.redirect(303, doc.url)
   } else {
-    res.send(500, 'Group not found')
+    res.send(500, "Group not found")
   }
 })
 }

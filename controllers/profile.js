@@ -33,8 +33,8 @@ exports.profile_auth = function (req, res, next) {
           res.send({
             success: true,
             message: "Authenticated",
-            token: token,
-            profile: profile
+            token,
+            profile
           });
         } else {
      //       console.log("auth failed")
