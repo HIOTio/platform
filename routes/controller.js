@@ -1,13 +1,13 @@
-var express = require('express')
-var router = express.Router()
+var express = require("express");
+var router = new express.Router();
 
-var controllerController = require('../controllers/controller')
+var controllerController = require("../controllers/controller");
 
-router.get('/', controllerController.controller_list)
-router.get('/deployment/:deployment', controllerController.controller_list_for_thing)
-router.get('/:id', controllerController.controller_detail)
-router.post('/', controllerController.controller_create)
-router.delete('/', controllerController.controller_delete)
-router.put('/', controllerController.controller_update)
+router.get("/", controllerController.controller_list);
+router.get("/deployment/:deployment", controllerController.controller_list_for_thing);
+router.get("/:id", controllerController.controller_detail);
+router.post("/", controllerController.controller_create);
+router.delete("/", controllerController.controller_delete);
+router.put("/", controllerController.controller_update);
 
-module.exports = router
+module.exports = router;

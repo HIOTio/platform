@@ -1,5 +1,5 @@
 'use strict';
-var Broker = require('../models/broker');
+var Broker = require("../models/broker");
 
 exports.broker_list = function(req, res, next) {
     Broker.find({}, function(err, list_brokers) {
@@ -59,7 +59,7 @@ exports.broker_delete = function(req, res, next) {
         if (err) {
             next(err);
         }
-        return res.send('Broker Deleted');
+        return res.send("Broker Deleted");
     });
 };
 exports.broker_update = function(req, res, next) {

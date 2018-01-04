@@ -1,7 +1,7 @@
-var Deployment = require('../models/deployment')
-var DeploymentRole = require('../models/deployment_role')
-var Role = require('../models/role')
-var sockets = require('../sockets');
+var Deployment = require("../models/deployment")
+var DeploymentRole = require("../models/deployment_role")
+var Role = require("../models/role")
+var sockets = require("../sockets");
 
 exports.deployment_list = function(req, res, next) {
     Deployment.find({}, function(err, list_deployments) {

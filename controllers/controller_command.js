@@ -1,35 +1,35 @@
-var ControllerCommand = require('../models/controller_command')
+var ControllerCommand = require("../models/controller_command");
 
 exports.controller_command_list = function (req, res, next) {
   ControllerCommand.find({}, function (err, list_controller_commands) {
     if (err) {
-      return next(err)
+      return next(err);
     }
 		// Successful, so render
-    res.send(list_controller_commands)
-  })
+    res.send(list_controller_commands);
+  });
 }
 exports.controller_command_list_for_controller = function (req, res, next) {
   ControllerCommand.find({
     controller: req.params.controller
   }, function (err, list_controller_commands) {
     if (err) {
-      return next(err)
+      return next(err);
     }
 		// Successful, so render
-    res.send(list_controller_commands)
-  })
+    res.send(list_controller_commands);
+  });
 }
 exports.controller_command_detail = function (req, res, next) {
   ControllerCommand.find({
     _id: req.params.id
   }, function (err, controller_command) {
     if (err) {
-      return next(err)
+      return next(err);
     }
 		// Successful, so render
-    res.send(controller_command)
-  })
+    res.send(controller_command);
+  });
 }
 exports.controller_command_create = function (req, res, next) {
   var controllerCommand = new ControllerCommand({
@@ -40,13 +40,13 @@ exports.controller_command_create = function (req, res, next) {
     name: req.body.name,
     active: req.body.active,
     id: req.body.String
-  })
+  });
   controllerCommand.save(function (err) {
     if (err) {
-      return next(err)
+      return next(err);
     }
-    res.redirect(controllerCommand.url)
-  })
+    res.redirect(controllerCommand.url);
+  });
 }
 exports.controller_command_delete = function (req, res, next) {
   ControllerCommand.findOneAndUpdate({
@@ -57,10 +57,10 @@ exports.controller_command_delete = function (req, res, next) {
     upsert: false
   }, function (err, doc) {
     if (err) {
-      next(err)
+      next(err);
     }
-    return res.send('Controller Command Deleted')
-  })
+    return res.sendStatus(200);
+  });
 }
 exports.controller_command_update = function (req, res, next) {
   ControllerCommand.findOneAndUpdate({
@@ -80,8 +80,8 @@ exports.controller_command_update = function (req, res, next) {
   if (err) {
     return res.send(500, {
       error: err
-    })
+    });
   }
-  res.redirect(303, doc.url)
-})
+  res.redirect(303, doc.url);
+});
 }

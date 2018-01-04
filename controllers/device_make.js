@@ -1,25 +1,25 @@
-var DeviceMake = require('../models/device_make')
+var DeviceMake = require("../models/device_make");
 
-exports.device_make_list = function (req, res) {
-  DeviceMake.find({}, function (err, list_device_makes) {
+exports.device_make_list = function (req, res, next) {
+  DeviceMake.find({}, function (err, listDeviceMakes) {
     if (err) {
-      return next(err)
+      return next(err);
     }
 		// Successful, so render
-    res.send(list_device_makes)
-  })
+    res.send(listDeviceMakes);
+  });
 }
 
-exports.device_make_detail = function (req, res) {
+exports.device_make_detail = function (req, res, next) {
   DeviceMake.find({
     _id: req.params.id
-  }, function (err, device_make) {
+  }, function (err, deviceMake) {
     if (err) {
-      return next(err)
+      return next(err);
     }
 		// Successful, so render
-    res.send(device_make)
-  })
+    res.send(deviceMake);
+  });
 }
 exports.device_make_create = function (req, res, next) {
   var deviceMake = new DeviceMake({
@@ -44,10 +44,10 @@ exports.device_make_delete = function (req, res) {
     if (err) {
       return res.send(500, {
         error: err
-      })
+      });
     }
-    return res.send('Device Make Deleted')
-  })
+    return res.send("Device Make Deleted");
+  });
 }
 exports.device_make_update = function (req, res) {
   DeviceMake.findOneAndUpdate({
@@ -62,12 +62,12 @@ exports.device_make_update = function (req, res) {
   if (err) {
     return res.send(500, {
       error: err
-    })
+    });
   }
   if (doc != null) {
-    res.redirect(303, doc.url)
+    res.redirect(303, doc.url);
   } else {
-    res.send(500, 'Device Make not found')
+    res.send(500, "Device Make not found");
   }
 })
 }

@@ -1,37 +1,37 @@
-var DeploymentRole = require('../models/deployment_role')
+var DeploymentRole = require("../models/deployment_role");
 
 function deployments_for_user (userId) {
-  if(req.params.profile==0){
-    res.send([]);
+  if(userId===0){
+    return [];
   }else{
     DeploymentRole.find({
       profile: userId
-    }).populate('deployment').exec(function (err, deployment_role) {
+    }).populate("deployment").exec(function (err, deployment_role) {
       if (err) {
-        return err
+        return err;
       }
-      return deployment_role
+      return deployment_role;
     })
 }
 }
 exports.deployment_role_list = function (req, res, next) {
   DeploymentRole.find({}, function (err, list_deployment_roles) {
     if (err) {
-      return next(err)
+      return next(err);
     }
 		// Successful, so render
-    res.send(list_deployment_roles)
+    res.send(list_deployment_roles);
   })
 }
 exports.deployment_role_detail_by_deployment = function (req, res, next) {
   DeploymentRole.find({
     deployment: req.params.deployment
-  }).populate('role').populate('profile').exec(function (err, deployment_role) {
+  }).populate("role").populate("profile").exec(function (err, deployment_role) {
     if (err) {
-      return next(err)
+      return next(err);
     }
 		// Successful, so render
-    res.send(deployment_role)
+    res.send(deployment_role);
   })
 }
 exports.deployment_role_detail = function (req, res, next) {
@@ -55,25 +55,25 @@ exports.deployment_role_create = function (req, res, next) {
   })
   deploymentRole.save(function (err) {
     if (err) {
-      return next(err)
+      return next(err);
     }
-    res.redirect(deploymentRole.url)
-  })
+    res.redirect(deploymentRole.url);
+  });
 }
 exports.deployments_for_user = function (userId) {
-  //  console.log('in exports')
+  //  console.log("in exports")
   if(req.params.profile==0){
     res.send([]);
   }else{
     DeploymentRole.find({
       profile: userId
-    }).populate('deployment').exec(function (err, deployment_role) {
+    }).populate("deployment").exec(function (err, deployment_role) {
       if (err) {
         return err
       }
 
   //    console.log(deployment_role)
-  //    console.log('finished in deployment_role')
+  //    console.log("finished in deployment_role")
       return deployment_role
     })
   }
@@ -85,7 +85,7 @@ exports.deployment_role_detail_by_profile = function (req, res, next) {
   }else{
     DeploymentRole.find({
       profile: req.params.profile
-    }).populate('role').populate('deployment').exec(function (err, deployment_role) {
+    }).populate("role").populate("deployment").exec(function (err, deployment_role) {
       if (err) {
         return next(err)
       }

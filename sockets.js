@@ -1,23 +1,24 @@
 var app = {};
 var socketSend = {};
 var channels = {};
+var cmd={};
 exports.init = function(_app) {
-    this.app = _app
-    require('express-ws')(this.app);
-    this.app.use('/m2p', function(req, res, next) {
+    this.app = _app;
+    require("express-ws")(this.app);
+    this.app.use("/m2p", function(req, res, next) {
         if (req.body.msg) {
-            console.log(socketSend)
+            console.log(socketSend);
             socketSend.send(req.body.msg);
-            res.send(200)
+            res.send(200);
         } else {
-            console.log(req)
+            console.log(req);
             res.send(500);
         }
     });
-    this.app.ws('/:channel', function(ws,req){
-        ws.on('message',function(message){
+    this.app.ws("/:channel", function(ws,req){
+        ws.on("message",function(message){
             cmd=JSON.parse(message);
-            if(cmd.action==='connect'){
+            if(cmd.action==="connect"){
                 if(!channels[req.params.channel]){
                     channels[req.params.channel]=[];
                 }
@@ -25,7 +26,7 @@ exports.init = function(_app) {
                 channels[req.params.channel].push(ws);
             }
         });
-        ws.on('close', function(){
+        ws.on("close", function(){
             console.log("connection closed " );
         })
     })

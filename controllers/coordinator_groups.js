@@ -1,35 +1,35 @@
-var CoordinatorGroup = require('../models/coordinator_groups')
+var CoordinatorGroup = require('../models/coordinator_groups');
 
-exports.coordinator_group_list = function (req, res) {
+exports.coordinator_group_list = function (req, res, next) {
   CoordinatorGroup.find({}, function (err, list_coordinator_groups) {
     if (err) {
-      return next(err)
+      return next(err);
     }
 		// Successful, so render
-    res.send(list_coordinator_groups)
-  })
+    res.send(list_coordinator_groups);
+  });
 }
-exports.coordinator_group_list_for_deployment = function (req, res) {
+exports.coordinator_group_list_for_deployment = function (req, res, next) {
   CoordinatorGroup.find({
     deployment: req.params.deployment
   }, function (err, list_coordinator_groups) {
     if (err) {
-      return next(err)
+      return next(err);
     }
 		// Successful, so render
-    res.send(list_coordinator_groups)
-  })
+    res.send(list_coordinator_groups);
+  });
 }
-exports.coordinator_group_detail = function (req, res) {
+exports.coordinator_group_detail = function (req, res, next) {
   CoordinatorGroup.find({
     _id: req.params.id
   }, function (err, coordinator_group) {
     if (err) {
-      return next(err)
+      return next(err);
     }
 		// Successful, so render
-    res.send(coordinator_group)
-  })
+    res.send(coordinator_group);
+  });
 }
 exports.coordinator_group_create = function (req, res, next) {
   var coordinatorGroup = new CoordinatorGroup({
@@ -38,10 +38,10 @@ exports.coordinator_group_create = function (req, res, next) {
     active: req.body.active,
     added: req.body.added,
     calculation: req.body.calculation,
-    sensortype: ref.body.sensor_type,
+    sensortype: req.body.sensor_type,
     sensors: ref.body.sensors
   })
-  res.redirect(303, coordinatorGroup.url)
+  res.redirect(303, coordinatorGroup.url);
 }
 exports.coordinator_group_delete = function (req, res) {
   CoordinatorGroup.findOneAndUpdate({
@@ -56,7 +56,7 @@ exports.coordinator_group_delete = function (req, res) {
         error: err
       })
     }
-    return res.send('Coordinator Group Deleted')
+    return res.send("Coordinator Group Deleted");
   })
 }
 exports.coordinator_group_update = function (req, res) {
@@ -77,12 +77,12 @@ exports.coordinator_group_update = function (req, res) {
   if (err) {
     return res.send(500, {
       error: err
-    })
+    });
   }
   if (doc != null) {
-    res.redirect(303, doc.url)
+    res.redirect(303, doc.url);
   } else {
-    res.send(500, 'coordinator group not found')
+    res.send(500, "coordinator group not found");
   }
-})
+});
 }

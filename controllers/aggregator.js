@@ -1,13 +1,13 @@
-var Aggregator = require('../models/aggregator')
+var Aggregator = require("../models/aggregator");
 
 exports.aggregator_list = function (req, res) {
   Aggregator.find({}, function (err, list_aggregators) {
     if (err) {
-      return next(err)
+      return next(err);
     }
 		// Successful, so render
-    res.send(list_aggregators)
-  })
+    res.send(list_aggregators);
+  });
 }
 
 // TODO: get this to work by assiging devices to deployments, and querying the "device" element [Issue #8]
@@ -16,22 +16,22 @@ exports.aggergator_list_for_deployment = function (req, res) {
     deployment: req.params.deployment
   }, function (err, list_aggregators) {
     if (err) {
-      return next(err)
+      return next(err);
     }
 		// Successful, so render
-    res.send(list_aggregators)
-  })
+    res.send(list_aggregators);
+  });
 }
 exports.aggregator_detail = function (req, res) {
   Aggregator.find({
     _id: req.params.id
   }, function (err, aggregator) {
     if (err) {
-      return next(err)
+      return next(err);
     }
 		// Successful, so render
-    res.send(aggregator)
-  })
+    res.send(aggregator);
+  });
 }
 exports.aggregator_create = function (req, res, next) {
   var aggregator = new Aggregator({
@@ -43,13 +43,13 @@ exports.aggregator_create = function (req, res, next) {
     poll:req.body.poll,
     deployment:req.body.deployment,
     active:req.body.active
-  })
+  });
   aggregator.save(function (err) {
     if (err) {
-      return next(err)
+      return next(err);
     }
-    res.redirect(aggregator.url)
-  })
+    res.redirect(aggregator.url);
+  });
 }
 
 
@@ -61,11 +61,11 @@ exports.aggregator_fromList = function(req,res,next){
  // .populate('handler') 
   .exec( function (err, list_aggregators) {
     if (err) {
-      return next(err)
+      return next(err);
     }
 		// Successful, so render
-    res.send(list_aggregators)
-  })
+    res.send(list_aggregators);
+  });
 }
 exports.aggregator_delete = function (req, res) {
   Aggregator.findOneAndUpdate({
@@ -78,9 +78,9 @@ exports.aggregator_delete = function (req, res) {
     if (err) {
       return res.send(500, {
         error: err
-      })
+      });
     }
-    return res.send('Aggregator Deleted')
+    return res.send("Aggregator Deleted");
   })
 }
 exports.aggregator_update = function (req, res) {
@@ -101,9 +101,9 @@ exports.aggregator_update = function (req, res) {
       if (err) {
         return res.send(500, {
           error: err
-        })
+        });
       }
-      res.redirect(303, doc.url)
-    })
+      res.redirect(303, doc.url);
+    });
 }
 

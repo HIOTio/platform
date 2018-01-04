@@ -1,4 +1,4 @@
-var Controller = require('../models/controller');
+var Controller = require("../models/controller");
 
 exports.controller_list = function (req, res, next) {
   Controller.find({}, function (err, list_controllers) {
@@ -7,7 +7,7 @@ exports.controller_list = function (req, res, next) {
     }
     // Successful, so render
     res.send(list_controllers);
-  })
+  });
 }
 exports.controller_list_for_thing = function (req, res, next) {
   Controller.find({
@@ -18,7 +18,7 @@ exports.controller_list_for_thing = function (req, res, next) {
     }
     // Successful, so render
     res.send(list_controllers);
-  })
+  });
 }
 exports.controller_detail = function (req, res, next) {
   Controller.find({
@@ -29,12 +29,12 @@ exports.controller_detail = function (req, res, next) {
     }
     // Successful, so render
     res.send(controller)
-  })
+  });
 }
 exports.controller_create = function (req, res, next) {
-  req.checkBody('thing', 'Each controller needs to belong to a valid Thing').notEmpty()
-  req.sanitize('thing').escape()
-  req.sanitize('thing').trim()
+  req.checkBody("thing", "Each controller needs to belong to a valid Thing").notEmpty()
+  req.sanitize("thing").escape()
+  req.sanitize("thing").trim()
   var errors = req.validationErrors()
   var controller = new Controller({
     description: req.body.description,
@@ -49,10 +49,10 @@ exports.controller_create = function (req, res, next) {
   })
   controller.save(function (err) {
     if (err) {
-      return next(err)
+      return next(err);
     }
-    res.redirect(controller.url)
-  })
+    res.redirect(controller.url);
+  });
 }
 exports.controller_delete = function (req, res, next) {
   Controller.findOneAndUpdate({
@@ -63,10 +63,10 @@ exports.controller_delete = function (req, res, next) {
     upsert: false,
   }, function (err, doc) {
     if (err) {
-      next(err)
+      next(err);
     }
-    return res.send('Controller Deleted')
-  })
+    return res.send("Controller Deleted");
+  });
 }
 exports.controller_update = function (req, res, next) {
   Controller.findOneAndUpdate({
@@ -88,8 +88,8 @@ exports.controller_update = function (req, res, next) {
     if (err) {
       return res.send(500, {
         error: err,
-      })
+      });
     }
     res.redirect(303, doc.url);
-  })
+  });
 }

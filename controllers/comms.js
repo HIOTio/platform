@@ -1,4 +1,4 @@
-var Comms = require('../models/comms')
+var Comms = require("../models/comms");
 
 exports.commsList=function(){
 
@@ -14,9 +14,9 @@ exports.newComms=function(req,res,next){
   })
   comms.save(function (err) {
     if (err) {
-      return next(err)
+      return next(err);
     }
-    res.sendStatus(200)
-  })
+    res.sendStatus(200);
+  });
 
 }
