@@ -31,6 +31,13 @@ var strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
     })
 })
 passport.use(strategy);
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  next();
+});
 app.use(cors({
     origin: ["http://localhost:4200", "http://54.37.228.181/be","http://54.37.228.181"]
 }));
@@ -84,12 +91,12 @@ app.use("/api/aggregator", rAggregator);
 app.use("/api/broker", rBroker);
 app.use("/api/config", rConfig);
 app.use("/api/controller", rController);
-app.use("/api/controllerCommand", rControllerCommand);
+app.use("/api/controller_command", rControllerCommand);
 app.use("/api/coordinator", rCoordinator);
-app.use("/api/coordinatorGroups", rCoordinatorGroups);
+app.use("/api/coordinator_groups", rCoordinatorGroups);
 app.use("/api/dashboard", rDashboard);
 app.use("/api/deployment", rDeployment);
-app.use("/api/deploymentRole", rDeploymentRole);
+app.use("/api/deployment_role", rDeploymentRole);
 app.use("/api/deployment_type", rDeploymentType);
 app.use("/api/device", rDevice);
 app.use("/api/device_configuration", rDeviceConfiguration);
@@ -105,8 +112,8 @@ app.use("/api/profile", rProfile);
 app.use("/api/publication", rPublication);
 app.use("/api/role", rRole);
 app.use("/api/sensor", rSensor);
-app.use("/api/sensorReading", rSensorReading);
-app.use("/api/sensorTypes", rSensorTypes);
+app.use("/api/sensor_reading", rSensorReading);
+app.use("/api/sensor_types", rSensorTypes);
 app.use("/api/subscription", rSubscription);
 app.use("/api/thing", rThing);
 app.use("/api/topic", rTopic);

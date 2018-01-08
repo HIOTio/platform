@@ -1,5 +1,6 @@
 var Deployment = require("../models/deployment");
 var DeploymentRole = require("../models/deployment_role");
+
 var Role = require("../models/role");
 var sockets = require("../sockets");
 
@@ -19,10 +20,39 @@ exports.deploymentDetail = function(req, res, next) {
         if (err) {
             return next(err);
         }
+
         res.send(deployment);
+
+        
     });
 };
-
+exports.deploymentSummary = function(req,res,next){
+    /*
+    -- Name
+    -- Description
+    -- Owner
+    -- Created
+    -- Status
+    -- health
+    -- count
+    ---- users
+    ---- devices
+    ---- locations
+    */
+    Deployment.findOne({
+        _id: req.params.id
+    }).populate("deploymentType")
+    .populate("owner")
+    .exec(function(err, deployment) {
+        if (err) {
+            return next(err);
+        }
+                DeploymentRole.count({deployment:deployment._id}).exec(function(err,c){
+            let summary = {dep:deployment,users:c};
+            res.send(summary);
+        })
+    });
+}
 exports.deploymentCreate = function(req, res, next) {
     //NOTE: think about giving the user the option of changing the owner of a new deployment - for now, just hard-code  it [Issue #4]
     //  console.log(JSON.stringify(req.body))
