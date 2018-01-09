@@ -4,6 +4,7 @@ var locationController = require("../controllers/location");
 router.get("/", locationController.locationList);
 router.get("/:id", locationController.locationDetail);
 router.get("/deployment/:deployment", locationController.locationListByDeployment);
+router.get("/paths/:deployment", locationController.deploymentHierarchy);
 router.post("/", locationController.locationCreate);
 router.delete("/", locationController.locationDelete);
 router.put("/", locationController.locationUpdate);

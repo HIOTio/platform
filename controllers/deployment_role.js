@@ -26,7 +26,8 @@ exports.deploymentRoleList = function (req, res, next) {
 exports.deploymentRoleDetailByDeployment = function (req, res, next) {
   DeploymentRole.find({
     deployment: req.params.deployment
-  }).populate("role").populate("profile").exec(function (err, deploymentRole) {
+  })
+  .populate("profile").exec(function (err, deploymentRole) {
     if (err) {
       return next(err);
     }
@@ -108,10 +109,22 @@ exports.deploymentRoleUpdate = function (req, res) {
   },
 		function (err, doc) {
   if (err) {
-    return res.send(500, {
+    res.send(500, {
       error: err
     })
   }
   res.redirect(303, doc.url);
 })
 };
+
+exports.deploymentRoleRemove=function (req,res,next){
+  DeploymentRole.remove({deployment:req.body.deployment, profile: req.body.profile})
+  .exec(function(err,resp){
+    if(err){
+      res.send(500, {
+      error: err
+    });
+    }
+    res.sendStatus(200);
+  });
+}

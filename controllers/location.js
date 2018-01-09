@@ -13,13 +13,40 @@ exports.locationListByDeployment = function (req, res, next) {
  // console.log(req.params.deployment)
   Location.find({
     deployment:req.params.deployment
-  }, function (err, listLocations) {
+  })
+  .populate("parent")
+  .exec( function (err, listLocations) {
     if (err) {
       return next(err);
     }
 		// Successful, so render
     res.send(listLocations);
   });
+};
+exports.deploymentHierarchy = function (req, res, next) {
+ // console.log(req.params.deployment)
+  Location.find({
+    deployment:req.params.deployment
+  })
+  .exec( function (err, listLocations) {
+    if (err) {
+      return next(err);
+    }
+    var paths={};
+    listLocations.forEach(function(loc){
+      parent=loc.parent;
+      if(!loc.parent){
+        parent="top";
+      }
+      if(!paths[parent]){
+        paths[parent]= [];
+      }
+      paths[parent].push(loc);
+    });
+    
+      res.send(paths);
+  });
+  
 };
 exports.locationDetail = function (req, res, next) {
   Location.find({

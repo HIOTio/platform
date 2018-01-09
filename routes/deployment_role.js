@@ -9,5 +9,6 @@ router.get("/deployment/:deployment", deploymentRoleController.deploymentRoleDet
 router.get("/profile/:profile", deploymentRoleController.deploymentRoleDetailByProfile);
 router.post("/", deploymentRoleController.deploymentRoleCreate);
 router.put("/", deploymentRoleController.deploymentRoleUpdate);
+router.delete("/", deploymentRoleController.deploymentRoleRemove);
 
 module.exports = router;

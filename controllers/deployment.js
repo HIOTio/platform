@@ -1,7 +1,8 @@
 var Deployment = require("../models/deployment");
 var DeploymentRole = require("../models/deployment_role");
-
+var Device = require("../models/device");
 var Role = require("../models/role");
+var Location = require('../models/location');
 var sockets = require("../sockets");
 
 exports.deploymentList = function(req, res, next) {
@@ -27,18 +28,6 @@ exports.deploymentDetail = function(req, res, next) {
     });
 };
 exports.deploymentSummary = function(req,res,next){
-    /*
-    -- Name
-    -- Description
-    -- Owner
-    -- Created
-    -- Status
-    -- health
-    -- count
-    ---- users
-    ---- devices
-    ---- locations
-    */
     Deployment.findOne({
         _id: req.params.id
     }).populate("deploymentType")
@@ -47,11 +36,33 @@ exports.deploymentSummary = function(req,res,next){
         if (err) {
             return next(err);
         }
-                DeploymentRole.count({deployment:deployment._id}).exec(function(err,c){
-            let summary = {dep:deployment,users:c};
-            res.send(summary);
-        })
+        DeploymentRole.count({deployment:deployment._id}).exec(function(err,userCount){
+            Device.count({deployment:deployment._id}).exec(function(err,deviceCount){
+                Location.count({deployment:deployment._id}).exec(function(err,locationCount){
+                    res.send({dep:deployment,users:userCount, devices:deviceCount, locations:locationCount});
+                });
+            });
+        });
     });
+}
+exports.deploymentChangeOwner=function(req,res,next){
+    Deployment.findOneAndUpdate({
+        _id:req.params.id
+    }, {
+            owner: req.params.owner
+        }, {
+            upsert: false
+        }, function(err, doc) {
+            if (err) {
+                return res.send(500, {
+                    error: err
+                });
+            }
+            return res.send(doc);
+        })
+        // need to remove all the associated deployment roles and then broadcast on relevant channels
+    sockets.send("deployment-" + req.body.id, JSON.stringify({ "deployment":req.body.id,"action":"owner changes","message": "Deployment \"" + req.body.id+ "\" has a new owner" }));
+
 }
 exports.deploymentCreate = function(req, res, next) {
     //NOTE: think about giving the user the option of changing the owner of a new deployment - for now, just hard-code  it [Issue #4]
