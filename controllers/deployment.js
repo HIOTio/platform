@@ -139,7 +139,7 @@ exports.deploymentUpdate = function(req, res) {
                 })
             }
             sockets.send("deployment_" + req.body._id, JSON.stringify({ "deployment":req.body._id,"action":"updated","message": "Deployment \"" + req.body.name+ "\" has been updated" }));
-            res.redirect(303, doc.url);
+            res.send(doc);
             
         })
 };

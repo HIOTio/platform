@@ -92,8 +92,9 @@ exports.locationDelete = function (req, res, next) {
   });
 };
 exports.locationUpdate = function (req, res, next) {
+  console.log(req.body);
   Location.findOneAndUpdate({
-    _id: req.body.id
+    _id: req.body._id
   }, {
     description: req.body.description,
     parent: req.body.parent,
@@ -108,7 +109,7 @@ exports.locationUpdate = function (req, res, next) {
     })
   }
   if (doc != null) {
-    res.redirect(303, doc.url);
+    res.send(doc);
   } else {
     res.send(500, "Location not found");
   }
