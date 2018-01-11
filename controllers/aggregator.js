@@ -1,5 +1,5 @@
 var Aggregator = require("../models/aggregator");
-
+var Device = require ("../models/device");
 exports.aggregatorList = function (req, res, next) {
   Aggregator.find({}, function (err, list_aggregators) {
     if (err) {
@@ -22,7 +22,18 @@ exports.aggergatorListForDeployment = function (req, res) {
     res.send(list_aggregators);
   });
 }
-exports.aggregatorDetail = function (req, res) {
+exports.aggergatorListForDevice = function (req, res,next) {
+  Aggregator.find({
+    device: req.params.device
+  }, function (err, list_aggregators) {
+    if (err) {
+      return next(err);
+    }
+		// Successful, so render
+    res.send(list_aggregators);
+  });
+}
+exports.aggregatorDetail = function (req, res, next) {
   Aggregator.find({
     _id: req.params.id
   }, function (err, aggregator) {
@@ -42,13 +53,23 @@ exports.aggregatorCreate = function (req, res, next) {
     description:req.body.description,
     poll:req.body.poll,
     deployment:req.body.deployment,
-    active:req.body.active
+    active:req.body.active,
+    device: req.body.device
   });
-  aggregator.save(function (err) {
+  aggregator.save(function (err,doc) {
     if (err) {
       return next(err);
     }
-    res.redirect(aggregator.url);
+    //successful, update device
+    var device = Device.findOneAndUpdate({_id:req.body.device},{"$push":{aggregators: doc._id}},{upsert:false},
+    function (err, doc) {
+      if (err) {
+        console.log(err);
+
+      }
+    
+  });
+    res.send(doc);
   });
 }
 

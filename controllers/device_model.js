@@ -10,7 +10,20 @@ exports.device_modelList = function (req, res, next) {
   })
 }
 
+exports.device_makeModels = function (req, res, next) {
+  console.log(req.params);
+  DeviceModel.find({
+    make: req.params.id
+  }, function (err, deviceModel) {
+    if (err) {
+      return next(err);
+    }
+		// Successful, so render
+    res.send(deviceModel);
+  })
+}
 exports.device_modelDetail = function (req, res, next) {
+  console.log(req.params);
   DeviceModel.find({
     _id: req.params.id
   }, function (err, deviceModel) {
