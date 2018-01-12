@@ -6,10 +6,8 @@ exports.profileAuth = function (req, res, next) {
   Profile.findOne({
     username: req.body.username
   }, function (err, profile) {
- //     console.log(profile)
     if (err) {
       debug(err);
-  //    console.log(err)
       return next(err);
     }
     if (profile == null) {
@@ -39,7 +37,6 @@ exports.profileAuth = function (req, res, next) {
             profile
           });
         } else {
-     //       console.log("auth failed")
           res.setHeader("WWW-Authenticate", "Basic realm=\"need login\"");
           res.status(401).send({
             success:false,
@@ -96,7 +93,6 @@ exports.profileCreate = function (req, res, next) {
     lastname: req.body.lastname,
       email:req.body.email
   });
- // console.log("starting to save")
   profile.save(function (err, doc) {
     if (err) {
       debug(err);

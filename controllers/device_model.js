@@ -25,7 +25,6 @@ exports.deviceMakeModels = function (req, res, next) {
   })
 }
 exports.deviceModelDetail = function (req, res, next) {
-  console.log(req.params);
   DeviceModel.find({
     _id: req.params.id
   }, function (err, deviceModel) {

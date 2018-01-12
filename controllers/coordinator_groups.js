@@ -25,13 +25,13 @@ exports.coordinatorGroupListForDeployment = function (req, res, next) {
 exports.coordinatorGroupDetail = function (req, res, next) {
   CoordinatorGroup.find({
     _id: req.params.id
-  }, function (err, coordinator_group) {
+  }, function (err, coordinatorGroup) {
     if (err) {
       debug(err);
       return next(err);
     }
 		// Successful, so render
-    res.send(coordinator_group);
+    res.send(coordinatorGroup);
   });
 }
 exports.coordinatorGroupCreate = function (req, res, next) {

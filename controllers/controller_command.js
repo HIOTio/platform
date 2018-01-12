@@ -2,40 +2,40 @@ var ControllerCommand = require("../models/controller_command");
 var debug=require("debug")("controllers/controller_command.js");
 
 exports.controllerCommandList = function (req, res, next) {
-  ControllerCommand.find({}, function (err, list_controller_commands) {
+  ControllerCommand.find({}, function (err, listControllerCommands) {
     if (err) {
       debug(err);
       return next(err);
     }
 		// Successful, so render
-    res.send(list_controller_commands);
+    res.send(listControllerCommands);
   });
 }
 exports.controllerCommandListForController = function (req, res, next) {
   ControllerCommand.find({
     controller: req.params.controller
-  }, function (err, list_controller_commands) {
+  }, function (err, listControllerCommands) {
     if (err) {
       debug(err);
       return next(err);
     }
 		// Successful, so render
-    res.send(list_controller_commands);
+    res.send(listControllerCommands);
   });
 }
 exports.controllerCommandDetail = function (req, res, next) {
   ControllerCommand.find({
     _id: req.params.id
-  }, function (err, controller_command) {
+  }, function (err, controllerCommand) {
     if (err) {
       debug(err);
       return next(err);
     }
 		// Successful, so render
-    res.send(controller_command);
+    res.send(controllerCommand);
   });
 }
-exports.controller_commandCreate = function (req, res, next) {
+exports.controllerCommandCreate = function (req, res, next) {
   var controllerCommand = new ControllerCommand({
     controller: req.body.thing,
     description: req.body.description,

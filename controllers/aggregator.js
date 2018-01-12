@@ -2,13 +2,13 @@ var Aggregator = require("../models/aggregator");
 var debug=require("debug")("controllers/aggregator.js");
 var Device = require ("../models/device");
 exports.aggregatorList = function (req, res, next) {
-  Aggregator.find({}, function (err, list_aggregators) {
+  Aggregator.find({}, function (err, listAggregators) {
     if (err) {
       debug(err);
       return next(err);
     }
 		// Successful, so render
-    res.send(list_aggregators);
+    res.send(listAggregators);
   });
 }
 
@@ -16,25 +16,25 @@ exports.aggregatorList = function (req, res, next) {
 exports.aggergatorListForDeployment = function (req, res, next) {
   Aggregator.find({
     deployment: req.params.deployment
-  }, function (err, list_aggregators) {
+  }, function (err, listAgregators) {
     if (err) {
       debug(err);
       return next(err);
     }
 		// Successful, so render
-    res.send(list_aggregators);
+    res.send(listAggregators);
   });
 }
 exports.aggergatorListForDevice = function (req, res,next) {
   Aggregator.find({
     device: req.params.device
-  }, function (err, list_aggregators) {
+  }, function (err, listAggregators) {
     if (err) {
       debug(err);
       return next(err);
     }
 		// Successful, so render
-    res.send(list_aggregators);
+    res.send(listAggregators);
   });
 }
 exports.aggregatorDetail = function (req, res, next) {

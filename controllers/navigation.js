@@ -39,7 +39,6 @@ exports.navigationList = function (req, res, next) {
     })
   }
   for (var i = 0; i < data[0].length; i++) {
- //   console.log(data[0][i].deployment.name)
     children.push({
       "title": data[0][i].deployment.name,
       "url": "/deployment/" + data[0][i].deployment._id,
@@ -76,7 +75,6 @@ exports.navigationList = function (req, res, next) {
     "icon": "insert_chart"
   });
 
-//  console.log(myMEnu)
   res.send(myMEnu);
 });
 };

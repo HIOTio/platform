@@ -2,25 +2,25 @@ var Coordinator = require("../models/coordinator");
 var debug=require("debug")("controllers/coordinator.js");
 
 exports.CoordinatorList = function (req, res, next) {
-  Coordinator.find({}, function (err, list_coordinators) {
+  Coordinator.find({}, function (err, listCoordinators) {
     if (err) {
       debug(err);
       return next(err);
     }
 		// Successful, so render
-    res.send(list_coordinators);
+    res.send(listCoordinators);
   })
 }
 exports.CoordinatorListForDeployment = function (req, res, next) {
   Coordinator.find({
     deployment: req.params.deployment
-  }, function (err, list_coordinators) {
+  }, function (err, listCoordinators) {
     if (err) {
       debug(err);
       return next(err);
     }
 		// Successful, so render
-    res.send(list_coordinators);
+    res.send(listCoordinators);
   });
 }
 exports.coordinatorDetail = function (req, res, next) {

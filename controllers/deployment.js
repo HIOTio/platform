@@ -127,7 +127,6 @@ exports.deploymentDelete = function(req, res, next) {
     sockets.send("deployment-" + req.body.id, JSON.stringify({ "deployment":req.body.id,"action":"deleted","message": "Deployment \"" + req.body.name+ "\" has been deleted" }));
 };
 exports.deploymentUpdate = function(req, res) {
-    //  console.log(req.body)
     Deployment.findOneAndUpdate({
             _id: req.body._id
         }, {

@@ -25,7 +25,6 @@ exports.topicDetail = function (req, res, next) {
   });
 }
 exports.topicCreate = function (req, res, next) {
- // console.log(req.body.fields)
   var topic = new Topic({
     description: req.body.description,
     added: req.body.added,

@@ -14,13 +14,13 @@ exports.controllerList = function (req, res, next) {
 exports.controllerListForThing = function (req, res, next) {
   Controller.find({
     thing: req.params.thing,
-  }, function (err, list_controllers) {
+  }, function (err, listControllers) {
     if (err) {
       debug(err);
       return next(err);
     }
     // Successful, so render
-    res.send(list_controllers);
+    res.send(listControllers);
   });
 }
 exports.controllerDetail = function (req, res, next) {

@@ -12,7 +12,6 @@ exports.locationList = function (req, res, next) {
   })
 };
 exports.locationListByDeployment = function (req, res, next) {
- // console.log(req.params.deployment)
   Location.find({
     deployment:req.params.deployment
   })
@@ -27,7 +26,6 @@ exports.locationListByDeployment = function (req, res, next) {
   });
 };
 exports.deploymentHierarchy = function (req, res, next) {
- // console.log(req.params.deployment)
   Location.find({
     deployment:req.params.deployment
   })
