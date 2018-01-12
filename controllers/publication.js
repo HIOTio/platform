@@ -2,15 +2,15 @@ var Publication = require("../models/publication");
 var debug=require("debug")("controllers/publication.js");
 
 exports.publicationList = function (req, res, next) {
-  Publication.find({}, function (err, list_publications) {
+  Publication.find({}, function (err, listPublications) {
     if (err) {
       debug(err);
-      return next(err)
+      return next(err);
     }
 		// Successful, so render
-    res.send(list_publications)
-  })
-}
+    res.send(listPublications);
+  });
+};
 
 exports.publicationDetail = function (req, res, next) {
   Publication.find({
@@ -18,20 +18,27 @@ exports.publicationDetail = function (req, res, next) {
   }, function (err, Publication) {
     if (err) {
       debug(err);
-      return next(err)
+      return next(err);
     }
 		// Successful, so render
-    res.send(Publication)
-  })
-}
+    res.send(Publication);
+  });
+};
 exports.publicationCreate = function (req, res, next) {
   var publication = new Publication({
     description: req.body.description,
     added: req.body.added,
     topic: req.body.topic
-  })
-  res.redirect(303, publication.url)
-}
+  });
+  publication.save(function (err, doc) {
+    if (err) {
+      debug(err);
+      return next(err);
+    }
+    res.send(doc);
+  });
+
+};
 exports.publicationDelete = function (req, res, next) {
   Publication.findOneAndUpdate({
     _id: req.body.id
@@ -44,11 +51,11 @@ exports.publicationDelete = function (req, res, next) {
       debug(err);
       return res.send(500, {
         error: err
-      })
+      });
     }
-    return res.send("Publication Deleted")
-  })
-}
+    return res.send("Publication Deleted");
+  });
+};
 exports.publicationUpdate = function (req, res, next) {
   Publication.findOneAndUpdate({
     _id: req.body.id
@@ -64,12 +71,12 @@ exports.publicationUpdate = function (req, res, next) {
     debug(err);
     return res.send(500, {
       error: err
-    })
+    });
   }
   if (doc != null) {
-    res.redirect(303, doc.url)
+    res.redirect(303, doc.url);
   } else {
-    res.send(500, "Publication not found")
+    res.send(500, "Publication not found");
   }
-})
-}
+});
+};

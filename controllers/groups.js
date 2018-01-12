@@ -2,13 +2,13 @@ var Group = require("../models/groups");
 var debug=require("debug")("controllers/groups.js");
 
 exports.groupList = function (req, res, next) {
-  Group.find({}, function (err, list_groups) {
+  Group.find({}, function (err, listGroups) {
     if (err) {
       debug(err);
       return next(err);
     }
 		// Successful, so render
-    res.send(list_groups);
+    res.send(listGroups);
   });
 };
 

@@ -16,7 +16,7 @@ exports.aggregatorList = function (req, res, next) {
 exports.aggergatorListForDeployment = function (req, res, next) {
   Aggregator.find({
     deployment: req.params.deployment
-  }, function (err, listAgregators) {
+  }, function (err, listAggregators) {
     if (err) {
       debug(err);
       return next(err);

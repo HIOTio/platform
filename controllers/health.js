@@ -36,7 +36,7 @@ exports.healthCreate = function (req, res, next) {
     is_cg_admin: req.body.is_cg_admin
   });
   res.redirect(303, health.url);
-}
+};
 exports.healthDelete = function (req, res, next) {
   Health.findOneAndUpdate({
     _id: req.body.id

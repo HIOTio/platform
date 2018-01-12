@@ -2,36 +2,36 @@ var Subscription = require("../models/subscription");
 var debug=require("debug")("controllers/subscription.js");
 
 exports.subscriptionList = function (req, res, next) {
-  Subscription.find({}, function (err, list_subscription) {
+  Subscription.find({}, function (err, listSubscription) {
     if (err) { 
       debug(err);
       return next(err);
     }
 		// Successful, so render
-    res.send(list_subscription);
-  })
-}
+    res.send(listSubscription);
+  });
+};
 
 exports.subscriptionDetail = function (req, res, next) {
   Subscription.find({
     _id: req.body.id
-  }, function (err, Subscription) {
+  }, function (err, subscription) {
     if (err) {
       debug(err);
       return next(err);
     }
 		// Successful, so render
-    res.send(Subscription);
-  })
-}
+    res.send(subscription);
+  });
+};
 exports.subscriptioCreate = function (req, res, next) {
   var subscription = new Subscription({
     description: req.body.description,
     topic: req.body.topic,
     added: req.body.added
-  })
+  });
   res.redirect(303, subscription.url)
-}
+};
 exports.subscriptionDelete = function (req, res, next) {
   Subscription.findOneAndUpdate({
     _id: req.body.id
@@ -47,8 +47,8 @@ exports.subscriptionDelete = function (req, res, next) {
       });
     }
     return res.send("Subscription Deleted");
-  })
-}
+  });
+};
 exports.subscriptionUpdate = function (req, res, next) {
   Subscription.findOneAndUpdate({
     _id: req.body.id
@@ -71,5 +71,5 @@ exports.subscriptionUpdate = function (req, res, next) {
   } else {
     res.send(500, "Subscription not found");
   }
-})
-}
+});
+};

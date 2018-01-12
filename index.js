@@ -18,19 +18,19 @@ app.use(expressValidator());
     // var db = require("./api/db")
 var Profile = require("./controllers/profile");
 
-var jwtOptions = {}
+var jwtOptions = {};
 jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeader();
 jwtOptions.secretOrKey = config.secret;
 
-var strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
-    Profile.findById(jwt_payload.id, function(err, user) {
+var strategy = new JwtStrategy(jwtOptions, function(jwtPayload, next) {
+    Profile.findById(jwtPayload.id, function(err, user) {
         if (this) {
             next(null, this);
         } else {
             next(null, false);
         }
     })
-})
+});
 passport.use(strategy);
 app.use(compression());
 app.use(function(req, res, next) {

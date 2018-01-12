@@ -7,9 +7,9 @@ exports.roleList = function (req, res, next) {
       return next(err);
     }
         // Successful, so render
-    res.send(listRoles)
-  })
-}
+    res.send(listRoles);
+  });
+};
 
 exports.roleDetail = function (req, res, next) {
   Role.findById(req.params.id, function (err, role) {
@@ -18,9 +18,9 @@ exports.roleDetail = function (req, res, next) {
       return next(err);
     }
         // Successful, so render
-    res.send(role)
-  })
-}
+    res.send(role);
+  });
+};
 exports.roleCreate = function (req, res, next) {
   var errors = req.validationErrors()
   var role = new Role({
@@ -35,9 +35,9 @@ exports.roleCreate = function (req, res, next) {
       debug(err);
       return next(err);
     }
-    res.redirect(role.url)
-  })
-}
+    res.redirect(role.url);
+  });
+};
 exports.roleDelete = function (req, res, next) {
   Role.findOneAndUpdate({
     _id: req.body.id
@@ -50,9 +50,9 @@ exports.roleDelete = function (req, res, next) {
       debug(err);
       next(err);
     }
-    return res.send("Role Deleted")
-  })
-}
+    return res.send("Role Deleted");
+  });
+};
 exports.roleUpdate = function (req, res, next) {
   Role.findOneAndUpdate({
     _id: req.body.id
@@ -72,6 +72,6 @@ exports.roleUpdate = function (req, res, next) {
               error: err
             });
           }
-          res.redirect(303, doc.url)
+          res.redirect(303, doc.url);
         });
-}
+};

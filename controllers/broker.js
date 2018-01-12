@@ -87,5 +87,5 @@ exports.brokerUpdate = function(req, res, next) {
                 });
             }
             res.redirect(303, doc.url)
-        })
-}
+        });
+};

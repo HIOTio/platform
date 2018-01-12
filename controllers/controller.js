@@ -10,7 +10,7 @@ exports.controllerList = function (req, res, next) {
     // Successful, so render
     res.send(listControllers);
   });
-}
+};
 exports.controllerListForThing = function (req, res, next) {
   Controller.find({
     thing: req.params.thing,
@@ -22,24 +22,20 @@ exports.controllerListForThing = function (req, res, next) {
     // Successful, so render
     res.send(listControllers);
   });
-}
+};
 exports.controllerDetail = function (req, res, next) {
   Controller.find({
     _id: req.params.id,
   }, function (err, controller) {
     if (err) {
       debug(err);
-      return next(err)
+      return next(err);
     }
     // Successful, so render
-    res.send(controller)
+    res.send(controller);
   });
-}
+};
 exports.controllerCreate = function (req, res, next) {
-  req.checkBody("thing", "Each controller needs to belong to a valid Thing").notEmpty()
-  req.sanitize("thing").escape()
-  req.sanitize("thing").trim()
-  var errors = req.validationErrors()
   var controller = new Controller({
     description: req.body.description,
     deployment: req.body.deployment,
@@ -50,7 +46,7 @@ exports.controllerCreate = function (req, res, next) {
     thing: req.body.thing,
     added: req.body.added,
     active: req.body.active,
-  })
+  });
   controller.save(function (err) {
     if (err) {
       debug(err);
@@ -58,7 +54,7 @@ exports.controllerCreate = function (req, res, next) {
     }
     res.redirect(controller.url);
   });
-}
+};
 exports.controllerDelete = function (req, res, next) {
   Controller.findOneAndUpdate({
     _id: req.body.id,
@@ -73,7 +69,7 @@ exports.controllerDelete = function (req, res, next) {
     }
     return res.send("Controller Deleted");
   });
-}
+};
 exports.controllerUpdate = function (req, res, next) {
   Controller.findOneAndUpdate({
     _id: req.body._id,
@@ -99,4 +95,4 @@ exports.controllerUpdate = function (req, res, next) {
     }
     res.redirect(303, doc.url);
   });
-}
+};
