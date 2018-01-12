@@ -5,7 +5,7 @@ var aggregatorController = require("../controllers/aggregator");
 
 router.get("/", aggregatorController.aggregatorList);
 
-router.get("/fromList/:list", aggregatorController.aggregator_fromList);
+router.get("/fromList/:list", aggregatorController.aggregatorFromList);
 router.get("/deployment/:deployment", aggregatorController.aggergatorListForDeployment);
 router.get("/device/:device", aggregatorController.aggergatorListForDevice);
 router.get("/:id", aggregatorController.aggregatorDetail);

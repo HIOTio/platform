@@ -1,24 +1,24 @@
 var Sensor = require("../models/sensor");
-var debug=require('debug')('controllers/sensor.js');
+var debug=require("debug")("controllers/sensor.js");
 exports.sensorList = function (req, res, next) {
-  Sensor.find({}, function (err, list_sensors, next) {
+  Sensor.find({}, function (err, listSensors, next) {
     if (err) {
       debug(err);
       return next(err);
     }
 		// Successful, so render
-    res.send(list_sensors);
+    res.send(listSensors);
   })
 }
 exports.sensorListForDeployment = function (req, res, next) {
 	// need to map devices back up to deployments, eventually
-  Sensor.find({}, function (err, list_sensors) {
+  Sensor.find({}, function (err, listSensors) {
     if (err) {
       debug(err);
       return next(err);
     }
 		// Successful, so render
-    res.send(list_sensors);
+    res.send(listSensors);
   })
 }
 exports.sensorDetail = function (req, res, next) {

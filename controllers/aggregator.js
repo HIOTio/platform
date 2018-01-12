@@ -1,5 +1,5 @@
 var Aggregator = require("../models/aggregator");
-var debug=require('debug')('controllers/aggregator.js');
+var debug=require("debug")("controllers/aggregator.js");
 var Device = require ("../models/device");
 exports.aggregatorList = function (req, res, next) {
   Aggregator.find({}, function (err, list_aggregators) {
@@ -13,7 +13,7 @@ exports.aggregatorList = function (req, res, next) {
 }
 
 // TODO: get this to work by assiging devices to deployments, and querying the "device" element [Issue #8]
-exports.aggergatorListForDeployment = function (req, res) {
+exports.aggergatorListForDeployment = function (req, res, next) {
   Aggregator.find({
     deployment: req.params.deployment
   }, function (err, list_aggregators) {
@@ -79,11 +79,11 @@ exports.aggregatorCreate = function (req, res, next) {
 }
 
 
-exports.aggregator_fromList = function(req,res,next){
+exports.aggregatorFromList = function(req,res,next){
   Aggregator.find({
     _id: {$in : JSON.parse(req.params.list)}
   })
- // .populate('handler') 
+ // .populate("handler") 
   .exec( function (err, listAggregators) {
     if (err) {
       debug(err);
@@ -111,7 +111,7 @@ exports.aggregatorDelete = function (req, res) {
   })
 }
 exports.aggregatorUpdate = function (req, res) {
-  //TODO: what to do if the _id isn't found [Issue #7]
+  //TODO: what to do if the _id isn"t found [Issue #7]
   Aggregator.findOneAndUpdate({
     _id: req.body._id
   }, {

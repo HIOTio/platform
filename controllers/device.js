@@ -1,5 +1,5 @@
 var Device = require("../models/device");
-var debug=require('debug')('controllers/device.js');
+var debug=require("debug")("controllers/device.js");
 exports.config= function(req,res,next){
   Device.findById(
     {_id:req.params.device}

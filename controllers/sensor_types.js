@@ -1,13 +1,13 @@
 var Sensor = require("../models/sensor_types");
-
+var debug=require("debug")("controllers/sensor_types.js");
 exports.sensorTypesList = function (req, res, next) {
-  Sensor.find({}, function (err, list_sensorTypes) {
+  Sensor.find({}, function (err, listSensorTypes) {
     if (err) {
       debug(err);
       return next(err);
     }
 		// Successful, so render
-    res.send(list_sensorTypes);
+    res.send(listSensorTypes);
   });
 };
 

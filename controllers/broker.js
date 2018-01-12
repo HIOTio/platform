@@ -1,25 +1,25 @@
 "use strict";
 var Broker = require("../models/broker");
-var debug=require('debug')('controllers/broker.js');
+var debug=require("debug")("controllers/broker.js");
 
 exports.brokerList = function(req, res, next) {
-    Broker.find({}, function(err, list_brokers) {
+    Broker.find({}, function(err, listBrokers) {
         if (err) {debug(err);
             return next(err);
         }
         // Successful, so render
-        res.send(list_brokers);
+        res.send(listBrokers);
     });
 };
 exports.brokerListForDeployment = function(req, res, next) {
     Broker.find({
         deployment: req.params.deployment
-    }, function(err, list_broker) {
+    }, function(err, listBroker) {
         if (err) {debug(err);
             return next(err);
         }
         // Successful, so render
-        res.send(list_broker);
+        res.send(listBroker);
     });
 };
 exports.brokerDetail = function(req, res, next) {

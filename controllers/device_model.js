@@ -1,19 +1,18 @@
 var DeviceModel = require("../models/device_model");
-var debug=require('debug')('controllers/device_model.js');
+var debug=require("debug")("controllers/device_model.js");
 
-exports.device_modelList = function (req, res, next) {
-  DeviceModel.find({}, function (err, list_device_models) {
+exports.deviceModelList = function (req, res, next) {
+  DeviceModel.find({}, function (err, listDeviceModels) {
     if (err) {
       debug(err);
       return next(err);
     }
 		// Successful, so render
-    res.send(list_device_models);
+    res.send(listDeviceModels);
   })
 }
 
-exports.device_makeModels = function (req, res, next) {
-  console.log(req.params);
+exports.deviceMakeModels = function (req, res, next) {
   DeviceModel.find({
     make: req.params.id
   }, function (err, deviceModel) {
@@ -25,7 +24,7 @@ exports.device_makeModels = function (req, res, next) {
     res.send(deviceModel);
   })
 }
-exports.device_modelDetail = function (req, res, next) {
+exports.deviceModelDetail = function (req, res, next) {
   console.log(req.params);
   DeviceModel.find({
     _id: req.params.id
@@ -52,7 +51,7 @@ exports.deviceModelCreate = function (req, res, next) {
     res.redirect(deviceModel.url);
 })
 }
-exports.device_modelDelete = function (req, res, next) {
+exports.deviceModelDelete = function (req, res, next) {
   DeviceModel.findOneAndUpdate({
     _id: req.body.id
   }, {
@@ -69,7 +68,7 @@ exports.device_modelDelete = function (req, res, next) {
     return res.send("Device Model Deleted");
   });
 }
-exports.device_modelUpdate = function (req, res, next) {
+exports.deviceModelUpdate = function (req, res, next) {
   DeviceModel.findOneAndUpdate({
     _id: req.body.id
   }, {

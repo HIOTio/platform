@@ -1,5 +1,5 @@
 var DeploymentRole = require("../models/deployment_role");
-var debug=require('debug')('controllers/deployment_role.js');
+var debug=require("debug")("controllers/deployment_role.js");
 
 function deploymentsForUser (userId) {
   if(userId===0){

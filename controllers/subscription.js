@@ -1,5 +1,5 @@
 var Subscription = require("../models/subscription");
-var debug=require('debug')('controllers/subscription.js');
+var debug=require("debug")("controllers/subscription.js");
 
 exports.subscriptionList = function (req, res, next) {
   Subscription.find({}, function (err, list_subscription) {
@@ -61,7 +61,7 @@ exports.subscriptionUpdate = function (req, res, next) {
   },
 		function (err, doc) {
   if (err) {
-    ebug(err);
+    debug(err);
     return res.send(500, {
       error: err
     });

@@ -1,5 +1,5 @@
 var userDeployments = require("../models/deployment_role");
-var debug=require('debug')('controllers/navigation.js');
+var debug=require("debug")("controllers/navigation.js");
 
 exports.navigationList = function (req, res, next) {
   var myMEnu = [];

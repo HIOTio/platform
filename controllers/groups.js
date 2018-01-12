@@ -1,5 +1,5 @@
 var Group = require("../models/groups");
-var debug=require('debug')('controllers/groups.js');
+var debug=require("debug")("controllers/groups.js");
 
 exports.groupList = function (req, res, next) {
   Group.find({}, function (err, list_groups) {

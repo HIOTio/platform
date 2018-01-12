@@ -1,5 +1,5 @@
 var ControllerCommand = require("../models/controller_command");
-var debug=require('debug')('controllers/controller_command.js');
+var debug=require("debug")("controllers/controller_command.js");
 
 exports.controllerCommandList = function (req, res, next) {
   ControllerCommand.find({}, function (err, list_controller_commands) {

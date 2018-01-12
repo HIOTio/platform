@@ -1,5 +1,5 @@
 var CoordinatorGroup = require("../models/coordinator_groups");
-var debug=require('debug')('controllers/coordinator_groups.js');
+var debug=require("debug")("controllers/coordinator_groups.js");
 
 exports.coordinatorGroupList = function (req, res, next) {
   CoordinatorGroup.find({}, function (err, listCoordinatorGroups) {

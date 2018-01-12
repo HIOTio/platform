@@ -1,5 +1,5 @@
 var Location = require("../models/location");
-var debug=require('debug')('controllers/location.js');
+var debug=require("debug")("controllers/location.js");
 
 exports.locationList = function (req, res, next) {
   Location.find({}, function (err, listLocations) {
@@ -99,7 +99,6 @@ exports.locationDelete = function (req, res, next) {
   });
 };
 exports.locationUpdate = function (req, res, next) {
-  console.log(req.body);
   Location.findOneAndUpdate({
     _id: req.body._id
   }, {

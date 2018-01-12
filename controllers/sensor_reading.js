@@ -1,5 +1,5 @@
 var SensorReading = require("../models/sensor_reading");
-var debug=require('debug')('controllers/aggrsensor_readingegator.js');
+var debug=require("debug")("controllers/aggrsensor_readingegator.js");
 
 exports.sensorReadingList = function (req, res, next) {
   SensorReading.find({}, function (err, listSensorReadings, next) {
@@ -11,7 +11,7 @@ exports.sensorReadingList = function (req, res, next) {
     res.send(listSensorReadings);
   });
 };
-exports.sensorReadingListFor_sensor = function (req, res, next) {
+exports.sensorReadingListForSensor = function (req, res, next) {
   SensorReading.find({
     sensor_id: req.params.sensor_id
   }, function (err, listSensorReadings) {
@@ -23,7 +23,7 @@ exports.sensorReadingListFor_sensor = function (req, res, next) {
     res.send(listSensorReadings);
   });
 };
-exports.sensor_readingDetail = function (req, res, next) {
+exports.sensorReadingDetail = function (req, res, next) {
   SensorReading.findById(req.params.id, function (err, sensorReading) {
     if (err) {
       debug(err);

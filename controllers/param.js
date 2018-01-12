@@ -1,5 +1,5 @@
 var Param = require("../models/param");
-var debug=require('debug')('controllers/param.js');
+var debug=require("debug")("controllers/param.js");
 
 exports.paramList = function (req, res, next) {
   Param.find({}, function (err, list_params) {

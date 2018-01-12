@@ -1,5 +1,5 @@
 var Health = require("../models/health");
-var debug=require('debug')('controllers/health.js');
+var debug=require("debug")("controllers/health.js");
 
 exports.healthList = function (req, res, next) {
   Health.find({}, function (err, listHealths) {
@@ -75,7 +75,7 @@ exports.healthUpdate = function (req, res, next) {
     return res.send(500, {
       error: err
     });
-  };
+  }
   if (doc != null) {
     res.redirect(303, doc.url);
   } else {

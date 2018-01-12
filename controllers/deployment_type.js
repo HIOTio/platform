@@ -1,5 +1,5 @@
 var DeploymentType = require("../models/deployment_type");
-var debug=require('debug')('controllers/deployment_type.js');
+var debug=require("debug")("controllers/deployment_type.js");
 
 exports.deploymentTypeList = function (req, res, next) {
   DeploymentType.find({}, function (err, listDeploymentTypes) {

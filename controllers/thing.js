@@ -1,25 +1,25 @@
 var Thing = require("../models/thing");
-var debug=require('debug')('controllers/thing.js');
+var debug=require("debug")("controllers/thing.js");
 
 exports.thingList = function (req, res, next) {
-  Thing.find({}, function (err, list_things, next) {
+  Thing.find({}, function (err, listThings, next) {
     if (err) {
       debug(err);
       return next(err);
     }
         // Successful, so render
-    res.send(list_things);
+    res.send(listThings);
   })
 }
 exports.thingListForDeployment = function (req, res, next) {
     // need to map devices back up to deployments, eventually
-  Thing.find({}, function (err, list_things) {
+  Thing.find({}, function (err, listThings) {
     if (err) {
       debug(err);
       return next(err);
     }
         // Successful, so render
-    res.send(list_things);
+    res.send(listThings);
   })
 }
 exports.thingDetail = function (req, res, next) {

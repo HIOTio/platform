@@ -1,7 +1,7 @@
 var DeviceMake = require("../models/device_make");
-var debug=require('debug')('controllers/device_make.js');
+var debug=require("debug")("controllers/device_make.js");
 
-exports.device_makeList = function (req, res, next) {
+exports.deviceMakeList = function (req, res, next) {
   DeviceMake.find({}, function (err, listDeviceMakes) {
     if (err) {
       debug(err);
@@ -12,7 +12,7 @@ exports.device_makeList = function (req, res, next) {
   });
 };
 
-exports.device_makeDetail = function (req, res, next) {
+exports.deviceMakeDetail = function (req, res, next) {
   DeviceMake.find({
     _id: req.params.id
   }, function (err, deviceMake) {
@@ -24,7 +24,7 @@ exports.device_makeDetail = function (req, res, next) {
     res.send(deviceMake);
   });
 };
-exports.device_makeCreate = function (req, res, next) {
+exports.deviceMakeCreate = function (req, res, next) {
   var deviceMake = new DeviceMake({
     description: req.body.description,
     added: req.body.added
@@ -37,7 +37,7 @@ exports.device_makeCreate = function (req, res, next) {
     res.redirect(deviceMake.url);
 });
 };
-exports.device_makeDelete = function (req, res) {
+exports.deviceMakeDelete = function (req, res) {
   DeviceMake.findOneAndUpdate({
     _id: req.body.id
   }, {
@@ -54,7 +54,7 @@ exports.device_makeDelete = function (req, res) {
     return res.send("Device Make Deleted");
   });
 };
-exports.device_makeUpdate = function (req, res) {
+exports.deviceMakeUpdate = function (req, res) {
   DeviceMake.findOneAndUpdate({
     _id: req.body.id
   }, {

@@ -1,5 +1,5 @@
 var Role = require("../models/role");
-var debug=require('debug')('controllers/role.js');
+var debug=require("debug")("controllers/role.js");
 exports.roleList = function (req, res, next) {
   Role.find({}, function (err, listRoles, next) {
     if (err) {

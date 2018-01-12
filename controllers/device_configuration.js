@@ -1,5 +1,5 @@
 var DeviceConfiguration = require("../models/device_configuration");
-var debug=require('debug')('controllers/device_configuration.js');
+var debug=require("debug")("controllers/device_configuration.js");
 
 exports.deviceConfigurationList = function (req, res, next) {
   DeviceConfiguration.find({}, function (err, listDeviceConfigurations) {

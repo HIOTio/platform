@@ -1,5 +1,5 @@
 var Topic = require("../models/topic");
-var debug=require('debug')('controllers/topic.js');
+var debug=require("debug")("controllers/topic.js");
 
 exports.topicList = function (req, res, next) {
   Topic.find({}, function (err, list_topics) {

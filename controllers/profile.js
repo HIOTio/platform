@@ -1,5 +1,5 @@
 var Profile = require("../models/profile");
-var debug=require('debug')('controllers/profile.js');
+var debug=require("debug")("controllers/profile.js");
 var config = require("../config");
 var jwt = require("jsonwebtoken");
 exports.profileAuth = function (req, res, next) {

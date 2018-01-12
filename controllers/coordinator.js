@@ -1,5 +1,5 @@
 var Coordinator = require("../models/coordinator");
-var debug=require('debug')('controllers/coordinator.js');
+var debug=require("debug")("controllers/coordinator.js");
 
 exports.CoordinatorList = function (req, res, next) {
   Coordinator.find({}, function (err, list_coordinators) {
@@ -23,7 +23,7 @@ exports.CoordinatorListForDeployment = function (req, res, next) {
     res.send(list_coordinators);
   });
 }
-exports.coordinatorDetail = function (req, res) {
+exports.coordinatorDetail = function (req, res, next) {
   Coordinator.find({
     _id: req.params.id
   }, function (err, coordinator) {

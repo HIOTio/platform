@@ -1,9 +1,9 @@
 var Deployment = require("../models/deployment");
 var DeploymentRole = require("../models/deployment_role");
-var debug=require('debug')('controllers/deployment.js');
+var debug=require("debug")("controllers/deployment.js");
 var Device = require("../models/device");
 var Role = require("../models/role");
-var Location = require('../models/location');
+var Location = require("../models/location");
 var sockets = require("../sockets");
 
 exports.deploymentList = function(req, res, next) {
@@ -70,8 +70,7 @@ exports.deploymentChangeOwner=function(req,res,next){
 }
 exports.deploymentCreate = function(req, res, next) {
     //NOTE: think about giving the user the option of changing the owner of a new deployment - for now, just hard-code  it [Issue #4]
-    //  console.log(JSON.stringify(req.body))
-    console.log(req.body);
+
     var deployment = new Deployment({
         description: req.body.description,
         name: req.body.name,

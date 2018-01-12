@@ -1,14 +1,14 @@
 var Controller = require("../models/controller");
-var debug=require('debug')('controllers/controller.js');
+var debug=require("debug")("controllers/controller.js");
 
 exports.controllerList = function (req, res, next) {
-  Controller.find({}, function (err, list_controllers) {
+  Controller.find({}, function (err, listControllers) {
     if (err) {
       debug(err);
       return next(err);
     }
     // Successful, so render
-    res.send(list_controllers);
+    res.send(listControllers);
   });
 }
 exports.controllerListForThing = function (req, res, next) {

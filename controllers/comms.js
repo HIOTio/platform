@@ -1,5 +1,5 @@
 var Comms = require("../models/comms");
-var debug=require('debug')('controllers/comms.js');
+var debug=require("debug")("controllers/comms.js");
 exports.commsList=function(){
 
 };

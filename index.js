@@ -1,6 +1,6 @@
 var express = require("express");
 var bodyParser = require("body-parser");
-var compression = require('compression');
+var compression = require("compression");
 var expressValidator = require("express-validator");
 require("./api/db");
 var passport = require("passport");

@@ -1,9 +1,9 @@
 var express = require("express");
 var router = new express.Router();
 var deviceMakeController = require("../controllers/device_make");
-router.get("/", deviceMakeController.device_makeList);
-router.get("/:id", deviceMakeController.device_makeDetail);
-router.post("/", deviceMakeController.device_makeCreate);
-router.delete("/", deviceMakeController.device_makeDelete);
-router.put("/", deviceMakeController.device_makeUpdate);
+router.get("/", deviceMakeController.deviceMakeList);
+router.get("/:id", deviceMakeController.deviceMakeDetail);
+router.post("/", deviceMakeController.deviceMakeCreate);
+router.delete("/", deviceMakeController.deviceMakeDelete);
+router.put("/", deviceMakeController.deviceMakeUpdate);
 module.exports = router;

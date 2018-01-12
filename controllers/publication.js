@@ -1,5 +1,5 @@
 var Publication = require("../models/publication");
-var debug=require('debug')('controllers/publication.js');
+var debug=require("debug")("controllers/publication.js");
 
 exports.publicationList = function (req, res, next) {
   Publication.find({}, function (err, list_publications) {
