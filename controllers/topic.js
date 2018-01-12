@@ -2,15 +2,15 @@ var Topic = require("../models/topic");
 var debug=require("debug")("controllers/topic.js");
 
 exports.topicList = function (req, res, next) {
-  Topic.find({}, function (err, list_topics) {
+  Topic.find({}, function (err, listTopics) {
     if (err) {
       debug(err);
       return next(err);
     }
 		// Successful, so render
-    res.send(list_topics);
+    res.send(listTopics);
   });
-}
+};
 
 exports.topicDetail = function (req, res, next) {
   Topic.find({
@@ -23,22 +23,22 @@ exports.topicDetail = function (req, res, next) {
 		// Successful, so render
     res.send(topic);
   });
-}
+};
 exports.topicCreate = function (req, res, next) {
   var topic = new Topic({
     description: req.body.description,
     added: req.body.added,
     name: req.body.name,
     fields: req.body.fields
-  })
+  });
   topic.save(function (err) {
     if (err) {
       debug(err);
       return next(err);
     }
     res.redirect(303, topic.url);
-  })
-}
+  });
+};
 exports.topicDelete = function (req, res, next) {
   Topic.findOneAndUpdate({
     _id: req.body.id
@@ -54,8 +54,8 @@ exports.topicDelete = function (req, res, next) {
       });
     }
     return res.send("Topic Deleted");
-  })
-}
+  });
+};
 exports.topicUpdate = function (req, res, next) {
   Topic.findOneAndUpdate({
     _id: req.body.id
@@ -75,9 +75,9 @@ exports.topicUpdate = function (req, res, next) {
     });
   }
   if (doc != null) {
-    res.redirect(303, doc.url);
+    res.send(doc);
   } else {
     res.send(500, "Topic not found");
   }
-})
-}
+});
+};

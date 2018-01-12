@@ -10,7 +10,7 @@ exports.controllerCommandList = function (req, res, next) {
 		// Successful, so render
     res.send(listControllerCommands);
   });
-}
+};
 exports.controllerCommandListForController = function (req, res, next) {
   ControllerCommand.find({
     controller: req.params.controller
@@ -22,7 +22,7 @@ exports.controllerCommandListForController = function (req, res, next) {
 		// Successful, so render
     res.send(listControllerCommands);
   });
-}
+};
 exports.controllerCommandDetail = function (req, res, next) {
   ControllerCommand.find({
     _id: req.params.id
@@ -34,7 +34,7 @@ exports.controllerCommandDetail = function (req, res, next) {
 		// Successful, so render
     res.send(controllerCommand);
   });
-}
+};
 exports.controllerCommandCreate = function (req, res, next) {
   var controllerCommand = new ControllerCommand({
     controller: req.body.thing,
@@ -52,7 +52,7 @@ exports.controllerCommandCreate = function (req, res, next) {
     }
     res.redirect(controllerCommand.url);
   });
-}
+};
 exports.controllerCommandDelete = function (req, res, next) {
   ControllerCommand.findOneAndUpdate({
     _id: req.body.id
@@ -67,7 +67,7 @@ exports.controllerCommandDelete = function (req, res, next) {
     }
     return res.sendStatus(200);
   });
-}
+};
 exports.controllerCommandUpdate = function (req, res, next) {
   ControllerCommand.findOneAndUpdate({
     _id: req.body.id
@@ -91,4 +91,4 @@ exports.controllerCommandUpdate = function (req, res, next) {
   }
   res.redirect(303, doc.url);
 });
-}
+};

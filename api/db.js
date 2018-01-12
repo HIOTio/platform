@@ -1,5 +1,5 @@
-var mongoose = require("mongoose")
-var config = require("../config")
+var mongoose = require("mongoose");
+var config = require("../config");
 var debug=require("debug")("api/db.js");
 var bluebird = require("bluebird");
 mongoose.Promise = bluebird;

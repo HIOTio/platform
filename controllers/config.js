@@ -34,4 +34,4 @@ module.exports = {
     testDeviceConfig: _testDeviceConfig,
     resetDeviceConfig: _resetDeviceConfig,
     updateDeviceConfig: UpdateDeviceConfig
-}
+};

@@ -29,7 +29,7 @@ var strategy = new JwtStrategy(jwtOptions, function(jwtPayload, next) {
         } else {
             next(null, false);
         }
-    })
+    });
 });
 passport.use(strategy);
 app.use(compression());
