@@ -1,8 +1,10 @@
 var Controller = require("../models/controller");
+var debug=require('debug')('controllers/controller.js');
 
 exports.controllerList = function (req, res, next) {
   Controller.find({}, function (err, list_controllers) {
     if (err) {
+      debug(err);
       return next(err);
     }
     // Successful, so render
@@ -14,6 +16,7 @@ exports.controllerListForThing = function (req, res, next) {
     thing: req.params.thing,
   }, function (err, list_controllers) {
     if (err) {
+      debug(err);
       return next(err);
     }
     // Successful, so render
@@ -25,6 +28,7 @@ exports.controllerDetail = function (req, res, next) {
     _id: req.params.id,
   }, function (err, controller) {
     if (err) {
+      debug(err);
       return next(err)
     }
     // Successful, so render
@@ -49,6 +53,7 @@ exports.controllerCreate = function (req, res, next) {
   })
   controller.save(function (err) {
     if (err) {
+      debug(err);
       return next(err);
     }
     res.redirect(controller.url);
@@ -63,6 +68,7 @@ exports.controllerDelete = function (req, res, next) {
     upsert: false,
   }, function (err, doc) {
     if (err) {
+      debug(err);
       next(err);
     }
     return res.send("Controller Deleted");
@@ -86,6 +92,7 @@ exports.controllerUpdate = function (req, res, next) {
   },
   function (err, doc) {
     if (err) {
+      debug(err);
       return res.send(500, {
         error: err,
       });

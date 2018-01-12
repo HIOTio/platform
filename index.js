@@ -1,5 +1,6 @@
 var express = require("express");
 var bodyParser = require("body-parser");
+var compression = require('compression');
 var expressValidator = require("express-validator");
 require("./api/db");
 var passport = require("passport");
@@ -31,7 +32,7 @@ var strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
     })
 })
 passport.use(strategy);
-
+app.use(compression());
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:4200");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");

@@ -1,8 +1,10 @@
-var Group = require("../models/groups")
+var Group = require("../models/groups");
+var debug=require('debug')('controllers/groups.js');
 
 exports.groupList = function (req, res, next) {
   Group.find({}, function (err, list_groups) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -15,6 +17,7 @@ exports.groupDetail = function (req, res, next) {
     _id: req.params.id
   }, function (err, group) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -43,6 +46,7 @@ exports.groupDelete = function (req, res, next) {
     upsert: false
   }, function (err, doc) {
     if (err) {
+      debug(err);
       return res.send(500, {
         error: err
       });
@@ -67,6 +71,7 @@ exports.groupUpdate = function (req, res, next) {
   },
 		function (err, doc) {
   if (err) {
+    debug(err);
     return res.send(500, {
       error: err
     });

@@ -1,8 +1,10 @@
 var Aggregator = require("../models/aggregator");
+var debug=require('debug')('controllers/aggregator.js');
 var Device = require ("../models/device");
 exports.aggregatorList = function (req, res, next) {
   Aggregator.find({}, function (err, list_aggregators) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -16,6 +18,7 @@ exports.aggergatorListForDeployment = function (req, res) {
     deployment: req.params.deployment
   }, function (err, list_aggregators) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -27,6 +30,7 @@ exports.aggergatorListForDevice = function (req, res,next) {
     device: req.params.device
   }, function (err, list_aggregators) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -38,6 +42,7 @@ exports.aggregatorDetail = function (req, res, next) {
     _id: req.params.id
   }, function (err, aggregator) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -57,14 +62,14 @@ exports.aggregatorCreate = function (req, res, next) {
     device: req.body.device
   });
   aggregator.save(function (err,doc) {
-    if (err) {
+    if (err) {debug(err);
       return next(err);
     }
     //successful, update device
     var device = Device.findOneAndUpdate({_id:req.body.device},{"$push":{aggregators: doc._id}},{upsert:false},
     function (err, doc) {
       if (err) {
-        console.log(err);
+        debug(err);
 
       }
     
@@ -75,13 +80,13 @@ exports.aggregatorCreate = function (req, res, next) {
 
 
 exports.aggregator_fromList = function(req,res,next){
- // console.log(req.params.list)
   Aggregator.find({
     _id: {$in : JSON.parse(req.params.list)}
   })
  // .populate('handler') 
   .exec( function (err, listAggregators) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -97,6 +102,7 @@ exports.aggregatorDelete = function (req, res) {
     upsert: false
   }, function (err, doc) {
     if (err) {
+      debug(err);
       return res.send(500, {
         error: err
       });
@@ -105,7 +111,6 @@ exports.aggregatorDelete = function (req, res) {
   })
 }
 exports.aggregatorUpdate = function (req, res) {
- // console.log(req.body)
   //TODO: what to do if the _id isn't found [Issue #7]
   Aggregator.findOneAndUpdate({
     _id: req.body._id
@@ -120,6 +125,7 @@ exports.aggregatorUpdate = function (req, res) {
   },
     function (err, doc) {
       if (err) {
+        debug(err);
         return res.send(500, {
           error: err
         });

@@ -1,8 +1,10 @@
 var DeploymentType = require("../models/deployment_type");
+var debug=require('debug')('controllers/deployment_type.js');
 
 exports.deploymentTypeList = function (req, res, next) {
   DeploymentType.find({}, function (err, listDeploymentTypes) {
     if (err) {
+      debug(err);
       return next(err);
     }
     res.send(listDeploymentTypes);
@@ -13,6 +15,7 @@ exports.deploymentTypeDetail = function (req, res, next) {
     _id: req.params.id
   }, function (err, deploymentType) {
     if (err) {
+      debug(err);
       return next(err);
     }
     res.send(deploymentType);
@@ -30,6 +33,7 @@ exports.deploymentTypeCreate = function (req, res, next) {
   });
   deploymentType.save(function (err) {
     if (err) {
+      debug(err);
       return next(err);
     }
     res.redirect(deploymentType.url);
@@ -44,6 +48,7 @@ exports.deploymentTypeDelete = function (req, res, next) {
     upsert: false
   }, function (err, doc) {
     if (err) {
+      debug(err);
       return res.send(500, {
         error: err
       });
@@ -69,6 +74,7 @@ exports.deploymentTypeUpdate = function (req, res) {
   },
 		function (err, doc) {
   if (err) {
+    debug(err);
     return res.send(500, {
       error: err
     });

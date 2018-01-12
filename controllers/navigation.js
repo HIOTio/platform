@@ -1,4 +1,5 @@
 var userDeployments = require("../models/deployment_role");
+var debug=require('debug')('controllers/navigation.js');
 
 exports.navigationList = function (req, res, next) {
   var myMEnu = [];
@@ -8,7 +9,8 @@ exports.navigationList = function (req, res, next) {
     userDeployments.find({
       profile: req.params.profile
     }).populate("deployment").exec(function (err, deploymentRole) {
-      if (err) {
+      if (err) { 
+        debug(err);
         return err;
       }
       resolve(deploymentRole);

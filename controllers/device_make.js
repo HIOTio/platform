@@ -1,8 +1,10 @@
 var DeviceMake = require("../models/device_make");
+var debug=require('debug')('controllers/device_make.js');
 
 exports.device_makeList = function (req, res, next) {
   DeviceMake.find({}, function (err, listDeviceMakes) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -15,6 +17,7 @@ exports.device_makeDetail = function (req, res, next) {
     _id: req.params.id
   }, function (err, deviceMake) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -28,6 +31,7 @@ exports.device_makeCreate = function (req, res, next) {
   })
   deviceMake.save(function (err) {
     if (err) {
+      debug(err);
       return next(err);
     }
     res.redirect(deviceMake.url);
@@ -42,6 +46,7 @@ exports.device_makeDelete = function (req, res) {
     upsert: false
   }, function (err, doc) {
     if (err) {
+      debug(err);
       return res.send(500, {
         error: err
       });
@@ -60,6 +65,7 @@ exports.device_makeUpdate = function (req, res) {
   },
 		function (err, doc) {
   if (err) {
+    debug(err);
     return res.send(500, {
       error: err
     });

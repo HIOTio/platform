@@ -1,8 +1,9 @@
 var CoordinatorGroup = require("../models/coordinator_groups");
+var debug=require('debug')('controllers/coordinator_groups.js');
 
 exports.coordinatorGroupList = function (req, res, next) {
   CoordinatorGroup.find({}, function (err, listCoordinatorGroups) {
-    if (err) {
+    if (err) {debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -14,6 +15,7 @@ exports.coordinatorGroupListForDeployment = function (req, res, next) {
     deployment: req.params.deployment
   }, function (err, listCoordinatorGroups) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -25,6 +27,7 @@ exports.coordinatorGroupDetail = function (req, res, next) {
     _id: req.params.id
   }, function (err, coordinator_group) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -52,6 +55,7 @@ exports.coordinatorGroupDelete = function (req, res) {
     upsert: false
   }, function (err, doc) {
     if (err) {
+      debug(err);
       return res.send(500, {
         error: err
       })
@@ -75,6 +79,7 @@ exports.coordinatorGroupUpdate = function (req, res) {
   },
 		function (err, doc) {
   if (err) {
+    debug(err);
     return res.send(500, {
       error: err
     });

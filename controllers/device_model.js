@@ -1,8 +1,10 @@
 var DeviceModel = require("../models/device_model");
+var debug=require('debug')('controllers/device_model.js');
 
 exports.device_modelList = function (req, res, next) {
   DeviceModel.find({}, function (err, list_device_models) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -16,6 +18,7 @@ exports.device_makeModels = function (req, res, next) {
     make: req.params.id
   }, function (err, deviceModel) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -28,6 +31,7 @@ exports.device_modelDetail = function (req, res, next) {
     _id: req.params.id
   }, function (err, deviceModel) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -42,6 +46,7 @@ exports.deviceModelCreate = function (req, res, next) {
   })
   deviceModel.save(function (err) {
     if (err) {
+      debug(err);
       return next(err);
     }
     res.redirect(deviceModel.url);
@@ -56,6 +61,7 @@ exports.device_modelDelete = function (req, res, next) {
     upsert: false
   }, function (err, doc) {
     if (err) {
+      debug(err);
       return res.send(500, {
         error: err
       });
@@ -74,6 +80,7 @@ exports.device_modelUpdate = function (req, res, next) {
   },
 		function (err, doc) {
   if (err) {
+    debug(err);
     return res.send(500, {
       error: err
     });

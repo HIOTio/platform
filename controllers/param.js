@@ -1,8 +1,10 @@
-var Param = require("../models/param")
+var Param = require("../models/param");
+var debug=require('debug')('controllers/param.js');
 
 exports.paramList = function (req, res, next) {
   Param.find({}, function (err, list_params) {
     if (err) {
+      debug(err);
       return next(err)
     }
 		// Successful, so render
@@ -15,6 +17,7 @@ exports.paramDetail = function (req, res, next) {
     _id: req.params.id
   }, function (err, Param) {
     if (err) {
+      debug(err);
       return next(err)
     }
 		// Successful, so render
@@ -46,6 +49,7 @@ exports.paramDelete = function (req, res, next) {
     upsert: false
   }, function (err, doc) {
     if (err) {
+      debug(err);
       return res.send(500, {
         error: err
       })
@@ -69,6 +73,7 @@ exports.paramUpdate = function (req, res, next) {
   },
 		function (err, doc) {
   if (err) {
+    debug(err);
     return res.send(500, {
       error: err
     })

@@ -1,4 +1,5 @@
 var Profile = require("../models/profile");
+var debug=require('debug')('controllers/profile.js');
 var config = require("../config");
 var jwt = require("jsonwebtoken");
 exports.profileAuth = function (req, res, next) {
@@ -7,6 +8,7 @@ exports.profileAuth = function (req, res, next) {
   }, function (err, profile) {
  //     console.log(profile)
     if (err) {
+      debug(err);
   //    console.log(err)
       return next(err);
     }
@@ -20,8 +22,8 @@ exports.profileAuth = function (req, res, next) {
       });
     } else {
       profile.comparePassword(req.body.password, function (err, isMatch) {
-        if (err) {
-     //     console.log(err)
+        if (err) { 
+          debug(err);
           return next(err);
         }
         if (isMatch) {
@@ -55,6 +57,7 @@ exports.profileDetail = function (req, res, next) {
     _id: req.params.profile
   }, function (err, profile) {
     if (err) {
+      debug(err);
       return next(err);
     }
     res.send(profile);
@@ -95,12 +98,10 @@ exports.profileCreate = function (req, res, next) {
   });
  // console.log("starting to save")
   profile.save(function (err, doc) {
-  //    console.log("attempted to save")
     if (err) {
-  //      console.log(err)
+      debug(err);
       return next(err);
     }
-  //    console.log("ok")
     res.status(200).json({
         
       "msg": "Congrats, your profile has been created",
@@ -118,6 +119,7 @@ exports.profileDelete = function (req, res) {
     upsert: false
   }, function (err, doc) {
     if (err) {
+      debug(err);
       return res.send(500, {
         error: err
       });
@@ -137,6 +139,7 @@ exports.profileUpdate = function (req, res) {
   },
 		function (err, doc) {
   if (err) {
+    debug(err);
     return res.send(500, {
       error: err
     });

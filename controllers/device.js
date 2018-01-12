@@ -1,4 +1,5 @@
 var Device = require("../models/device");
+var debug=require('debug')('controllers/device.js');
 exports.config= function(req,res,next){
   Device.findById(
     {_id:req.params.device}
@@ -8,7 +9,7 @@ exports.config= function(req,res,next){
   .populate("sensors")
   .populate("controllers")
   .exec(function(err,_device){
-    if (err) {
+    if (err) {debug(err);
       return next(err);
     }
     //create config.json format from device
@@ -35,7 +36,8 @@ exports.config= function(req,res,next){
 };
 exports.deviceList = function (req, res, next) {
   Device.find({}, function (err, listDevices) {
-    if (err) {
+    if( err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -70,7 +72,7 @@ exports.deviceListForDeployment = function (req, res, next) {
   .populate("model")
   .exec( function (err, listDevices) {
     if (err) {
-      
+      debug(err);
       return next(err);
     }
     res.send(listDevices);
@@ -81,6 +83,7 @@ exports.deviceDetail = function (req, res, next) {
     _id: req.params.id
   }, function (err, device) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -110,6 +113,7 @@ exports.deviceCreate = function (req, res, next) {
   });
   device.save(function (err) {
     if (err) {
+      debug(err);
       return next(err);
     }
     res.redirect(device.url);
@@ -124,6 +128,7 @@ exports.deviceDelete = function (req, res, next) {
     upsert: false
   }, function (err, doc) {
     if (err) {
+      debug(err);
       next(err);
     }
     return res.send("Device Deleted");
@@ -156,6 +161,7 @@ exports.deviceUpdate = function (req, res, next) {
   },
 		function (err, doc) {
   if (err) {
+    debug(err);
     return res.send(500, {
       error: err
     });

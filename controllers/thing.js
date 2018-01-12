@@ -1,8 +1,10 @@
 var Thing = require("../models/thing");
+var debug=require('debug')('controllers/thing.js');
 
 exports.thingList = function (req, res, next) {
   Thing.find({}, function (err, list_things, next) {
     if (err) {
+      debug(err);
       return next(err);
     }
         // Successful, so render
@@ -13,6 +15,7 @@ exports.thingListForDeployment = function (req, res, next) {
     // need to map devices back up to deployments, eventually
   Thing.find({}, function (err, list_things) {
     if (err) {
+      debug(err);
       return next(err);
     }
         // Successful, so render
@@ -24,6 +27,7 @@ exports.thingDetail = function (req, res, next) {
     _id: req.params.id
   }, function (err, thing) {
     if (err) {
+      debug(err);
       return next(err);
     }
         // Successful, so render
@@ -47,6 +51,7 @@ exports.thingCreate = function (req, res, next) {
   });
   thing.save(function (err) {
     if (err) {
+      debug(err);
       return next(err);
     }
     res.redirect(thing.url);
@@ -61,6 +66,7 @@ exports.thingDelete = function (req, res, next) {
     upsert: false
   }, function (err, doc) {
     if (err) {
+      debug(err);
       next(err);
     }
     return res.send("Thing Deleted");
@@ -83,6 +89,7 @@ exports.thingUpdate = function (req, res, next) {
   },
         function (err, doc) {
           if (err) {
+            debug(err);
             return res.send(500, {
               error: err
             });

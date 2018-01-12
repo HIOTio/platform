@@ -1,13 +1,15 @@
-var Topic = require("../models/topic")
+var Topic = require("../models/topic");
+var debug=require('debug')('controllers/topic.js');
 
 exports.topicList = function (req, res, next) {
   Topic.find({}, function (err, list_topics) {
     if (err) {
-      return next(err)
+      debug(err);
+      return next(err);
     }
 		// Successful, so render
-    res.send(list_topics)
-  })
+    res.send(list_topics);
+  });
 }
 
 exports.topicDetail = function (req, res, next) {
@@ -15,11 +17,12 @@ exports.topicDetail = function (req, res, next) {
     _id: req.body.id
   }, function (err, topic) {
     if (err) {
-      return next(err)
+      debug(err);
+      return next(err);
     }
 		// Successful, so render
-    res.send(topic)
-  })
+    res.send(topic);
+  });
 }
 exports.topicCreate = function (req, res, next) {
  // console.log(req.body.fields)
@@ -31,9 +34,10 @@ exports.topicCreate = function (req, res, next) {
   })
   topic.save(function (err) {
     if (err) {
-      return next(err)
+      debug(err);
+      return next(err);
     }
-    res.redirect(303, topic.url)
+    res.redirect(303, topic.url);
   })
 }
 exports.topicDelete = function (req, res, next) {
@@ -45,11 +49,12 @@ exports.topicDelete = function (req, res, next) {
     upsert: false
   }, function (err, doc) {
     if (err) {
+      debug(err);
       return res.send(500, {
         error: err
-      })
+      });
     }
-    return res.send("Topic Deleted")
+    return res.send("Topic Deleted");
   })
 }
 exports.topicUpdate = function (req, res, next) {
@@ -65,14 +70,15 @@ exports.topicUpdate = function (req, res, next) {
   },
 		function (err, doc) {
   if (err) {
+    debug(err);
     return res.send(500, {
       error: err
-    })
+    });
   }
   if (doc != null) {
-    res.redirect(303, doc.url)
+    res.redirect(303, doc.url);
   } else {
-    res.send(500, "Topic not found")
+    res.send(500, "Topic not found");
   }
 })
 }

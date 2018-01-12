@@ -1,8 +1,10 @@
 var Coordinator = require("../models/coordinator");
+var debug=require('debug')('controllers/coordinator.js');
 
 exports.CoordinatorList = function (req, res, next) {
   Coordinator.find({}, function (err, list_coordinators) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -14,6 +16,7 @@ exports.CoordinatorListForDeployment = function (req, res, next) {
     deployment: req.params.deployment
   }, function (err, list_coordinators) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -25,6 +28,7 @@ exports.coordinatorDetail = function (req, res) {
     _id: req.params.id
   }, function (err, coordinator) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -37,7 +41,6 @@ exports.coordinatorCreate = function (req, res, next) {
   req.sanitize("description").escape();
   req.sanitize("description").trim();
   var errors = req.validationErrors();
- // console.log(req.body)
   var coordinator = new Coordinator({
     description: req.body.description,
     added: req.body.added,
@@ -48,6 +51,7 @@ exports.coordinatorCreate = function (req, res, next) {
   });
   coordinator.save(function (err) {
     if (err) {
+      debug(err);
       return next(err);
     }
     res.redirect(coordinator.url);
@@ -62,6 +66,7 @@ exports.coordinatorDelete = function (req, res) {
     upsert: false
   }, function (err, doc) {
     if (err) {
+      debug(err);
       return res.send(500, {
         error: err
       })
@@ -83,6 +88,7 @@ exports.coordinatorUpdate = function (req, res) {
   },
 		function (err, doc) {
   if (err) {
+    debug(err);
     return res.send(500, {
       error: err
     });

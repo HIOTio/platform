@@ -1,8 +1,10 @@
 var Handler = require("../models/handler");
+var debug=require('debug')('controllers/aggregator.js');
 
 exports.handlerList = function (req, res, next) {
   Handler.find({}, function (err, list_handlers) {
     if (err) {
+      debug(err);
       return next(err);
     }
         // Successful, so render
@@ -14,6 +16,7 @@ exports.handlerListDeployment = function (req, res, next) {
         deployment:req.params.deployment
     }, function (err, list_handlers) {
       if (err) {
+        debug(err);
         return next(err);
       }
           // Successful, so render
@@ -25,6 +28,7 @@ exports.handlerDetail = function (req, res, next) {
     _id: req.params.id
   }, function (err, handler) {
     if (err) {
+      debug(err);
       return next(err);
     }
         // Successful, so render
@@ -46,6 +50,7 @@ exports.handlerCreate = function (req, res, next) {
   });
   handler.save(function (err) {
     if (err) {
+      debug(err);
       return next(err);
     }
     res.redirect(handler.url);
@@ -60,6 +65,7 @@ exports.handlerDelete = function (req, res, next) {
     upsert: false
   }, function (err, doc) {
     if (err) {
+      debug(err);
       next(err);
     }
     return res.send("handler Deleted");
@@ -83,6 +89,7 @@ exports.handlerUpdate = function (req, res, next) {
   },
         function (err, doc) {
           if (err) {
+            debug(err);
             return res.send(500, {
               error: err
             })

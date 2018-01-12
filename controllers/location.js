@@ -1,8 +1,10 @@
 var Location = require("../models/location");
+var debug=require('debug')('controllers/location.js');
 
 exports.locationList = function (req, res, next) {
   Location.find({}, function (err, listLocations) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -17,6 +19,7 @@ exports.locationListByDeployment = function (req, res, next) {
   .populate("parent")
   .exec( function (err, listLocations) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -30,6 +33,7 @@ exports.deploymentHierarchy = function (req, res, next) {
   })
   .exec( function (err, listLocations) {
     if (err) {
+      debug(err);
       return next(err);
     }
     var paths={};
@@ -55,6 +59,7 @@ exports.locationDetail = function (req, res, next) {
   .populate("parent")
   .exec( function (err, location) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -70,6 +75,7 @@ exports.locationCreate = function (req, res, next) {
   })
   location.save(function (err) {
     if (err) {
+      debug(err);
       return next(err);
     }
     res.redirect(location.url);
@@ -84,6 +90,7 @@ exports.locationDelete = function (req, res, next) {
     upsert: false
   }, function (err, doc) {
     if (err) {
+      debug(err);
       return res.send(500, {
         error: err
       })
@@ -104,6 +111,7 @@ exports.locationUpdate = function (req, res, next) {
   },
 		function (err, doc) {
   if (err) {
+    debug(err);
     return res.send(500, {
       error: err
     })

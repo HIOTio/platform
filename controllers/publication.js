@@ -1,8 +1,10 @@
-var Publication = require("../models/publication")
+var Publication = require("../models/publication");
+var debug=require('debug')('controllers/publication.js');
 
 exports.publicationList = function (req, res, next) {
   Publication.find({}, function (err, list_publications) {
     if (err) {
+      debug(err);
       return next(err)
     }
 		// Successful, so render
@@ -15,6 +17,7 @@ exports.publicationDetail = function (req, res, next) {
     _id: req.Publications.id
   }, function (err, Publication) {
     if (err) {
+      debug(err);
       return next(err)
     }
 		// Successful, so render
@@ -38,6 +41,7 @@ exports.publicationDelete = function (req, res, next) {
     upsert: false
   }, function (err, doc) {
     if (err) {
+      debug(err);
       return res.send(500, {
         error: err
       })
@@ -57,6 +61,7 @@ exports.publicationUpdate = function (req, res, next) {
   },
 		function (err, doc) {
   if (err) {
+    debug(err);
     return res.send(500, {
       error: err
     })

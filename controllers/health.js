@@ -1,8 +1,10 @@
 var Health = require("../models/health");
+var debug=require('debug')('controllers/health.js');
 
 exports.healthList = function (req, res, next) {
   Health.find({}, function (err, listHealths) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -15,6 +17,7 @@ exports.healthDetail = function (req, res, next) {
     _id: req.params.id
   }, function (err, health) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -43,6 +46,7 @@ exports.healthDelete = function (req, res, next) {
     upsert: false
   }, function (err, doc) {
     if (err) {
+      debug(err);
       return res.send(500, {
         error: err
       });
@@ -67,6 +71,7 @@ exports.healthUpdate = function (req, res, next) {
   },
 		function (err, doc) {
   if (err) {
+    debug(err);
     return res.send(500, {
       error: err
     });

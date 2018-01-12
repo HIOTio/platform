@@ -1,30 +1,34 @@
-var Sensor = require("../models/sensor")
+var Sensor = require("../models/sensor");
+var debug=require('debug')('controllers/sensor.js');
 exports.sensorList = function (req, res, next) {
   Sensor.find({}, function (err, list_sensors, next) {
     if (err) {
-      return next(err)
+      debug(err);
+      return next(err);
     }
 		// Successful, so render
-    res.send(list_sensors)
+    res.send(list_sensors);
   })
 }
 exports.sensorListForDeployment = function (req, res, next) {
 	// need to map devices back up to deployments, eventually
   Sensor.find({}, function (err, list_sensors) {
     if (err) {
-      return next(err)
+      debug(err);
+      return next(err);
     }
 		// Successful, so render
-    res.send(list_sensors)
+    res.send(list_sensors);
   })
 }
 exports.sensorDetail = function (req, res, next) {
   Sensor.findById(req.params.id, function (err, sensor) {
     if (err) {
-      return next(err)
+      debug(err);
+      return next(err);
     }
 		// Successful, so render
-    res.send(sensor)
+    res.send(sensor);
   })
 }
 exports.sensorCreate = function (req, res, next) {
@@ -42,9 +46,10 @@ exports.sensorCreate = function (req, res, next) {
   })
   sensor.save(function (err) {
     if (err) {
-      return next(err)
+      debug(err);
+      return next(err);
     }
-    res.redirect(sensor.url)
+    res.redirect(sensor.url);
   })
 }
 exports.sensorDelete = function (req, res, next) {
@@ -56,9 +61,10 @@ exports.sensorDelete = function (req, res, next) {
     upsert: false
   }, function (err, doc) {
     if (err) {
-      next(err)
+      debug(err);
+      next(err);
     }
-    return res.send("Sensor Deleted")
+    return res.send("Sensor Deleted");
   })
 }
 exports.sensorUpdate = function (req, res, next) {
@@ -80,10 +86,11 @@ exports.sensorUpdate = function (req, res, next) {
   },
 		function (err, doc) {
   if (err) {
+    debug(err);
     return res.send(500, {
       error: err
-    })
+    });
   }
-  res.redirect(303, doc.url)
+  res.redirect(303, doc.url);
 })
 }

@@ -1,5 +1,5 @@
 var Comms = require("../models/comms");
-
+var debug=require('debug')('controllers/comms.js');
 exports.commsList=function(){
 
 };
@@ -14,6 +14,7 @@ exports.newComms=function(req,res,next){
   });
   comms.save(function (err) {
     if (err) {
+      debug(err);
       return next(err);
     }
     res.sendStatus(200);

@@ -1,12 +1,14 @@
-var Subscription = require("../models/subscription")
+var Subscription = require("../models/subscription");
+var debug=require('debug')('controllers/subscription.js');
 
 exports.subscriptionList = function (req, res, next) {
   Subscription.find({}, function (err, list_subscription) {
-    if (err) {
-      return next(err)
+    if (err) { 
+      debug(err);
+      return next(err);
     }
 		// Successful, so render
-    res.send(list_subscription)
+    res.send(list_subscription);
   })
 }
 
@@ -15,10 +17,11 @@ exports.subscriptionDetail = function (req, res, next) {
     _id: req.body.id
   }, function (err, Subscription) {
     if (err) {
-      return next(err)
+      debug(err);
+      return next(err);
     }
 		// Successful, so render
-    res.send(Subscription)
+    res.send(Subscription);
   })
 }
 exports.subscriptioCreate = function (req, res, next) {
@@ -38,11 +41,12 @@ exports.subscriptionDelete = function (req, res, next) {
     upsert: false
   }, function (err, doc) {
     if (err) {
+      debug(err);
       return res.send(500, {
         error: err
-      })
+      });
     }
-    return res.send("Subscription Deleted")
+    return res.send("Subscription Deleted");
   })
 }
 exports.subscriptionUpdate = function (req, res, next) {
@@ -57,14 +61,15 @@ exports.subscriptionUpdate = function (req, res, next) {
   },
 		function (err, doc) {
   if (err) {
+    ebug(err);
     return res.send(500, {
       error: err
-    })
+    });
   }
   if (doc != null) {
-    res.redirect(303, doc.url)
+    res.redirect(303, doc.url);
   } else {
-    res.send(500, "Subscription not found")
+    res.send(500, "Subscription not found");
   }
 })
 }

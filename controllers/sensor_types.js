@@ -3,6 +3,7 @@ var Sensor = require("../models/sensor_types");
 exports.sensorTypesList = function (req, res, next) {
   Sensor.find({}, function (err, list_sensorTypes) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -15,6 +16,7 @@ exports.sensorTypesDetail = function (req, res, next) {
     _id: req.body.id
   }, function (err, Sensor) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -31,6 +33,7 @@ exports.sensorTypesCreate = function (req, res, next) {
   })
   sensorTypes.save(function (err) {
     if (err) {
+      debug(err);
       return next(err);
     }
     res.redirect(sensorTypes.url);
@@ -45,6 +48,7 @@ exports.sensorTypesDelete = function (req, res, next) {
     upsert: false
   }, function (err, doc) {
     if (err) {
+      debug(err);
       return res.send(500, {
         error: err
       });
@@ -66,6 +70,7 @@ exports.sensorTypesUpdate = function (req, res, next) {
   },
 		function (err, doc) {
   if (err) {
+    debug(err);
     return res.send(500, {
       error: err
     });

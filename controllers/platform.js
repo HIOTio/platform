@@ -1,8 +1,10 @@
 var Platform = require("../models/platform");
+var debug=require('debug')('controllers/platform.js');
 
 exports.platformList = function (req, res, next) {
   Platform.find({}, function (err, list_platforms) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -15,6 +17,7 @@ exports.platformDetail = function (req, res, next) {
     _id: req.Platforms.id
   }, function (err, Platform) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -37,6 +40,7 @@ exports.platformDelete = function (req, res, next) {
     upsert: false
   }, function (err, doc) {
     if (err) {
+      debug(err);
       return res.send(500, {
         error: err
       });
@@ -55,6 +59,7 @@ exports.platformUpdate = function (req, res, next) {
   },
 		function (err, doc) {
   if (err) {
+    debug(err);
     return res.send(500, {
       error: err
     })

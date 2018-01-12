@@ -1,8 +1,10 @@
 var DeviceConfiguration = require("../models/device_configuration");
+var debug=require('debug')('controllers/device_configuration.js');
 
 exports.deviceConfigurationList = function (req, res, next) {
   DeviceConfiguration.find({}, function (err, listDeviceConfigurations) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -15,6 +17,7 @@ exports.deviceConfigurationDetail = function (req, res, next) {
     _id: req.params.id
   }, function (err, deviceConfiguration) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -29,6 +32,7 @@ exports.deviceConfigurationCreate = function (req, res, next) {
   });
   deviceConfiguration.save(function (err,conf) {
     if (err) {
+      debug(err);
       return next(err);
     }
     res.redirect(conf.url);
@@ -43,6 +47,7 @@ exports.deviceConfigurationDelete = function (req, res) {
     upsert: false
   }, function (err, doc) {
     if (err) {
+      debug(err);
       return res.send(500, {
         error: err
       });
@@ -62,6 +67,7 @@ exports.deviceConfigurationUpdate = function (req, res) {
   },
 		function (err, doc) {
   if (err) {
+    debug(err);
     return res.send(500, {
       error: err
     });

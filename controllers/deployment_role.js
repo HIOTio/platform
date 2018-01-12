@@ -1,4 +1,5 @@
 var DeploymentRole = require("../models/deployment_role");
+var debug=require('debug')('controllers/deployment_role.js');
 
 function deploymentsForUser (userId) {
   if(userId===0){
@@ -8,6 +9,7 @@ function deploymentsForUser (userId) {
       profile: userId
     }).populate("deployment").exec(function (err, deploymentRole) {
       if (err) {
+        debug(err);
         return err;
       }
       return deploymentRole;
@@ -17,6 +19,7 @@ function deploymentsForUser (userId) {
 exports.deploymentRoleList = function (req, res, next) {
   DeploymentRole.find({}, function (err, listDeploymentRoles) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -29,6 +32,7 @@ exports.deploymentRoleDetailByDeployment = function (req, res, next) {
   })
   .populate("profile").exec(function (err, deploymentRole) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -40,6 +44,7 @@ exports.deploymentRoleDetail = function (req, res, next) {
     _id: req.params.id
   }, function (err, deploymentRole) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -56,13 +61,13 @@ exports.deploymentRoleCreate = function (req, res, next) {
   });
   deploymentRole.save(function (err) {
     if (err) {
+      debug(err);
       return next(err);
     }
     res.redirect(deploymentRole.url);
   });
 };
 exports.deploymentsForUser = function (userId) {
-  //  console.log("in exports")
   if(userId===0){
     return [];
   }else{
@@ -70,11 +75,9 @@ exports.deploymentsForUser = function (userId) {
       profile: userId
     }).populate("deployment").exec(function (err, deploymentRole) {
       if (err) {
+        debug(err);
         return err;
       }
-
-  //    console.log(deploymentRole)
-  //    console.log("finished in deploymentRole")
       return deploymentRole;
     });
   }
@@ -88,6 +91,7 @@ exports.deploymentRoleDetailByProfile = function (req, res, next) {
       profile: req.params.profile
     }).populate("role").populate("deployment").exec(function (err, deploymentRole) {
       if (err) {
+        debug(err);
         return next(err);
       }
       res.send(deploymentRole);
@@ -96,7 +100,6 @@ exports.deploymentRoleDetailByProfile = function (req, res, next) {
 };
 
 exports.deploymentRoleUpdate = function (req, res) {
-//  console.log(req.body)
   DeploymentRole.findOneAndUpdate({
     _id: req.body.id
   }, {
@@ -109,6 +112,7 @@ exports.deploymentRoleUpdate = function (req, res) {
   },
 		function (err, doc) {
   if (err) {
+    debug(err);
     res.send(500, {
       error: err
     })

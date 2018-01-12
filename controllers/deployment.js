@@ -1,5 +1,6 @@
 var Deployment = require("../models/deployment");
 var DeploymentRole = require("../models/deployment_role");
+var debug=require('debug')('controllers/deployment.js');
 var Device = require("../models/device");
 var Role = require("../models/role");
 var Location = require('../models/location');
@@ -7,8 +8,8 @@ var sockets = require("../sockets");
 
 exports.deploymentList = function(req, res, next) {
     Deployment.find({}, function(err, listDeployments) {
-        //   console.log(req)
-        if (err) {
+        if (err) {debug(err);
+            debug(err);
             return next(err);
         }
         res.send(listDeployments);
@@ -18,7 +19,8 @@ exports.deploymentDetail = function(req, res, next) {
     Deployment.findOne({
         _id: req.params.id
     }).populate("deploymentType").exec(function(err, deployment) {
-        if (err) {
+        if (err) {debug(err);
+            debug(err);
             return next(err);
         }
 
@@ -33,7 +35,8 @@ exports.deploymentSummary = function(req,res,next){
     }).populate("deploymentType")
     .populate("owner")
     .exec(function(err, deployment) {
-        if (err) {
+        if (err) {debug(err);
+            debug(err);
             return next(err);
         }
         DeploymentRole.count({deployment:deployment._id}).exec(function(err,userCount){
@@ -54,6 +57,7 @@ exports.deploymentChangeOwner=function(req,res,next){
             upsert: false
         }, function(err, doc) {
             if (err) {
+                debug(err);
                 return res.send(500, {
                     error: err
                 });
@@ -75,6 +79,7 @@ exports.deploymentCreate = function(req, res, next) {
     });
     deployment.save(function(err) {
         if (err) {
+            debug(err);
             return next(err);
         }
         //TODO: [x]get the _id for role type "owner" [Issue #1]
@@ -82,6 +87,7 @@ exports.deploymentCreate = function(req, res, next) {
             name: "Owner"
         }, function(err, resp) {
             if (err) {
+                debug(err);
                 //TODO: need to handle this properly [Issue #6]
             }
             //TODO: [x]add the owner to the deploymentRoles [Issue #5]
@@ -92,6 +98,7 @@ exports.deploymentCreate = function(req, res, next) {
             });
             deploymentRole.save(function(err) {
                 if (err) {
+                    debug(err);
                     //TODO: have to handle this error as well [Issue #3]
                 }
                 res.redirect(deployment.url);
@@ -108,7 +115,8 @@ exports.deploymentDelete = function(req, res, next) {
         }, {
             upsert: false
         }, function(err, doc) {
-            if (err) {
+            if( err) {
+                debug(err);
                 return res.send(500, {
                     error: err
                 });
@@ -134,6 +142,7 @@ exports.deploymentUpdate = function(req, res) {
         },
         function(err, doc) {
             if (err) {
+                debug(err);
                 return res.send(500, {
                     error: err
                 })

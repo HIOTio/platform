@@ -1,8 +1,10 @@
 var ControllerCommand = require("../models/controller_command");
+var debug=require('debug')('controllers/controller_command.js');
 
 exports.controllerCommandList = function (req, res, next) {
   ControllerCommand.find({}, function (err, list_controller_commands) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -14,6 +16,7 @@ exports.controllerCommandListForController = function (req, res, next) {
     controller: req.params.controller
   }, function (err, list_controller_commands) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -25,6 +28,7 @@ exports.controllerCommandDetail = function (req, res, next) {
     _id: req.params.id
   }, function (err, controller_command) {
     if (err) {
+      debug(err);
       return next(err);
     }
 		// Successful, so render
@@ -43,6 +47,7 @@ exports.controller_commandCreate = function (req, res, next) {
   });
   controllerCommand.save(function (err) {
     if (err) {
+      debug(err);
       return next(err);
     }
     res.redirect(controllerCommand.url);
@@ -57,6 +62,7 @@ exports.controllerCommandDelete = function (req, res, next) {
     upsert: false
   }, function (err, doc) {
     if (err) {
+      debug(err);
       next(err);
     }
     return res.sendStatus(200);
@@ -78,6 +84,7 @@ exports.controllerCommandUpdate = function (req, res, next) {
   },
 		function (err, doc) {
   if (err) {
+    debug(err);
     return res.send(500, {
       error: err
     });
