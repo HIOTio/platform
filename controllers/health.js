@@ -29,11 +29,11 @@ exports.healthCreate = function (req, res, next) {
     description: req.body.description,
     added: req.body.added,
     active: req.body.active,
-    is_admin: req.body.is_admin,
-    is_config_admin: req.body.is_config_admin,
-    is_billing: req.body.is_billing,
-    is_reader: req.body.is_reader,
-    is_cg_admin: req.body.is_cg_admin
+    isAdmin: req.body.isAdmin,
+    isConfigAdmin: req.body.isConfigAdmin,
+    isBilling: req.body.isBilling,
+    isReader: req.body.isReader,
+    isCgAdmin: req.body.isCgAdmin
   });
   res.redirect(303, health.url);
 };
@@ -61,11 +61,11 @@ exports.healthUpdate = function (req, res, next) {
     description: req.body.description,
     added: req.body.added,
     active: req.body.active,
-    is_admin: req.body.is_admin,
-    is_config_admin: req.body.is_config_admin,
-    is_billing: req.body.is_billing,
-    is_reader: req.body.is_reader,
-    is_cg_admin: req.body.is_cg_admin
+    isAdmin: req.body.isAdmin,
+    isConfigAdmin: req.body.isConfigAdmin,
+    isBilling: req.body.isBilling,
+    isReader: req.body.isReader,
+    isCgAdmin: req.body.isCgAdmin
   }, {
     upsert: false
   },

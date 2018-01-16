@@ -28,7 +28,7 @@ exports.deviceConfigurationCreate = function (req, res, next) {
   var deviceConfiguration = new DeviceConfiguration({
     description: req.body.description,
     added: req.body.added,
-    ip_address: req.body.ip_address
+    ipAddress: req.body.ipAddress
   });
   deviceConfiguration.save(function (err,conf) {
     if (err) {
@@ -61,7 +61,7 @@ exports.deviceConfigurationUpdate = function (req, res) {
   }, {
     description: req.body.description,
     added: req.body.added,
-    ip_address: req.body.ip_address
+    ipAddress: req.body.ipAddress
   }, {
     upsert: false
   },

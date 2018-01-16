@@ -1,37 +1,32 @@
 var device= require("./device");
 
-function _getDeviceConfig(req,res,next){
+exports.getDeviceConfig = function (req,res,next){
     //build the structure of the config
 
     res.send({
-        function:"_getDeviceConfig",
+        function:"getDeviceConfig",
         status: "not implemented"
     });
 }
 
-function _testDeviceConfig(req,res,next){
+exports.testDeviceConfig = function (req,res,next){
     res.send({
-        function:"_testDeviceConfig",
+        function:"testDeviceConfig",
         status: "not implemented"
     });
 }
 
-function _resetDeviceConfig(req,res,next){
+exports.resetDeviceConfig = function (req,res,next){
     res.send({
-        function:"_resetDeviceConfig",
+        function:"resetDeviceConfig",
         status: "not implemented"
     });
 }
 
-function UpdateDeviceConfig(req,res,next){
+exports.updateDeviceConfig = function (req,res,next){
     res.send({
         function:"UpdateDeviceConfig",
         status: "not implemented"
     });
 }
-module.exports = {
-    getDeviceConfig: _getDeviceConfig,
-    testDeviceConfig: _testDeviceConfig,
-    resetDeviceConfig: _resetDeviceConfig,
-    updateDeviceConfig: UpdateDeviceConfig
-};
+ 

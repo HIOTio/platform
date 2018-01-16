@@ -13,7 +13,7 @@ exports.sensorReadingList = function (req, res, next) {
 };
 exports.sensorReadingListForSensor = function (req, res, next) {
   SensorReading.find({
-    sensor_id: req.params.sensor_id
+    sensorId: req.params.sensorId
   }, function (err, listSensorReadings) {
     if (err) {
       debug(err);

@@ -2,8 +2,8 @@ var app = {};
 var socketSend = {};
 var channels = {};
 var cmd={};
-exports.init = function(_app) {
-    this.app = _app;
+exports.init = function(sApp) {
+    this.app = sApp;
     require("express-ws")(this.app);
     this.app.use("/m2p", function(req, res, next) {
         if (req.body.msg) {

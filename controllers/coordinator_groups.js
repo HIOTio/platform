@@ -41,7 +41,7 @@ exports.coordinatorGroupCreate = function (req, res, next) {
     active: req.body.active,
     added: req.body.added,
     calculation: req.body.calculation,
-    sensortype: req.body.sensor_type,
+    sensortype: req.body.sensorType,
     sensors: req.body.sensors
   })
   res.redirect(303, coordinatorGroup.url);

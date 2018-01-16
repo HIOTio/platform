@@ -2,13 +2,13 @@ var Handler = require("../models/handler");
 var debug=require("debug")("controllers/aggregator.js");
 
 exports.handlerList = function (req, res, next) {
-  Handler.find({}, function (err, list_handlers) {
+  Handler.find({}, function (err, listHandlers) {
     if (err) {
       debug(err);
       return next(err);
     }
         // Successful, so render
-    res.send(list_handlers);
+    res.send(listHandlers);
   });
 };
 exports.handlerListDeployment = function (req, res, next) {

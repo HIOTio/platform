@@ -2,13 +2,13 @@ var Platform = require("../models/platform");
 var debug=require("debug")("controllers/platform.js");
 
 exports.platformList = function (req, res, next) {
-  Platform.find({}, function (err, list_platforms) {
+  Platform.find({}, function (err, listPlatforms) {
     if (err) {
       debug(err);
       return next(err);
     }
 		// Successful, so render
-    res.send(list_platforms);
+    res.send(listPlatforms);
   });
 };
 

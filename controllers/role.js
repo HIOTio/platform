@@ -26,9 +26,9 @@ exports.roleCreate = function (req, res, next) {
   var role = new Role({
     description: req.body.description,
     name: req.body.name,
-    add_deployment: req.body.add_deployment,
+    addSeployment: req.body.addDeployment,
     addUser: req.body.addUser,
-    control_devices: req.body.control_devices
+    controlDevices: req.body.controlDevices
   })
   role.save(function (err) {
     if (err) {
@@ -59,9 +59,9 @@ exports.roleUpdate = function (req, res, next) {
   }, {
     description: req.body.description,
     name: req.body.name,
-    add_deployment: req.body.add_deployment,
+    addDeployment: req.body.addDeployment,
     addUser: req.body.addUser,
-    control_devices: req.body.control_devices
+    controlDevices: req.body.controlDevices
   }, {
     upsert: false
   },

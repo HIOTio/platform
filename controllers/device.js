@@ -8,28 +8,28 @@ exports.config= function(req,res,next){
   .populate("aggregators")
   .populate("sensors")
   .populate("controllers")
-  .exec(function(err,_device){
+  .exec(function(err,deviceIn){
     if (err) {debug(err);
       return next(err);
     }
     //create config.json format from device
     var devFile={
       device:{
-        hiotId:_device.deviceId,
-        name:_device.name,
-        description:_device.description,
-        devicePath:_device.devicePath
+        hiotId:deviceIn.deviceId,
+        name:deviceIn.name,
+        description:deviceIn.description,
+        devicePath:deviceIn.devicePath
       },
       roleChannels:{
-        broker:_device.brokers,
-        coordinator: _device.coordinator,
-        controller: _device.controllers,
-        aggregator:_device.aggregators,
-        sensor: _device.sensors,
+        broker:deviceIn.brokers,
+        coordinator: deviceIn.coordinator,
+        controller: deviceIn.controllers,
+        aggregator:deviceIn.aggregators,
+        sensor: deviceIn.sensors,
       },
-      moscaEnabled: _device.moscaEnabled,
-      moscaPort: _device.moscaPort,
-      mqttServers: _device.mqttBrokers
+      moscaEnabled: deviceIn.moscaEnabled,
+      moscaPort: deviceIn.moscaPort,
+      mqttServers: deviceIn.mqttBrokers
     };
     res.send(devFile);
   });
