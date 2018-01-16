@@ -10,7 +10,7 @@ exports.aggregatorList = function (req, res, next) {
 		// Successful, so render
     res.send(listAggregators);
   });
-}
+};
 
 // TODO: get this to work by assiging devices to deployments, and querying the "device" element [Issue #8]
 exports.aggergatorListForDeployment = function (req, res, next) {
@@ -24,7 +24,7 @@ exports.aggergatorListForDeployment = function (req, res, next) {
 		// Successful, so render
     res.send(listAggregators);
   });
-}
+};
 exports.aggergatorListForDevice = function (req, res,next) {
   Aggregator.find({
     device: req.params.device
@@ -36,7 +36,7 @@ exports.aggergatorListForDevice = function (req, res,next) {
 		// Successful, so render
     res.send(listAggregators);
   });
-}
+};
 exports.aggregatorDetail = function (req, res, next) {
   Aggregator.find({
     _id: req.params.id
@@ -48,7 +48,7 @@ exports.aggregatorDetail = function (req, res, next) {
 		// Successful, so render
     res.send(aggregator);
   });
-}
+};
 exports.aggregatorCreate = function (req, res, next) {
   var aggregator = new Aggregator({
     handler: req.body.handler,
@@ -76,7 +76,7 @@ exports.aggregatorCreate = function (req, res, next) {
   });
     res.send(doc);
   });
-}
+};
 
 
 exports.aggregatorFromList = function(req,res,next){
@@ -92,7 +92,7 @@ exports.aggregatorFromList = function(req,res,next){
 		// Successful, so render
     res.send(listAggregators);
   });
-}
+};
 exports.aggregatorDelete = function (req, res) {
   Aggregator.findOneAndUpdate({
     _id: req.body.id
@@ -109,7 +109,7 @@ exports.aggregatorDelete = function (req, res) {
     }
     return res.send("Aggregator Deleted");
   })
-}
+};
 exports.aggregatorUpdate = function (req, res) {
   //TODO: what to do if the _id isn"t found [Issue #7]
   Aggregator.findOneAndUpdate({
@@ -132,5 +132,4 @@ exports.aggregatorUpdate = function (req, res) {
       }
       res.redirect(303, doc.url);
     });
-}
-
+};
