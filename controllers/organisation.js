@@ -60,7 +60,6 @@ exports.updateOrganisation = function (req, res, next) {
     },
    { upsert: false },
    function( err,doc) {
-      console.log(doc);
       if (err) {
         res.send(err);
       }

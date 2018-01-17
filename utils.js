@@ -3,11 +3,11 @@ exports.goSave = function(obj, res) {
     obj.save(function (err) {
     if (err) {
       debug(err);
-      return next(err);
+      res.send(500);
     }
     res.send(obj);
   });
-}
+};
 exports.markDeleted=function(obj, req,res){
     obj.findOneAndUpdate({
     _id: req.body._id
@@ -18,11 +18,11 @@ exports.markDeleted=function(obj, req,res){
   }, function (err, doc) {
     if (err) {
       debug(err);
-      next(err);
+      res.send(500);
     }
     return res.send(200);
   });
-}
+};
 exports.details=function (obj, req, res) {
     obj.find({
     _id: req.params._id,
@@ -34,4 +34,4 @@ exports.details=function (obj, req, res) {
     // Successful, so render
     res.send(details);
   });
-}
+};
