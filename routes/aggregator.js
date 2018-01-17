@@ -8,7 +8,7 @@ router.get("/", aggregatorController.aggregatorList);
 router.get("/fromList/:list", aggregatorController.aggregatorFromList);
 router.get("/deployment/:deployment", aggregatorController.aggergatorListForDeployment);
 router.get("/device/:device", aggregatorController.aggergatorListForDevice);
-router.get("/:id", aggregatorController.aggregatorDetail);
+router.get("/:_id", aggregatorController.aggregatorDetail);
 router.post("/", aggregatorController.aggregatorCreate);
 router.delete("/", aggregatorController.aggregatorDelete);
 router.put("/", aggregatorController.aggregatorUpdate);

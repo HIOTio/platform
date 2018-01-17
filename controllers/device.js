@@ -80,7 +80,7 @@ exports.deviceListForDeployment = function (req, res, next) {
 };
 exports.deviceDetail = function (req, res, next) {
   Device.find({
-    _id: req.params.id
+    _id: req.params._id
   }, function (err, device) {
     if (err) {
       debug(err);

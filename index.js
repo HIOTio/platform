@@ -57,6 +57,7 @@ var rNoAuth = require("./routes/no_auth");
     // with auth
 var rAggregator = require("./routes/aggregator");
 var rBroker = require("./routes/broker");
+var rCommander = require("./routes/commander");
 var rConfig = require("./routes/config");
 var rController = require("./routes/controller");
 var rControllerCommand = require("./routes/controller_command");
@@ -92,6 +93,7 @@ var rNavigation = require("./routes/navigation");
 app.use("/", rNoAuth);
 app.use("/api/aggregator", rAggregator);
 app.use("/api/broker", rBroker);
+app.use("/api/commander", rCommander);
 app.use("/api/config", rConfig);
 app.use("/api/controller", rController);
 app.use("/api/controller_command", rControllerCommand);

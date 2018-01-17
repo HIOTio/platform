@@ -14,7 +14,7 @@ exports.deviceModelList = function (req, res, next) {
 
 exports.deviceMakeModels = function (req, res, next) {
   DeviceModel.find({
-    make: req.params.id
+    make: req.params._id
   }, function (err, deviceModel) {
     if (err) {
       debug(err);
@@ -26,7 +26,7 @@ exports.deviceMakeModels = function (req, res, next) {
 }
 exports.deviceModelDetail = function (req, res, next) {
   DeviceModel.find({
-    _id: req.params.id
+    _id: req.params._id
   }, function (err, deviceModel) {
     if (err) {
       debug(err);

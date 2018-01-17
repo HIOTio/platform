@@ -1,6 +1,6 @@
 var Group = require("../models/groups");
 var debug=require("debug")("controllers/groups.js");
-
+var utils = require("../utils");
 exports.groupList = function (req, res, next) {
   Group.find({}, function (err, listGroups) {
     if (err) {
@@ -14,7 +14,7 @@ exports.groupList = function (req, res, next) {
 
 exports.groupDetail = function (req, res, next) {
   Group.find({
-    _id: req.params.id
+    _id: req.params._id
   }, function (err, group) {
     if (err) {
       debug(err);
@@ -35,7 +35,7 @@ exports.groupCreate = function (req, res, next) {
     isReader: req.body.isReader,
     isCgAdmin: req.body.isCgAdmin
   });
-  res.redirect(303, group.url);
+  utils.goSave(group,res);
 };
 exports.groupDelete = function (req, res, next) {
   Group.findOneAndUpdate({
@@ -56,7 +56,7 @@ exports.groupDelete = function (req, res, next) {
 };
 exports.groupUpdate = function (req, res, next) {
   Group.findOneAndUpdate({
-    _id: req.body.id
+    _id: req.body._id
   }, {
     description: req.body.description,
     added: req.body.added,

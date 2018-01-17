@@ -1,6 +1,6 @@
 var DeviceConfiguration = require("../models/device_configuration");
 var debug=require("debug")("controllers/device_configuration.js");
-
+var utils = require("../utils");
 exports.deviceConfigurationList = function (req, res, next) {
   DeviceConfiguration.find({}, function (err, listDeviceConfigurations) {
     if (err) {
@@ -14,7 +14,7 @@ exports.deviceConfigurationList = function (req, res, next) {
 
 exports.deviceConfigurationDetail = function (req, res, next) {
   DeviceConfiguration.find({
-    _id: req.params.id
+    _id: req.params._id
   }, function (err, deviceConfiguration) {
     if (err) {
       debug(err);
@@ -30,13 +30,7 @@ exports.deviceConfigurationCreate = function (req, res, next) {
     added: req.body.added,
     ipAddress: req.body.ipAddress
   });
-  deviceConfiguration.save(function (err,conf) {
-    if (err) {
-      debug(err);
-      return next(err);
-    }
-    res.redirect(conf.url);
-  });
+  utils.goSave(deviceConfiguration, res);
 };
 exports.deviceConfigurationDelete = function (req, res) {
   DeviceConfiguration.findOneAndUpdate({

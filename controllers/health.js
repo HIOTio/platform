@@ -14,7 +14,7 @@ exports.healthList = function (req, res, next) {
 
 exports.healthDetail = function (req, res, next) {
   Health.find({
-    _id: req.params.id
+    _id: req.params._id
   }, function (err, health) {
     if (err) {
       debug(err);

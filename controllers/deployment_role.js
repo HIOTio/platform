@@ -1,6 +1,6 @@
 var DeploymentRole = require("../models/deployment_role");
 var debug=require("debug")("controllers/deployment_role.js");
-
+var utils = require("../utils");
 function deploymentsForUser (userId) {
   if(userId===0){
     return [];
@@ -41,7 +41,7 @@ exports.deploymentRoleDetailByDeployment = function (req, res, next) {
 };
 exports.deploymentRoleDetail = function (req, res, next) {
   DeploymentRole.find({
-    _id: req.params.id
+    _id: req.params._id
   }, function (err, deploymentRole) {
     if (err) {
       debug(err);
@@ -59,13 +59,7 @@ exports.deploymentRoleCreate = function (req, res, next) {
     role: req.body.role,
     active: req.body.active
   });
-  deploymentRole.save(function (err) {
-    if (err) {
-      debug(err);
-      return next(err);
-    }
-    res.redirect(deploymentRole.url);
-  });
+  utils.goSave(deploymentRole, res);
 };
 exports.deploymentsForUser = function (userId) {
   if(userId===0){

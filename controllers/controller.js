@@ -1,5 +1,6 @@
 var Controller = require("../models/controller");
 var debug=require("debug")("controllers/controller.js");
+var utils = require("../utils");
 
 exports.controllerList = function (req, res, next) {
   Controller.find({}, function (err, listControllers) {
@@ -24,16 +25,7 @@ exports.controllerListForThing = function (req, res, next) {
   });
 };
 exports.controllerDetail = function (req, res, next) {
-  Controller.find({
-    _id: req.params.id,
-  }, function (err, controller) {
-    if (err) {
-      debug(err);
-      return next(err);
-    }
-    // Successful, so render
-    res.send(controller);
-  });
+ utils.details(Controller, req, res);
 };
 exports.controllerCreate = function (req, res, next) {
   var controller = new Controller({
@@ -47,28 +39,10 @@ exports.controllerCreate = function (req, res, next) {
     added: req.body.added,
     active: req.body.active,
   });
-  controller.save(function (err) {
-    if (err) {
-      debug(err);
-      return next(err);
-    }
-    res.redirect(controller.url);
-  });
+  utils.goSave(controller,res);
 };
 exports.controllerDelete = function (req, res, next) {
-  Controller.findOneAndUpdate({
-    _id: req.body.id,
-  }, {
-    active: false,
-  }, {
-    upsert: false,
-  }, function (err, doc) {
-    if (err) {
-      debug(err);
-      next(err);
-    }
-    return res.send("Controller Deleted");
-  });
+  utils.markDeleted(Controller,req,res);
 };
 exports.controllerUpdate = function (req, res, next) {
   Controller.findOneAndUpdate({

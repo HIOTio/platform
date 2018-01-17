@@ -14,7 +14,7 @@ exports.deviceMakeList = function (req, res, next) {
 
 exports.deviceMakeDetail = function (req, res, next) {
   DeviceMake.find({
-    _id: req.params.id
+    _id: req.params._id
   }, function (err, deviceMake) {
     if (err) {
       debug(err);

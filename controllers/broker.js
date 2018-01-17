@@ -1,6 +1,7 @@
 "use strict";
 var Broker = require("../models/broker");
 var debug=require("debug")("controllers/broker.js");
+var utils = require("../utils");
 
 exports.brokerList = function(req, res, next) {
     Broker.find({}, function(err, listBrokers) {
@@ -43,13 +44,7 @@ exports.brokerCreate = function(req, res, next) {
         handler: req.body.handler,
         active: req.body.active
     });
-    broker.save(function(err) {
-        if (err) {
-            debug(err);
-            return next(err);
-        }
-        res.redirect(broker.url);
-    });
+   utils.goSave(broker,res);
 };
 exports.brokerDelete = function(req, res, next) {
     Broker.findOneAndUpdate({

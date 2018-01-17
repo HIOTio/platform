@@ -5,6 +5,7 @@ var Device = require("../models/device");
 var Role = require("../models/role");
 var Location = require("../models/location");
 var sockets = require("../sockets");
+var utils = require("../utils");
 
 exports.deploymentList = function(req, res, next) {
     Deployment.find({}, function(err, listDeployments) {
@@ -17,7 +18,7 @@ exports.deploymentList = function(req, res, next) {
 };
 exports.deploymentDetail = function(req, res, next) {
     Deployment.findOne({
-        _id: req.params.id
+        _id: req.params._id
     }).populate("deploymentType").exec(function(err, deployment) {
         if (err) {debug(err);
             debug(err);
@@ -31,7 +32,7 @@ exports.deploymentDetail = function(req, res, next) {
 };
 exports.deploymentSummary = function(req,res,next){
     Deployment.findOne({
-        _id: req.params.id
+        _id: req.params._id
     }).populate("deploymentType")
     .populate("owner")
     .exec(function(err, deployment) {
@@ -50,7 +51,7 @@ exports.deploymentSummary = function(req,res,next){
 }
 exports.deploymentChangeOwner=function(req,res,next){
     Deployment.findOneAndUpdate({
-        _id:req.params.id
+        _id:req.params._id
     }, {
             owner: req.params.owner
         }, {

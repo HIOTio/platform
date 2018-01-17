@@ -22,7 +22,7 @@ exports.sensorListForDeployment = function (req, res, next) {
   })
 }
 exports.sensorDetail = function (req, res, next) {
-  Sensor.findById(req.params.id, function (err, sensor) {
+  Sensor.findById(req.params._id, function (err, sensor) {
     if (err) {
       debug(err);
       return next(err);

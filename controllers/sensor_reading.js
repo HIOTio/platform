@@ -24,7 +24,7 @@ exports.sensorReadingListForSensor = function (req, res, next) {
   });
 };
 exports.sensorReadingDetail = function (req, res, next) {
-  SensorReading.findById(req.params.id, function (err, sensorReading) {
+  SensorReading.findById(req.params._id, function (err, sensorReading) {
     if (err) {
       debug(err);
       return next(err);

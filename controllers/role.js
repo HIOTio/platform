@@ -12,7 +12,7 @@ exports.roleList = function (req, res, next) {
 };
 
 exports.roleDetail = function (req, res, next) {
-  Role.findById(req.params.id, function (err, role) {
+  Role.findById(req.params._id, function (err, role) {
     if (err) {
       debug(err);
       return next(err);

@@ -24,7 +24,7 @@ exports.thingListForDeployment = function (req, res, next) {
 }
 exports.thingDetail = function (req, res, next) {
   Thing.find({
-    _id: req.params.id
+    _id: req.params._id
   }, function (err, thing) {
     if (err) {
       debug(err);

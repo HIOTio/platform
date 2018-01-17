@@ -1,5 +1,6 @@
 var ControllerCommand = require("../models/controller_command");
 var debug=require("debug")("controllers/controller_command.js");
+var utils = require("../utils");
 
 exports.controllerCommandList = function (req, res, next) {
   ControllerCommand.find({}, function (err, listControllerCommands) {
@@ -25,7 +26,7 @@ exports.controllerCommandListForController = function (req, res, next) {
 };
 exports.controllerCommandDetail = function (req, res, next) {
   ControllerCommand.find({
-    _id: req.params.id
+    _id: req.params._id
   }, function (err, controllerCommand) {
     if (err) {
       debug(err);
@@ -45,28 +46,10 @@ exports.controllerCommandCreate = function (req, res, next) {
     active: req.body.active,
     id: req.body.String
   });
-  controllerCommand.save(function (err) {
-    if (err) {
-      debug(err);
-      return next(err);
-    }
-    res.redirect(controllerCommand.url);
-  });
+  utils.goSave(controllerCommand,res);
 };
 exports.controllerCommandDelete = function (req, res, next) {
-  ControllerCommand.findOneAndUpdate({
-    _id: req.body.id
-  }, {
-    active: false
-  }, {
-    upsert: false
-  }, function (err, doc) {
-    if (err) {
-      debug(err);
-      next(err);
-    }
-    return res.sendStatus(200);
-  });
+  utils.markDeleted(ControllerCommand,req,res);
 };
 exports.controllerCommandUpdate = function (req, res, next) {
   ControllerCommand.findOneAndUpdate({

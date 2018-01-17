@@ -14,7 +14,7 @@ exports.paramList = function (req, res, next) {
 
 exports.paramDetail = function (req, res, next) {
   Param.find({
-    _id: req.params.id
+    _id: req.params._id
   }, function (err, Param) {
     if (err) {
       debug(err);

@@ -14,7 +14,7 @@ router.all("*", cors({
 
 router.options("*", cors());
 router.get("/", deploymentTypeController.deploymentTypeList);
-router.get("/:id", deploymentTypeController.deploymentTypeDetail);
+router.get("/:_id", deploymentTypeController.deploymentTypeDetail);
 router.post("/", deploymentTypeController.deploymentTypeCreate);
 router.delete("/", deploymentTypeController.deploymentTypeDelete);
 router.put("/", deploymentTypeController.deploymentTypeUpdate);

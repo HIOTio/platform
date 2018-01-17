@@ -2,7 +2,7 @@ var express = require("express");
 var router = new express.Router();
 var locationController = require("../controllers/location");
 router.get("/", locationController.locationList);
-router.get("/:id", locationController.locationDetail);
+router.get("/:_id", locationController.locationDetail);
 router.get("/deployment/:deployment", locationController.locationListByDeployment);
 router.get("/paths/:deployment", locationController.deploymentHierarchy);
 router.post("/", locationController.locationCreate);

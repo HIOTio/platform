@@ -24,7 +24,7 @@ exports.coordinatorGroupListForDeployment = function (req, res, next) {
 }
 exports.coordinatorGroupDetail = function (req, res, next) {
   CoordinatorGroup.find({
-    _id: req.params.id
+    _id: req.params._id
   }, function (err, coordinatorGroup) {
     if (err) {
       debug(err);

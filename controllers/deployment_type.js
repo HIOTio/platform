@@ -12,7 +12,7 @@ exports.deploymentTypeList = function (req, res, next) {
 }
 exports.deploymentTypeDetail = function (req, res, next) {
   DeploymentType.find({
-    _id: req.params.id
+    _id: req.params._id
   }, function (err, deploymentType) {
     if (err) {
       debug(err);
@@ -31,13 +31,7 @@ exports.deploymentTypeCreate = function (req, res, next) {
     owner: req.body.owner,
     parentType:req.body.parentType
   });
-  deploymentType.save(function (err) {
-    if (err) {
-      debug(err);
-      return next(err);
-    }
-    res.redirect(deploymentType.url);
-  });
+  utils.goSave(deploymentType, res);
 }
 exports.deploymentTypeDelete = function (req, res, next) {
   DeploymentType.findOneAndUpdate({

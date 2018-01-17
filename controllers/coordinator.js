@@ -1,6 +1,6 @@
 var Coordinator = require("../models/coordinator");
 var debug=require("debug")("controllers/coordinator.js");
-
+var utils = require("../utils");
 exports.CoordinatorList = function (req, res, next) {
   Coordinator.find({}, function (err, listCoordinators) {
     if (err) {
@@ -25,7 +25,7 @@ exports.CoordinatorListForDeployment = function (req, res, next) {
 }
 exports.coordinatorDetail = function (req, res, next) {
   Coordinator.find({
-    _id: req.params.id
+    _id: req.params._id
   }, function (err, coordinator) {
     if (err) {
       debug(err);
@@ -49,13 +49,7 @@ exports.coordinatorCreate = function (req, res, next) {
     },
     active: req.body.active
   });
-  coordinator.save(function (err) {
-    if (err) {
-      debug(err);
-      return next(err);
-    }
-    res.redirect(coordinator.url);
-  });
+  utils.goSave(coordinator,res);
 }
 exports.coordinatorDelete = function (req, res) {
   Coordinator.findOneAndUpdate({

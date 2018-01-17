@@ -25,7 +25,7 @@ exports.handlerListDeployment = function (req, res, next) {
   };
 exports.handlerDetail = function (req, res, next) {
   Handler.find({
-    _id: req.params.id
+    _id: req.params._id
   }, function (err, handler) {
     if (err) {
       debug(err);

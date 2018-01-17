@@ -51,7 +51,21 @@ exports.newOrganisation = function (req, res, next) {
   
 };
 exports.updateOrganisation = function (req, res, next) {
- 
+ Organisation.findOneAndUpdate(
+   { _id: req.body._id,},
+   {
+      name: req.body.name,
+      description: req.body.description,
+      "members": req.body.members
+    },
+   { upsert: false },
+   function( err,doc) {
+      console.log(doc);
+      if (err) {
+        res.send(err);
+      }
+      res.send(doc);
+    });
 };
 exports.organisationDetail =  function(req, res, next){
   Organisation.findOne({_id: req.params._id}, function(err,org){

@@ -52,7 +52,7 @@ exports.deploymentHierarchy = function (req, res, next) {
 };
 exports.locationDetail = function (req, res, next) {
   Location.find({
-    _id: req.params.id
+    _id: req.params._id
   })
   .populate("parent")
   .exec( function (err, location) {

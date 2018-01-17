@@ -1,5 +1,6 @@
 var Comms = require("../models/comms");
 var debug=require("debug")("controllers/comms.js");
+var utils = require("../utils");
 exports.commsList=function(){
 
 };
@@ -12,12 +13,6 @@ exports.newComms=function(req,res,next){
     responded: false,
     added: new Date()
   });
-  comms.save(function (err) {
-    if (err) {
-      debug(err);
-      return next(err);
-    }
-    res.sendStatus(200);
-  });
+  utils.goSave(comms,res);
 
 };

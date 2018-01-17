@@ -1,6 +1,7 @@
 var Aggregator = require("../models/aggregator");
 var debug=require("debug")("controllers/aggregator.js");
 var Device = require ("../models/device");
+var utils = require("../utils");
 exports.aggregatorList = function (req, res, next) {
   Aggregator.find({}, function (err, listAggregators) {
     if (err) {
@@ -39,7 +40,7 @@ exports.aggergatorListForDevice = function (req, res,next) {
 };
 exports.aggregatorDetail = function (req, res, next) {
   Aggregator.find({
-    _id: req.params.id
+    _id: req.params._id
   }, function (err, aggregator) {
     if (err) {
       debug(err);
@@ -61,21 +62,7 @@ exports.aggregatorCreate = function (req, res, next) {
     active:req.body.active,
     device: req.body.device
   });
-  aggregator.save(function (err,doc) {
-    if (err) {debug(err);
-      return next(err);
-    }
-    //successful, update device
-    var device = Device.findOneAndUpdate({_id:req.body.device},{"$push":{aggregators: doc._id}},{upsert:false},
-    function (err, doc) {
-      if (err) {
-        debug(err);
-
-      }
-    
-  });
-    res.send(doc);
-  });
+  utils.goSave(aggregator, res);
 };
 
 
