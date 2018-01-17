@@ -8,5 +8,7 @@ router.get("/:_id", organisationController.organisationDetail);
 router.post("/", organisationController.newOrganisation);
 router.delete("/", organisationController.organisationDelete);
 router.put("/", organisationController.updateOrganisation);
+router.put("/am", organisationController.addMember);
+router.put("/im", organisationController.inviteMembers);
 
 module.exports = router;

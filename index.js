@@ -74,7 +74,8 @@ var rGroups = require("./routes/groups");
 var rHealth = require("./routes/health");
 var rHandler = require("./routes/handler");
 var rLocation = require("./routes/location");
-var rOrganisation = require('./routes/organisation')
+var rOrganisation = require("./routes/organisation");
+var rOrgRole = require("./routes/org_role");
 var rParam = require("./routes/param");
 var rPlatform = require("./routes/platform");
 var rProfile = require("./routes/profile");
@@ -109,6 +110,7 @@ app.use("/api/handler", rHandler);
 app.use("/api/health", rHealth);
 app.use("/api/location", rLocation);
 app.use("/api/organisation", rOrganisation);
+app.use("/api/org_role", rOrgRole);
 app.use("/api/param", rParam);
 app.use("/api/platform", rPlatform);
 app.use("/api/profile", rProfile);
