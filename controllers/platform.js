@@ -62,7 +62,7 @@ exports.platformUpdate = function (req, res, next) {
     debug(err);
     return res.send(500, {
       error: err
-    })
+    });
   }
   if (doc != null) {
     res.redirect(303, doc.url);

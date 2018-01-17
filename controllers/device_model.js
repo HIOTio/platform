@@ -9,8 +9,8 @@ exports.deviceModelList = function (req, res, next) {
     }
 		// Successful, so render
     res.send(listDeviceModels);
-  })
-}
+  });
+};
 
 exports.deviceMakeModels = function (req, res, next) {
   DeviceModel.find({
@@ -22,8 +22,8 @@ exports.deviceMakeModels = function (req, res, next) {
     }
 		// Successful, so render
     res.send(deviceModel);
-  })
-}
+  });
+};
 exports.deviceModelDetail = function (req, res, next) {
   DeviceModel.find({
     _id: req.params._id
@@ -34,8 +34,8 @@ exports.deviceModelDetail = function (req, res, next) {
     }
 		// Successful, so render
     res.send(deviceModel);
-  })
-}
+  });
+};
 exports.deviceModelCreate = function (req, res, next) {
   var deviceModel = new DeviceModel({
     description: req.body.description,
@@ -48,8 +48,8 @@ exports.deviceModelCreate = function (req, res, next) {
       return next(err);
     }
     res.redirect(deviceModel.url);
-})
-}
+});
+};
 exports.deviceModelDelete = function (req, res, next) {
   DeviceModel.findOneAndUpdate({
     _id: req.body.id
@@ -66,7 +66,7 @@ exports.deviceModelDelete = function (req, res, next) {
     }
     return res.send("Device Model Deleted");
   });
-}
+};
 exports.deviceModelUpdate = function (req, res, next) {
   DeviceModel.findOneAndUpdate({
     _id: req.body.id
@@ -89,4 +89,4 @@ exports.deviceModelUpdate = function (req, res, next) {
     res.send(500, "Device Model not found");
   }
 });
-}
+};

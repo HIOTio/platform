@@ -28,7 +28,7 @@ exports.deviceMakeCreate = function (req, res, next) {
   var deviceMake = new DeviceMake({
     description: req.body.description,
     added: req.body.added
-  })
+  });
   deviceMake.save(function (err) {
     if (err) {
       debug(err);

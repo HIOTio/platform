@@ -109,7 +109,7 @@ exports.deploymentRoleUpdate = function (req, res) {
     debug(err);
     res.send(500, {
       error: err
-    })
+    });
   }
   res.redirect(303, doc.url);
 })
@@ -125,4 +125,4 @@ exports.deploymentRoleRemove=function (req,res,next){
     }
     res.sendStatus(200);
   });
-}
+};

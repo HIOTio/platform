@@ -22,14 +22,13 @@ exports.roleDetail = function (req, res, next) {
   });
 };
 exports.roleCreate = function (req, res, next) {
-  var errors = req.validationErrors()
   var role = new Role({
     description: req.body.description,
     name: req.body.name,
     addSeployment: req.body.addDeployment,
     addUser: req.body.addUser,
     controlDevices: req.body.controlDevices
-  })
+  });
   role.save(function (err) {
     if (err) {
       debug(err);

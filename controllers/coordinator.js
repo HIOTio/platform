@@ -9,8 +9,8 @@ exports.CoordinatorList = function (req, res, next) {
     }
 		// Successful, so render
     res.send(listCoordinators);
-  })
-}
+  });
+};
 exports.CoordinatorListForDeployment = function (req, res, next) {
   Coordinator.find({
     deployment: req.params.deployment
@@ -22,7 +22,7 @@ exports.CoordinatorListForDeployment = function (req, res, next) {
 		// Successful, so render
     res.send(listCoordinators);
   });
-}
+};
 exports.coordinatorDetail = function (req, res, next) {
   Coordinator.find({
     _id: req.params._id
@@ -34,7 +34,7 @@ exports.coordinatorDetail = function (req, res, next) {
 		// Successful, so render
     res.send(coordinator);
   });
-}
+};
 exports.coordinatorCreate = function (req, res, next) {
   req.checkBody("description", "Each coordinator needs a description").notEmpty();
   req.checkBody("deployment", "A coordinator needs to belong to a deployment").notEmpty();
@@ -50,7 +50,7 @@ exports.coordinatorCreate = function (req, res, next) {
     active: req.body.active
   });
   utils.goSave(coordinator,res);
-}
+};
 exports.coordinatorDelete = function (req, res) {
   Coordinator.findOneAndUpdate({
     _id: req.body.id
@@ -66,8 +66,8 @@ exports.coordinatorDelete = function (req, res) {
       })
     }
     return res.send("Coordinator Deleted");
-  })
-}
+  });
+};
 exports.coordinatorUpdate = function (req, res) {
   Coordinator.findOneAndUpdate({
     _id: req.body.id
@@ -92,5 +92,5 @@ exports.coordinatorUpdate = function (req, res) {
   } else {
     res.send(500, "coordinator not found");
   }
-})
-}
+});
+};

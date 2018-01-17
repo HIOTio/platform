@@ -10,19 +10,18 @@ exports.organisationList = function (req, res, next) {
       return next(err);
     }
     res.send(org);
-  })
+  });
 };
 
 exports.newOrganisation = function (req, res, next) {
-  var orgRole = '';
+  var orgRole = "";
   OrgRole.findOne({name: "administrator"}, function(err,oRole){
     if (err){
       res.send(err);
     }
     if (!oRole){
-      res.send({"status":500, "error": "please set up an 'administrator' role first"});
+      res.send({"status":500, "error": "please set up an "administrator" role first"});
     }else{
-    console.log(oRole);
       var organisation = new Organisation({
       name: req.body.name,
       description: req.body.description,
@@ -73,8 +72,8 @@ exports.organisationDetail =  function(req, res, next){
       return next(err);
     }
     res.send (org);
-  })
-}
+  });
+};
 exports.addMember = function (req, res, next) {
   Organisation.findOne(
     {
@@ -121,7 +120,6 @@ exports.inviteMembers = function (req, res, next) {
       $or: [ {invited: null}, {invited:false}]
     },function(err, doc){
       if (!doc){
-        console.log("updating")
         Organisation.update(
     {
       _id: req.body._id
@@ -168,4 +166,4 @@ exports.inviteMembers = function (req, res, next) {
 };
 exports.organisationDelete = function (req, res, next) {
   
-}
+};

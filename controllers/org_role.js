@@ -8,7 +8,7 @@ exports.orgRoleList = function (req, res, next) {
       return next(err);
     }
     res.send(org);
-  })
+  });
 };
 
 exports.newOrgRole = function (req, res, next) {
@@ -26,7 +26,7 @@ exports.newOrgRole = function (req, res, next) {
       
     }
     res.send(orgRole);
-  })
+  });
 };
 exports.updateOrgRole = function (req, res, next) {
  
@@ -38,8 +38,8 @@ exports.orgRoleDetail =  function(req, res, next){
       return next(err);
     }
     res.send (orgRole);
-  })
-}
+  });
+};
 exports.orgRoleDelete = function (req, res, next) {
   
 };

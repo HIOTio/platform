@@ -26,7 +26,7 @@ exports.navigationList = function (req, res, next) {
     "url": "/dashboard",
     "icon": "dashboard"
 
-  })
+  });
 			// create list of deployments
 			// only add an "ALL" option if there is more than one deployment for the user
   if (data[0].length > 1) {
@@ -36,7 +36,7 @@ exports.navigationList = function (req, res, next) {
       "type": "nav-item",
       "icon": "group_work"
 
-    })
+    });
   }
   for (var i = 0; i < data[0].length; i++) {
     children.push({
@@ -44,7 +44,7 @@ exports.navigationList = function (req, res, next) {
       "url": "/deployment/" + data[0][i].deployment._id,
       "type": "nav-item",
       "icon": "business"
-    })
+    });
   }
   if (children.length > 0) {
     children.push({

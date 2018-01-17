@@ -128,5 +128,5 @@ app.use("/api/navigation", rNavigation);
 
 app.get("/", function(req, res) {
     res.send("HIOT Platform!");
-})
+});
 app.listen(3000, function() {});

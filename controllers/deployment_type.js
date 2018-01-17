@@ -9,8 +9,8 @@ exports.deploymentTypeList = function (req, res, next) {
       return next(err);
     }
     res.send(listDeploymentTypes);
-  })
-}
+  });
+};
 exports.deploymentTypeDetail = function (req, res, next) {
   DeploymentType.find({
     _id: req.params._id
@@ -20,8 +20,8 @@ exports.deploymentTypeDetail = function (req, res, next) {
       return next(err);
     }
     res.send(deploymentType);
-  })
-}
+  });
+};
 exports.deploymentTypeCreate = function (req, res, next) {
   var deploymentType = new DeploymentType({
     description: req.body.description,
@@ -33,7 +33,7 @@ exports.deploymentTypeCreate = function (req, res, next) {
     parentType:req.body.parentType
   });
   utils.goSave(deploymentType, res);
-}
+};
 exports.deploymentTypeDelete = function (req, res, next) {
   DeploymentType.findOneAndUpdate({
     _id: req.body.id
@@ -50,7 +50,7 @@ exports.deploymentTypeDelete = function (req, res, next) {
     }
     return res.send("Deployment Type Deleted");
   });
-}
+};
 exports.deploymentTypeUpdate = function (req, res) {
   DeploymentType.findOneAndUpdate({
     _id: req.body.id
@@ -76,4 +76,4 @@ exports.deploymentTypeUpdate = function (req, res) {
   }
   res.redirect(303, doc.url);
 });
-}
+};

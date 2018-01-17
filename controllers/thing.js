@@ -9,8 +9,8 @@ exports.thingList = function (req, res, next) {
     }
         // Successful, so render
     res.send(listThings);
-  })
-}
+  });
+};
 exports.thingListForDeployment = function (req, res, next) {
     // need to map devices back up to deployments, eventually
   Thing.find({}, function (err, listThings) {
@@ -20,8 +20,8 @@ exports.thingListForDeployment = function (req, res, next) {
     }
         // Successful, so render
     res.send(listThings);
-  })
-}
+  });
+};
 exports.thingDetail = function (req, res, next) {
   Thing.find({
     _id: req.params._id
@@ -32,8 +32,8 @@ exports.thingDetail = function (req, res, next) {
     }
         // Successful, so render
     res.send(thing);
-  })
-}
+  });
+};
 exports.thingCreate = function (req, res, next) {
   req.checkBody("deviceid", "Each thing needs a device id").notEmpty();
   req.sanitize("deviceid").escape();
@@ -55,8 +55,8 @@ exports.thingCreate = function (req, res, next) {
       return next(err);
     }
     res.redirect(thing.url);
-  })
-}
+  });
+};
 exports.thingDelete = function (req, res, next) {
   Thing.findOneAndUpdate({
     _id: req.body.id
@@ -71,7 +71,7 @@ exports.thingDelete = function (req, res, next) {
     }
     return res.send("Thing Deleted");
   });
-}
+};
 exports.thingUpdate = function (req, res, next) {
   Thing.findOneAndUpdate({
     _id: req.body.id
@@ -96,4 +96,4 @@ exports.thingUpdate = function (req, res, next) {
           }
           res.redirect(303, doc.url);
         });
-}
+};

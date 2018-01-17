@@ -92,7 +92,7 @@ exports.handlerUpdate = function (req, res, next) {
             debug(err);
             return res.send(500, {
               error: err
-            })
+            });
           }
           res.redirect(303, doc.url);
         });

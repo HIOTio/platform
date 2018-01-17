@@ -9,7 +9,7 @@ exports.locationList = function (req, res, next) {
     }
 		// Successful, so render
     res.send(listLocations);
-  })
+  });
 };
 exports.locationListByDeployment = function (req, res, next) {
   Location.find({

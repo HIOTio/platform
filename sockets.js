@@ -24,13 +24,13 @@ exports.init = function(sApp) {
             }
         });
         ws.on("close", function(){
-        })
-    })
-}
+        });
+    });
+};
 
 exports.deregisterChannel=function(channel){
     delete channels[channel];
-}
+};
 exports.send = function(channel, message) {
     if(channels[channel]){
         channels[channel].forEach((chan) => {
@@ -40,4 +40,4 @@ exports.send = function(channel, message) {
             });
         });
     }
-}
+};

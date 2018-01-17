@@ -8,8 +8,8 @@ exports.sensorList = function (req, res, next) {
     }
 		// Successful, so render
     res.send(listSensors);
-  })
-}
+  });
+};
 exports.sensorListForDeployment = function (req, res, next) {
 	// need to map devices back up to deployments, eventually
   Sensor.find({}, function (err, listSensors) {
@@ -19,8 +19,8 @@ exports.sensorListForDeployment = function (req, res, next) {
     }
 		// Successful, so render
     res.send(listSensors);
-  })
-}
+  });
+};
 exports.sensorDetail = function (req, res, next) {
   Sensor.findById(req.params._id, function (err, sensor) {
     if (err) {
@@ -29,8 +29,8 @@ exports.sensorDetail = function (req, res, next) {
     }
 		// Successful, so render
     res.send(sensor);
-  })
-}
+  });
+};
 exports.sensorCreate = function (req, res, next) {
   var sensor = new Sensor({
     id: req.body.id,
@@ -43,15 +43,15 @@ exports.sensorCreate = function (req, res, next) {
     location: req.body.location,
     active: req.body.active,
     sensortype: req.body.sensortype
-  })
+  });
   sensor.save(function (err) {
     if (err) {
       debug(err);
       return next(err);
     }
     res.redirect(sensor.url);
-  })
-}
+  });
+};
 exports.sensorDelete = function (req, res, next) {
   Sensor.findOneAndUpdate({
     _id: req.body.id
@@ -65,8 +65,8 @@ exports.sensorDelete = function (req, res, next) {
       next(err);
     }
     return res.send("Sensor Deleted");
-  })
-}
+  });
+};
 exports.sensorUpdate = function (req, res, next) {
   Sensor.findOneAndUpdate({
     _id: req.body.id
@@ -92,5 +92,5 @@ exports.sensorUpdate = function (req, res, next) {
     });
   }
   res.redirect(303, doc.url);
-})
-}
+});
+};

@@ -30,7 +30,7 @@ exports.sensorTypesCreate = function (req, res, next) {
     active: req.body.active,
     added: req.body.added,
     defaultPushInterval: req.body.defaultPushInterval
-  })
+  });
   sensorTypes.save(function (err) {
     if (err) {
       debug(err);

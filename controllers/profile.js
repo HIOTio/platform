@@ -27,7 +27,7 @@ exports.profileAuth = function (req, res, next) {
         if (isMatch) {
           var payload = {
             id: profile._id
-          }
+          };
           var token = jwt.sign(payload, config.secret);
 
           res.send({
@@ -48,7 +48,7 @@ exports.profileAuth = function (req, res, next) {
       });
     }
   });
-}
+};
 exports.profileDetail = function (req, res, next) {
   Profile.findOne({
     _id: req.params.profile
@@ -59,7 +59,7 @@ exports.profileDetail = function (req, res, next) {
     }
     res.send(profile);
   });
-}
+};
 
 exports.findById = function (id, callback) {
   Profile.findOne({
@@ -69,8 +69,8 @@ exports.findById = function (id, callback) {
 		// Successful, so render
     callback.call(profile);
     }
-  })
-}
+  });
+};
 exports.profileCreate = function (req, res, next) {
   req.checkBody("username", "Each profile needs a username").notEmpty();
   req.sanitize("username").escape();
@@ -104,7 +104,7 @@ exports.profileCreate = function (req, res, next) {
       "redirect": doc.url
     });
   });
-}
+};
 
 exports.profileDelete = function (req, res) {
   Profile.findOneAndUpdate({
@@ -122,7 +122,7 @@ exports.profileDelete = function (req, res) {
     }
     return res.send("Profile Deleted");
   });
-}
+};
 exports.profileUpdate = function (req, res) {
   Profile.findOneAndUpdate({
     _id: req.body.id
@@ -142,4 +142,4 @@ exports.profileUpdate = function (req, res) {
   }
   res.redirect(303, doc.url);
 });
-}
+};

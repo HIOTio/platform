@@ -30,7 +30,7 @@ exports.subscriptioCreate = function (req, res, next) {
     topic: req.body.topic,
     added: req.body.added
   });
-  res.redirect(303, subscription.url)
+  res.redirect(303, subscription.url);
 };
 exports.subscriptionDelete = function (req, res, next) {
   Subscription.findOneAndUpdate({

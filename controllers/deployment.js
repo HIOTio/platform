@@ -48,7 +48,7 @@ exports.deploymentSummary = function(req,res,next){
             });
         });
     });
-}
+};
 exports.deploymentChangeOwner=function(req,res,next){
     Deployment.findOneAndUpdate({
         _id:req.params._id
@@ -64,11 +64,11 @@ exports.deploymentChangeOwner=function(req,res,next){
                 });
             }
             return res.send(doc);
-        })
+        });
         // need to remove all the associated deployment roles and then broadcast on relevant channels
     sockets.send("deployment-" + req.body.id, JSON.stringify({ "deployment":req.body.id,"action":"owner changes","message": "Deployment \"" + req.body.id+ "\" has a new owner" }));
 
-}
+};
 exports.deploymentCreate = function(req, res, next) {
     //NOTE: think about giving the user the option of changing the owner of a new deployment - for now, just hard-code  it [Issue #4]
 

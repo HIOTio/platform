@@ -95,7 +95,7 @@ exports.aggregatorDelete = function (req, res) {
       });
     }
     return res.send("Aggregator Deleted");
-  })
+  });
 };
 exports.aggregatorUpdate = function (req, res) {
   //TODO: what to do if the _id isn"t found [Issue #7]
