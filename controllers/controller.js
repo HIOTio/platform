@@ -12,9 +12,9 @@ exports.controllerList = function (req, res, next) {
     res.send(listControllers);
   });
 };
-exports.controllerListForThing = function (req, res, next) {
+exports.controllerListDeployment = function (req, res, next) {
   Controller.find({
-    thing: req.params.thing,
+    deployment: req.params.deployment,
   }, function (err, listControllers) {
     if (err) {
       debug(err);
@@ -34,6 +34,7 @@ exports.controllerCreate = function (req, res, next) {
     controllerId: req.body.controllerId,
     name: req.body.name,
     channel: req.body.channel,
+    commands: req.body.commands,
     handler: req.body.handler,
     thing: req.body.thing,
     added: req.body.added,
@@ -53,6 +54,7 @@ exports.controllerUpdate = function (req, res, next) {
     controllerId: req.body.controllerId,
     name: req.body.name,
     channel: req.body.channel,
+    commands: req.body.commands,
     handler: req.body.handler,
     thing: req.body.thing,
     added: req.body.added,
@@ -67,6 +69,6 @@ exports.controllerUpdate = function (req, res, next) {
         error: err,
       });
     }
-    res.redirect(303, doc.url);
+    res.send(doc);
   });
 };

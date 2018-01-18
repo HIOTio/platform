@@ -20,7 +20,7 @@ exports.newOrganisation = function (req, res, next) {
       res.send(err);
     }
     if (!oRole){
-      res.send({"status":500, "error": "please set up an "administrator" role first"});
+      res.send({"status":500, "error": "please set up an 'administrator' role first"});
     }else{
       var organisation = new Organisation({
       name: req.body.name,
