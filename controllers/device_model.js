@@ -18,7 +18,7 @@ exports.deviceMakeModels = function (req, res, next) {
   }, function (err, deviceModel) {
     if (err) {
       debug(err);
-      return next(err);
+      res.send([]);
     }
 		// Successful, so render
     res.send(deviceModel);

@@ -12,7 +12,7 @@ exports.sensorList = function (req, res, next) {
 };
 exports.sensorListForDeployment = function (req, res, next) {
 	// need to map devices back up to deployments, eventually
-  Sensor.find({}, function (err, listSensors) {
+  Sensor.find({deployment: req.params.deployment}, function (err, listSensors) {
     if (err) {
       debug(err);
       return next(err);
@@ -91,6 +91,6 @@ exports.sensorUpdate = function (req, res, next) {
       error: err
     });
   }
-  res.redirect(303, doc.url);
+  res.send(doc);
 });
 };
