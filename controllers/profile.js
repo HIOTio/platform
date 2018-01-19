@@ -11,7 +11,7 @@ exports.profileAuth = function (req, res, next) {
       return next(err);
     }
     if (profile == null) {
-      res.setHeader("WWW-Authenticate", "Basic realm=\"need login\"");
+      res.setHeader("WWW-Authenticate", "xBasic realm=\"HIOT\"");
       res.status(401).send({
         success:false,
         error: "Please try again",

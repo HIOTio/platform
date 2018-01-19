@@ -19,7 +19,8 @@ exports.deploymentList = function(req, res, next) {
 exports.deploymentDetail = function(req, res, next) {
     Deployment.findOne({
         _id: req.params._id
-    }).populate("deploymentType").exec(function(err, deployment) {
+    }).populate("deploymentType")
+    .exec(function(err, deployment) {
         if (err) {debug(err);
             debug(err);
             return next(err);
@@ -35,8 +36,9 @@ exports.deploymentSummary = function(req,res,next){
         _id: req.params._id
     }).populate("deploymentType")
     .populate("owner")
+    .populate("organisation")
     .exec(function(err, deployment) {
-        if (err) {debug(err);
+        if (err) {
             debug(err);
             return next(err);
         }
@@ -76,7 +78,8 @@ exports.deploymentCreate = function(req, res, next) {
         description: req.body.description,
         name: req.body.name,
         deploymentType: req.body.deploymentType,
-        owner: req.body.owner
+        owner: req.body.owner,
+        organisation:req.body.organisation
     });
     deployment.save(function(err) {
         if (err) {
@@ -136,7 +139,8 @@ exports.deploymentUpdate = function(req, res) {
             owner: req.body.owner,
             added: req.body.added,
             active: req.body.active,
-            deploymentType: req.body.deploymentType
+            deploymentType: req.body.deploymentType,
+            organisation: req.body.organisation
         }, {
             upsert: false
         },
