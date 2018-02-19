@@ -24,6 +24,6 @@ app.use(passport.initialize());
 
 module.exports = function () {
   return passport.authenticate("jwt", {
-    session: false;
+    session: false
   });
 }
