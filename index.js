@@ -50,7 +50,8 @@ app.use("/api", passport.authenticate("jwt", {
 
 app.options("*", cors());
 var r={
-    "no_auth":"/",
+	"organisation":"/api/organisation",
+	"no_auth":"/",
     "aggregator":"/api/aggregator",
 	"broker":"/api/broker",
 	"commander":"/api/commander",
@@ -71,7 +72,6 @@ var r={
 	"handler":"/api/handler",
 	"health":"/api/health",
 	"location":"/api/location",
-	"organisation":"/api/organisation",
 	"org_role":"/api/org_role",
 	"param":"/api/param",
 	"platform":"/api/platform",

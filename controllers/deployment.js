@@ -1,6 +1,7 @@
 var Deployment = require("../models/deployment");
 var DeploymentRole = require("../models/deployment_role");
 var debug=require("debug")("controllers/deployment.js");
+var Organisation = require('../models/organisation');
 var Device = require("../models/device");
 var Role = require("../models/role");
 var Location = require("../models/location");
