@@ -67,7 +67,7 @@ var r={
 	"device":"/api/device",
 	"device_configuration":"/api/device_configuration",
 	"device_make":"/api/device_make",
-	"device_Model":"/api/device_model",
+	"device_model":"/api/device_model",
 	"groups":"/api/groups",
 	"handler":"/api/handler",
 	"health":"/api/health",
