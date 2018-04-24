@@ -22,6 +22,7 @@ exports.deploymentTypeDetail = function (req, res, next) {
     res.send(deploymentType);
   });
 };
+
 exports.deploymentTypeCreate = function (req, res, next) {
   var deploymentType = new DeploymentType({
     description: req.body.description,

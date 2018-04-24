@@ -3,6 +3,7 @@ var debug=require("debug")("controllers/profile.js");
 var config = require("../config");
 var jwt = require("jsonwebtoken");
 exports.profileAuth = function (req, res, next) {
+	debug("searching for profile...");
   Profile.findOne({
     username: req.body.username
   }, function (err, profile) {
